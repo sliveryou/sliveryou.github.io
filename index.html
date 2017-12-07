@@ -264,6 +264,235 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/Python3爬虫之urllib模块的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="青柚。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青柚。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/07/Python3爬虫之urllib模块的使用/" itemprop="url">Python3爬虫之urllib模块的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T22:15:58+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><hr>
+<p>今天来说说python3内置的一个HTTP请求库，urllib。<br>官方文档：<a href="https://docs.python.org/3/library/urllib.html" target="_blank" rel="external">urllib — URL handling modules</a>  </p>
+<p>urllib中包括了四个模块，包括了：urllib.request，urllib.error，urllib.parse，urllib.robotparser</p>
+<ul>
+<li>urllib.request (请求模块)：可以用来发送request和获取request的结果</li>
+<li>urllib.error (异常处理模块)：包含了urllib.request产生的异常</li>
+<li>urllib.parse (URL解析模块)：用来解析和处理URL</li>
+<li>urllib.robotparse (robots.txt解析模块)：用来解析页面的robots.txt文件</li>
+</ul>
+<p>显而易见，urllib.request库和urllib.error库是在一次模拟请求中比较重要的库。</p>
+<h3 id="使用urllib-request发送请求"><a href="#使用urllib-request发送请求" class="headerlink" title="使用urllib.request发送请求"></a>使用urllib.request发送请求</h3><hr>
+<p><strong>简单urllib.request.urlopen()使用方法</strong></p>
+<p>urllib.request模块提供了最基本的构造HTTP请求的方法，利用它可以模拟浏览器的一个请求发起过程，同时它还带有处理<code>authenticaton(授权验证)，redirections(重定向)，cookies(浏览器Cookies)</code>以及其它内容。<br>首先，先试着抓取一下百度的页面：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line">  </div><div class="line">response = urllib.request.urlopen(<span class="string">"http://www.baidu.com"</span>)  </div><div class="line">print(response.read().decode(<span class="string">"utf-8"</span>))</div></pre></td></tr></table></figure>
+<p>真正的代码其实只有两行，我们便完成了对百度首页的抓取，并输出了它的网页源代码。在爬虫程序中，得到了网页源代码之后，你所需要的链接、图片、视频、文本信息等就可以在网页源代码中查找并提取出来。<br>现在尝试利用type函数输出response的类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line"></div><div class="line">response = urllib.request.urlopen(<span class="string">"http://www.baidu.com"</span>)  </div><div class="line">print(type(response))</div></pre></td></tr></table></figure>
+<p>输出结果为：<code>&lt;class &#39;http.client.HTTPResponse&#39;&gt;</code><br>通过输出结果可以发现它是一个<strong>http.client.HTTPResponse</strong>类型的对象，它主要包含的方法有<code>read()、readinto()、getheader(key)、getheaders()、fileno()</code>等函数和<code>msg、version、status、reason、debuglevel、closed</code>等属性。得到这个对象之后，将其赋值给response，就可以用response调用这些方法和属性，以此得到返回结果和信息。如response.read().decode(“utf-8”)可以得到返回后的利用utf-8编码的网页内容，response.status可以得到响应返回结果的状态码。<br>下面再来一个实例感受一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import urllib.request</div><div class="line">&gt;&gt;&gt;</div><div class="line">&gt;&gt;&gt; response = urllib.request.urlopen(&quot;http://www.baidu.com&quot;)</div><div class="line">&gt;&gt;&gt; print(response.status)</div><div class="line">200</div><div class="line">&gt;&gt;&gt; print(response.getheaders())</div><div class="line">[(&apos;Date&apos;, &apos;Thu, 07 Dec 2017 14:37:26 GMT&apos;), (&apos;Content-Type&apos;, &apos;text/html; charset=utf-8&apos;), (&apos;Transfer-Encoding&apos;, &apos;chunked&apos;), (&apos;Connection&apos;, &apos;Close&apos;), (&apos;Vary&apos;, &apos;Accept-Encoding&apos;), (&apos;Set-Cookie&apos;, &apos;BAIDUID=3D72FEFAEEE60FAB2F79886A59FAC02D:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com&apos;), (&apos;Set-Cookie&apos;, &apos;BIDUPSID=3D72FEFAEEE60FAB2F79886A59FAC02D; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com&apos;), (&apos;Set-Cookie&apos;, &apos;PSTM=1512657446; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com&apos;), (&apos;Set-Cookie&apos;, &apos;BDSVRTM=0; path=/&apos;), (&apos;Set-Cookie&apos;, &apos;BD_HOME=0; path=/&apos;), (&apos;Set-Cookie&apos;, &apos;H_PS_PSSID=25263_1467_21122_25178_20718; path=/; domain=.baidu.com&apos;), (&apos;P3P&apos;, &apos;CP=&quot; OTI DSP COR IVA OUR IND COM &quot;&apos;), (&apos;Cache-Control&apos;, &apos;private&apos;), (&apos;Cxy_all&apos;, &apos;baidu+90b96fddd3e4cc794d4573d45036518c&apos;), (&apos;Expires&apos;, &apos;Thu, 07 Dec 2017 14:36:39 GMT&apos;), (&apos;X-Powered-By&apos;, &apos;HPHP&apos;), (&apos;Server&apos;, &apos;BWS/1.1&apos;), (&apos;X-UA-Compatible&apos;, &apos;IE=Edge,chrome=1&apos;), (&apos;BDPAGETYPE&apos;, &apos;1&apos;), (&apos;BDQID&apos;, &apos;0xe4820d9700009820&apos;), (&apos;BDUSERID&apos;, &apos;0&apos;)]</div><div class="line">&gt;&gt;&gt; print(response.getheader(&quot;Server&quot;))</div><div class="line">BWS/1.1</div></pre></td></tr></table></figure>
+<p>可见，三个输出分别输出了响应的状态码，响应的头信息，以及通过传递一个参数来获取对应的头信息。</p>
+<p><strong>高级urllib.request.urlopen()使用方法</strong></p>
+<p>利用urlopen()方法，我们可以实现对一般网页的GET请求。<br>如果我们想给链接传递一些参数该怎么实现呢？我们首先看一下urlopen()函数的API。</p>
+<p><code>urllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, cadefault=False, context=None)</code></p>
+<p>可以发现除了第一个参数可以传递URL之外，我们还可以传递其它的内容，比如data(附加参数)，timeout(超时时间)等等。<br>data参数是可选的，如果要添加data，它要求是字节流编码格式的内容，即bytes类型，通过bytes()函数可以进行转化，另外如果你传递了这个data参数，它的请求方式就不再是GET方式请求，而是POST。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.parse  </div><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line">data = bytes(urllib.parse.urlencode(&#123;<span class="string">'word'</span>: <span class="string">'hello'</span>&#125;), encoding=<span class="string">'utf-8'</span>)  </div><div class="line">response = urllib.request.urlopen(<span class="string">'http://httpbin.org/post'</span>, data=data)  </div><div class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</div><div class="line"><span class="comment">#read获取的是bytes型的数据，decode可按特定编码方式编码(相当于获取响应体)。</span></div></pre></td></tr></table></figure>
+<p>在这里我们传递了一个参数word，值是hello。它需要被转码成bytes(字节流)类型。其中转字节流采用了bytes()方法，第一个参数需要是str(字符串)类型，需要用urllib.parse.urlencode()方法来将参数字典转化为字符串。第二个参数指定编码格式，在这里指定为utf-8。<br>提交的网址是<a href="httpbin.org">httpbin.org</a>，它可以提供HTTP请求测试。<a href="http://httpbin.org/post" target="_blank" rel="external">http://httpbin.org/post</a>这个地址可以用来测试POST请求，它可以输出请求和响应信息，其中就包含我们传递的data参数。<br>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;args&quot;: &#123;&#125;,</div><div class="line">  &quot;data&quot;: &quot;&quot;,</div><div class="line">  &quot;files&quot;: &#123;&#125;,</div><div class="line">  &quot;form&quot;: &#123;</div><div class="line">    &quot;word&quot;: &quot;hello&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;headers&quot;: &#123;</div><div class="line">    &quot;Accept-Encoding&quot;: &quot;identity&quot;,</div><div class="line">    &quot;Connection&quot;: &quot;close&quot;,</div><div class="line">    &quot;Content-Length&quot;: &quot;10&quot;,</div><div class="line">    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,</div><div class="line">    &quot;Host&quot;: &quot;httpbin.org&quot;,</div><div class="line">    &quot;User-Agent&quot;: &quot;Python-urllib/3.6&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;json&quot;: null,</div><div class="line">  &quot;origin&quot;: &quot;112.10.180.190&quot;,</div><div class="line">  &quot;url&quot;: &quot;http://httpbin.org/post&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们传递的参数出现在了form中，这表明我们的python语句模拟了表单提交的方法，并以POST方式传输数据。</p>
+<p><strong>timeout参数</strong></p>
+<p>timeout参数可以设置超时时间，单位为秒，意思就是如果请求超出了设置的这个时间还没有得到响应，就会抛出异常，如果不指定，就会使用全局默认时间。它支持HTTP、HTTPS、FTP请求。<br>下面来用一个实例感受一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line">response = urllib.request.urlopen(<span class="string">"http://httpbin.org/get"</span>,timeout=<span class="number">0.1</span>)  </div><div class="line">print(response.read())</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">During handling of the above exception, another exception occurred:</div><div class="line"></div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">  File &quot;/Users/sliver/anaconda3/lib/python3.6/urllib/request.py&quot;, line 223, in urlopen</div><div class="line">    return opener.open(url, data, timeout)</div><div class="line">  File &quot;/Users/sliver/anaconda3/lib/python3.6/urllib/request.py&quot;, line 526, in open</div><div class="line">    response = self._open(req, data)</div><div class="line">  File &quot;/Users/sliver/anaconda3/lib/python3.6/urllib/request.py&quot;, line 544, in _open</div><div class="line">    &apos;_open&apos;, req)</div><div class="line">  File &quot;/Users/sliver/anaconda3/lib/python3.6/urllib/request.py&quot;, line 504, in _call_chain</div><div class="line">    result = func(*args)</div><div class="line">  File &quot;/Users/sliver/anaconda3/lib/python3.6/urllib/request.py&quot;, line 1346, in http_open</div><div class="line">    return self.do_open(http.client.HTTPConnection, req)</div><div class="line">  File &quot;/Users/sliver/anaconda3/lib/python3.6/urllib/request.py&quot;, line 1320, in do_open</div><div class="line">    raise URLError(err)</div><div class="line">urllib.error.URLError: &lt;urlopen error timed out&gt;</div></pre></td></tr></table></figure>
+<p>在这里我们设置了超时时间是0.1秒，在0.1秒过后服务器依然没有响应，于是程序抛出了<code>urllib.error.URLError</code>异常，错误原因是timed out。<br>因此我们可以通过设置这个超时时间来控制一个网页如果长时间未响应就跳过它的抓取，利用try，except语句就可以实现这样的操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line"><span class="keyword">import</span> socket  </div><div class="line"><span class="keyword">import</span> urllib.error  </div><div class="line"></div><div class="line"><span class="keyword">try</span>:  </div><div class="line">    response = urllib.request.urlopen(<span class="string">'http://httpbin.org/get'</span>,timeout=<span class="number">0.1</span>)  </div><div class="line"><span class="keyword">except</span> urllib.error.URLError <span class="keyword">as</span> e:  </div><div class="line">    <span class="keyword">if</span> isinstance(e.reason, socket.timeout):  </div><div class="line">        print(<span class="string">"Time out!"</span>)</div></pre></td></tr></table></figure>
+<p>在这里我们请求了<a href="http://httpbin.org/get" target="_blank" rel="external">http://httpbin.org/get</a>这个测试链接，设置了超时时间是0.1秒，然后捕获了<code>urllib.error.URLError</code>这个异常，然后判断异常原因是超时异常，就得出它确实是因为超时而报错，打印输出了<code>TIME OUT</code>，当然你也可以在这里做其他的处理。<br>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Time out!</div></pre></td></tr></table></figure>
+<p>常理来说，0.1秒内基本不可能得到服务器响应，因此输出了<code>TIME OUT</code>的提示。这样，我们可以通过设置 timeout这个参数来实现超时处理，有时还是很有用的。<br>其他参数还有context参数，它必须是<code>ssl.SSLContext</code>类型，用来指定SSL设置。cafile和capath两个参数是指定CA证书和它的路径，这个在请求HTTPS链接时会有用。cadefault参数现在已经弃用了，默认为False。<br>以上讲解了url.request.urlopen()方法的用法，通过这个最基本的函数可以完成简单的请求和网页抓取，如需详细了解，可以查看官方文档：<a href="https://docs.python.org/3/library/urllib.request.html" target="_blank" rel="external">https://docs.python.org/3/library/urllib.request.html</a></p>
+<p><strong>urllib.request.Request()使用方法</strong></p>
+<p>由上我们知道利用urlopen()方法可以实现最基本的请求发起，但这几个简单的参数并不足以构建一个完整的请求，如果请求中需要加入headers等信息，我们就可以利用更强大的Request类来构建一个请求。<br>首先我们用一个实例来感受一下Request的用法:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line">  </div><div class="line">request = urllib.request.Request(<span class="string">"https://www.baidu.com"</span>)  </div><div class="line">response = urllib.request.urlopen(request)  </div><div class="line">print(response.read().decode(<span class="string">"utf-8"</span>))</div></pre></td></tr></table></figure>
+<p>可以发现，我们依然是用urlopen()方法来发送这个请求，只不过这次urlopen()方法的参数不再是一个URL，而是一个Request，通过构造这个这个数据结构，一方面我们可以将请求独立成一个对象，另一方面一个请求可配置的参数将更加丰富和灵活。<br>下面我们看一下Request都可以通过怎样的参数来构造，它的构造方法如下：</p>
+<p><code>urllib.request.Request(url, data=None, headers={}, origin_req_host=None, unverifiable=False, method=None)</code></p>
+<p>第一个参数是请求链接，这个是必传参数，其他的都是可选参数。<br>data参数如果要传必须传bytes(字节流)类型的，如果是一个字典，可以先用urllib.parse.urlencode()编码。<br>headers参数是一个字典，你可以在构造Request时通过headers参数传递，也可以通过调用Request对象的add_header()方法来添加请求头。<br>请求头最常用的用法就是通过修改User-Agent来伪装浏览器，默认的<code>User-Agent</code>是Python-urllib，你可以通过修改它来伪装成浏览器。<br>origin_req_host指的是请求方的host名称或是IP地址。<br>unverifiable指的是这个请求是否是无法验证的，默认是False。意思就是说用户没有足够权限来选择接收这个请求的结果。例如我们请求一个HTML文档中的图片，但是我们没有自动抓取图像的权限，这时unverifiable的值就是True。<br>method是一个字符串，它用来指示请求使用的方法，比如GET，POST，PUT等等。<br>下面我们传入多个参数构建一个Request来感受一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request,parse  </div><div class="line">url = <span class="string">"http://httpbin.org/post"</span>  </div><div class="line"></div><div class="line">headers = &#123;  </div><div class="line">    <span class="string">"User-Agent"</span>:<span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'</span>, </div><div class="line">    <span class="string">"Host"</span>:<span class="string">'httpbin.org'</span>  </div><div class="line">&#125;  </div><div class="line">dict = &#123;  </div><div class="line">    <span class="string">"name"</span>:<span class="string">"Germey"</span>  </div><div class="line">&#125;  </div><div class="line">data = bytes(parse.urlencode(dict),encoding=<span class="string">"utf-8"</span>)  </div><div class="line">req = request.Request(url=url,data=data,headers=headers,method=<span class="string">"POST"</span>)  </div><div class="line">response = request.urlopen(req)  </div><div class="line">print(response.read().decode(<span class="string">"utf-8"</span>))</div></pre></td></tr></table></figure>
+<p>在这里我们通过四个参数构造了一个Request，url即请求链接，在headers中指定了User-Agent 和Host，传递的参数data用了urlencode()和bytes()方法来转成字节流，另外指定了请求方式为POST。<br>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;args&quot;: &#123;&#125;,</div><div class="line">  &quot;data&quot;: &quot;&quot;,</div><div class="line">  &quot;files&quot;: &#123;&#125;,</div><div class="line">  &quot;form&quot;: &#123;</div><div class="line">    &quot;name&quot;: &quot;Germey&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;headers&quot;: &#123;</div><div class="line">    &quot;Accept-Encoding&quot;: &quot;identity&quot;,</div><div class="line">    &quot;Connection&quot;: &quot;close&quot;,</div><div class="line">    &quot;Content-Length&quot;: &quot;11&quot;,</div><div class="line">    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,</div><div class="line">    &quot;Host&quot;: &quot;httpbin.org&quot;,</div><div class="line">    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;json&quot;: null,</div><div class="line">  &quot;origin&quot;: &quot;112.10.180.190&quot;,</div><div class="line">  &quot;url&quot;: &quot;http://httpbin.org/post&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过观察结果可以发现，我们成功设置了data，headers以及method参数，并完成了请求。<br>另外headers也可以用add_header()方法来添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">req = request.Request(url=url, data=data, method=&apos;POST&apos;)</div><div class="line">req.add_header(&apos;User-Agent&apos;, &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36&apos;)</div></pre></td></tr></table></figure>
+<p>如此一来，我们就可以更加方便地构造一个Request，实现请求的发送。</p>
+<p><strong>urllib.request高级特性</strong></p>
+<p>在上面的过程中，我们虽然可以构造Request，但是一些更高级的操作，比如Cookies处理，代理该怎样来设置？<br>接下来就需要更强大的工具Handler登场了。<br>简而言之你可以把它理解为各种处理器，有专门处理登录验证的，有处理 Cookies 的，有处理代理设置的，利用它们我们几乎可以做到任何HTTP请求中所有的事情。<br>首先介绍下urllib.request.BaseHandler，它是所有其他Handler的父类，它提供了最基本的 Handler的方法，例如<code>efault_open()、protocol_request()</code>等。<br>接下来就有各种Handler类继承这个BaseHandler，列举如下： </p>
+<ul>
+<li>HTTPDefaultErrorHandler：用于处理HTTP响应错误，错误都会抛出HTTPError类型的异常。</li>
+<li>HTTPRedirectHandler：用于处理重定向。</li>
+<li>HTTPCookieProcessor：用于处理Cookie 。</li>
+<li>ProxyHandler：用于设置代理，默认代理为空。</li>
+<li>HTTPPasswordMgr：用于管理密码，它维护了用户名密码的表。</li>
+<li>HTTPBasicAuthHandler：用于管理认证，如果一个链接打开时需要认证，那么可以用它来解决认证问题。</li>
+</ul>
+<blockquote>
+<p>另外还有其他的Handler，可以参考官方文档：<a href="https://docs.python.org/3/library/urllib.request.html#urllib.request.BaseHandler" target="_blank" rel="external">https://docs.python.org/3/library/urllib.request.html#urllib.request.BaseHandler</a></p>
+</blockquote>
+<p>另外一个比较重要的就是OpenerDirector，我们可以称之为Opener，我们之前用过urllib.request.urlopen()这个方法，实际上它就是一个Opener。<br>那么为什么要引入Opener呢？因为我们需要实现更高级的功能，之前我们使用的Request、urlopen()相当于类库为你封装好了极其常用的请求方法，利用它们两个我们就可以完成基本的请求，但是现在不一样了，我们需要实现更高级的功能，所以我们需要深入一层，使用更上层的实例来完成我们的操作。所以，在这里我们就用到了比调用urlopen()的对象的更普遍的对象，也就是Opener。<br>Opener可以使用open()方法，返回的类型和urlopen()如出一辙。那么它和Handler有什么关系？简而言之，就是可以利用Handler来构建Opener。 </p>
+<p><strong>认证</strong> </p>
+<p>我们先用一个实例来感受一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line"></div><div class="line">auth_handler = urllib.request.HTTPBasicAuthHandler()  </div><div class="line">auth_handler.add_password(realm=<span class="string">'PDQ Application'</span>, uri=<span class="string">'https://mahler:8092/site-updates.py'</span>, user=<span class="string">'klem'</span>, passwd=<span class="string">'kadidd!ehopper'</span>)  </div><div class="line">opener = urllib.request.build_opener(auth_handler)  </div><div class="line">urllib.request.install_opener(opener)  </div><div class="line">urllib.request.urlopen(<span class="string">'http://www.example.com/login.html'</span>)</div></pre></td></tr></table></figure>
+<p>此处代码为实例代码，用于说明Handler和Opener的使用方法。在这里，首先实例化了一个HTTPBasicAuthHandler对象，然后利用add_password()添加进去用户名和密码，相当于建立了一个处理认证的处理器。<br>接下来利用urllib.request.build_opener()方法来利用这个处理器构建一个Opener，那么这个Opener在发送请求的时候就具备了认证功能了。然后利用Opener的open()方法打开链接，就可以完成认证了。</p>
+<p><strong>代理</strong></p>
+<p>如果添加代理，可以这样做：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request  </div><div class="line">proxy_handler = urllib.request.ProxyHandler(&#123;  </div><div class="line"><span class="string">'http'</span>: <span class="string">'http://218.202.111.10:80'</span>,  </div><div class="line"><span class="string">'https'</span>: <span class="string">'https://180.250.163.34:8888'</span>  </div><div class="line">&#125;)  </div><div class="line">opener = urllib.request.build_opener(proxy_handler)  </div><div class="line">response = opener.open(<span class="string">'https://www.baidu.com'</span>)  </div><div class="line">print(response.read())</div></pre></td></tr></table></figure>
+<p>此处代码为实例代码，用于说明代理的设置方法，代理可能已经失效。</p>
+<p>在这里使用了ProxyHandler，ProxyHandler的参数是一个字典，key是协议类型，比如HTTP还是HTTPS等，value是代理链接，可以添加多个代理。<br>然后利用build_opener()方法利用这个Handler构造一个Opener，然后发送请求即可。</p>
+<p><strong>Cookies设置</strong></p>
+<p>我们先用一个实例来感受一下怎样将网站的Cookie获取下来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> http.cookiejar, urllib.request </div><div class="line"> </div><div class="line">cookie = http.cookiejar.CookieJar()  </div><div class="line">handler = urllib.request.HTTPCookieProcessor(cookie)  </div><div class="line">opener = urllib.request.build_opener(handler)  </div><div class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)  </div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> cookie:  </div><div class="line">    print(item.name+<span class="string">"="</span>+item.value)</div></pre></td></tr></table></figure>
+<p>首先我们必须声明一个CookieJar对象，接下来我们就需要利用HTTPCookieProcessor来构建一个handler，最后利用build_opener方法构建出opener，执行open()即可。<br>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">BAIDUID=2B835BFCEDF4325F88D0C6C3A4EBD649:FG=1</div><div class="line">BIDUPSID=2B835BFCEDF4325F88D0C6C3A4EBD649</div><div class="line">H_PS_PSSID=1427_24569_21091_18559_25178</div><div class="line">PSTM=1512660072</div><div class="line">BDSVRTM=0</div><div class="line">BD_HOME=0</div></pre></td></tr></table></figure>
+<p>可以看到输出了每一条Cookie的名称还有值。<br>不过既然能输出，那可不可以输出成文件格式呢？我们知道很多Cookie实际也是以文本形式保存的.<br>答案当然是肯定的，我们用下面的实例来感受一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> http.cookiejar, urllib.request</div><div class="line"></div><div class="line">filename = <span class="string">'cookie.txt'</span>  </div><div class="line">cookie = http.cookiejar.MozillaCookieJar(filename)  </div><div class="line">handler = urllib.request.HTTPCookieProcessor(cookie)  </div><div class="line">opener = urllib.request.build_opener(handler)  </div><div class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)  </div><div class="line">cookie.save(ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p>这时的CookieJar就需要换成MozillaCookieJar，生成文件时需要用到它，它是CookieJar的子类，可以用来处理Cookie和文件相关的事件，读取和保存Cookie，它可以将Cookie保存成Mozilla型的格式。<br>运行之后可以发现生成了一个cookie.txt文件。<br>内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Netscape HTTP Cookie File</div><div class="line"># http://curl.haxx.se/rfc/cookie_spec.html</div><div class="line"># This is a generated file!  Do not edit.</div><div class="line"></div><div class="line">.baidu.com	TRUE	/	FALSE	3660143901	BAIDUID	96CAB1FCD2CD9F4D304DE943A7018842:FG=1</div><div class="line">.baidu.com	TRUE	/	FALSE	3660143901	BIDUPSID	96CAB1FCD2CD9F4D304DE943A7018842</div><div class="line">.baidu.com	TRUE	/	FALSE		H_PS_PSSID	1453_19034_21117_17001_25177</div><div class="line">.baidu.com	TRUE	/	FALSE	3660143901	PSTM	1512660254</div><div class="line">www.baidu.com	FALSE	/	FALSE		BDSVRTM	0</div><div class="line">www.baidu.com	FALSE	/	FALSE		BD_HOME	0</div></pre></td></tr></table></figure>
+<p>另外还有一个LWPCookieJar，同样可以读取和保存Cookie，但是保存的格式和MozillaCookieJar的不一样，它会保存成与libwww-perl的Set-Cookie3文件格式的Cookie。<br>那么在声明时就改为<code>cookie = http.cookiejar.LWPCookieJar(filename)</code><br>生成的内容如下：由此看来生成的格式还是有比较大的差异的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#LWP-Cookies-2.0</div><div class="line">Set-Cookie3: BAIDUID=&quot;A84BFF86A8AACB4C3B4CD734F7D11193:FG=1&quot;; path=&quot;/&quot;; domain=&quot;.baidu.com&quot;; path_spec; domain_dot; expires=&quot;2085-12-25 18:40:37Z&quot;; version=0</div><div class="line">Set-Cookie3: BIDUPSID=A84BFF86A8AACB4C3B4CD734F7D11193; path=&quot;/&quot;; domain=&quot;.baidu.com&quot;; path_spec; domain_dot; expires=&quot;2085-12-25 18:40:37Z&quot;; version=0</div><div class="line">Set-Cookie3: H_PS_PSSID=25292_1433_24885_21104_18560_17001_25178_20930; path=&quot;/&quot;; domain=&quot;.baidu.com&quot;; path_spec; domain_dot; discard; version=0</div><div class="line">Set-Cookie3: PSTM=1512660390; path=&quot;/&quot;; domain=&quot;.baidu.com&quot;; path_spec; domain_dot; expires=&quot;2085-12-25 18:40:37Z&quot;; version=0</div><div class="line">Set-Cookie3: BDSVRTM=0; path=&quot;/&quot;; domain=&quot;www.baidu.com&quot;; path_spec; discard; version=0</div><div class="line">Set-Cookie3: BD_HOME=0; path=&quot;/&quot;; domain=&quot;www.baidu.com&quot;; path_spec; discard; version=0</div></pre></td></tr></table></figure>
+<p>那么生成了Cookie文件，怎样从文件读取并利用呢？<br>下面我们以LWPCookieJar格式为例来感受一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> http.cookiejar, urllib.request</div><div class="line"></div><div class="line">cookie = http.cookiejar.LWPCookieJar()  </div><div class="line">cookie.load(<span class="string">'cookie.txt'</span>, ignore_discard=<span class="keyword">True</span>, ignore_expires=<span class="keyword">True</span>)  </div><div class="line">handler = urllib.request.HTTPCookieProcessor(cookie)  </div><div class="line">opener = urllib.request.build_opener(handler)  </div><div class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)  </div><div class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</div></pre></td></tr></table></figure>
+<p>前提是我们首先利用上面的方式生成了LWPCookieJar格式的Cookie，然后利用load()方法，传入文件名称，后面同样的方法构建handler和opener即可。<br>运行结果正常输出百度网页的源代码。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
+<p>urllib是python3中写爬虫程序的得力助手，它很好，当然，也有比它更好的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/Python3之爬虫基本概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1468,7 +1697,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
