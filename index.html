@@ -264,6 +264,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Python3爬虫相关库笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="青柚。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青柚。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/14/Python3爬虫相关库笔记/" itemprop="url">Python3爬虫相关库笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T21:43:54+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><hr>
+<p>有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。</p>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>什么是 JSON ？<br>JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）</p>
+<ul>
+<li>JSON 是轻量级的文本数据交换格式</li>
+<li>JSON 独立于语言 </li>
+<li>JSON 具有自我描述性，更易理解</li>
+<li>JSON 使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器和 JSON 库支持许多不同的编程语言。</li>
+</ul>
+<p>JSON 有什么优点？</p>
+<ul>
+<li>方便于传输，较少冗余的字符。当然直接传二进制是最好的，但面临难解析的问题。亦可以是 XML、纯字符串的方式，但 JSON 有其独到的好处。Google 有个自己的协议，叫 Protobuf，有兴趣可了解一下。</li>
+<li>方便转换。有很多的 JSON API 提供了 JSON 字符串转成对象、对象转换成json串的方法。</li>
+<li>易于阅读。JSON代码的良好结构，可以很直观地了解存的是什么内容。</li>
+<li>简而言之，JSON就是比XML的基础上，去掉了标签，这样也就节省了大量的存储空间。</li>
+</ul>
+<p><strong>Python中的JSON模块</strong></p>
+<p>json 模块提供了一种很简单的方式来编码和解码JSON数据。其中两个主要的函数是 json.dumps() 和 json.loads()，要比其他序列化函数库如pickle的接口少得多。下面演示如何将一个Python数据结构转换为JSON：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">data = &#123;</div><div class="line">    <span class="string">'name'</span> : <span class="string">'ACME'</span>,</div><div class="line">    <span class="string">'shares'</span> : <span class="number">100</span>,</div><div class="line">    <span class="string">'price'</span> : <span class="number">542.23</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">json_str = json.dumps(data)</div><div class="line">print(json_str)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#返回结果</span></div><div class="line">&#123;<span class="string">"name"</span>: <span class="string">"ACME"</span>, <span class="string">"shares"</span>: <span class="number">100</span>, <span class="string">"price"</span>: <span class="number">542.23</span>&#125;</div></pre></td></tr></table></figure>
+<p>下面演示如何将一个JSON编码的字符串转换回一个Python数据结构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>data = json.loads(json_str)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(data)</div><div class="line">&#123;<span class="string">'name'</span>: <span class="string">'ACME'</span>, <span class="string">'shares'</span>: <span class="number">100</span>, <span class="string">'price'</span>: <span class="number">542.23</span>&#125;</div></pre></td></tr></table></figure>
+<p>如果要处理的是文件而不是字符串，可以使用 json.dump() 和 json.load() 来编码和解码JSON数据。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Writing JSON data</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">    json.dump(data, f)</div><div class="line"></div><div class="line"><span class="comment"># Reading data back</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">    data = json.load(f)</div></pre></td></tr></table></figure>
+<p>JSON编码支持的基本数据类型为 None ，bool ，int ，float 和 str ，以及包含这些类型数据的lists，tuples和dictionaries。 对于dictionaries，keys需要是字符串类型(字典中任何非字符串类型的key在编码时会先转换为字符串)。为了遵循JSON规范，你应该只编码Python的lists和dictionaries。而且，在web应用程序中，顶层对象被编码为一个字典是一个标准做法。</p>
+<p>JSON编码的格式对于Python语法而已几乎是完全一样的，除了一些小的差异之外。比如，True会被映射为true，False被映射为false，而None会被映射为null。下面是一个例子，演示了编码后的字符串效果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(<span class="keyword">False</span>)</div><div class="line"><span class="string">'false'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">'a'</span>: <span class="keyword">True</span>,</div><div class="line"><span class="meta">... </span>    <span class="string">'b'</span>: <span class="string">'Hello'</span>,</div><div class="line"><span class="meta">... </span>    <span class="string">'c'</span>: <span class="keyword">None</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(d)</div><div class="line"><span class="string">'&#123;"b": "Hello", "c": null, "a": true&#125;'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><strong>总结</strong></p>
+<p><strong>JSON字符串转为字典</strong></p>
+<p>json.load / json.loads<br>两个方法功能类似，可选参数也相同，最大的区别在于，json.load 方法接受的输入，即第一个参数，是包含 JSON 数据的文件对象，如open方法的返回对象。<br>json.loads 接受的输入是 JSON 字符串，而非文件对象。从输入类型的区别也可以看出两者的使用场合。<br>可选参数包括是否需要转换整型、浮点型等数值的参数，还有一些复杂的功能，暂时没有用到，以后有机会再了解。</p>
+<p><strong>字典转换为JSON</strong></p>
+<p>json.dump / json.dumps<br>对应于 load 和 loads，dump 的第一个参数是对象字典，第二个参数是文件对象，可以直接将转换后的 JSON 数据写入文件，dumps的第一个参数是对象字典，其余都是可选参数。dump 和 dumps 的可选参数相同，这些参数都相当实用，现将用到的参数记录如下：</p>
+<ul>
+<li>ensure_ascii 默认为 True，保证转换后的 JSON 字符串中全部是 ascii 字符，非 ascii 字符都会被转义。如果数据中存在中文或其他非 ascii 字符，最好将 ensure_ascii 设置为 False，保证输出结果正常。  </li>
+<li>indent 缩进，默认为 None ，没有缩进，设置为正整数时，输出的格式将按照 indent 指定的半角空格数缩进，相当实用。  </li>
+<li>separators 设置分隔符，默认的分隔符是(‘,’, ‘: ‘)，如果需要自定义 JSON 中的分隔符，例如调整冒号前后的空格数，可以按照(item_separator, key_separator)的形式设置。  </li>
+<li>sort_keys 默认为 False，设为 True 时，输出结果将按照字典中的 key 排序。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 举例</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(json.dumps(data, indent=<span class="number">4</span>))</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"ACME"</span>,</div><div class="line">    <span class="string">"shares"</span>: <span class="number">100</span>,</div><div class="line">    <span class="string">"price"</span>: <span class="number">542.23</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Demjson"><a href="#Demjson" class="headerlink" title="Demjson"></a>Demjson</h3><p>Demjson 是 python 的第三方模块库，可用于编码和解码 JSON 数据，包含了 JSONLint 的格式化及校验功能。安装命令很简单，一个命令就可以搞定了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install demjson</div></pre></td></tr></table></figure>
+<p>现在来使用一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> demjson</div><div class="line"></div><div class="line">data = &#123;</div><div class="line">    <span class="string">'name'</span> : <span class="string">'ACME'</span>,</div><div class="line">    <span class="string">'shares'</span> : <span class="number">100</span>,</div><div class="line">    <span class="string">'price'</span> : <span class="number">542.23</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">json_str = demjson.encode(data) <span class="comment"># 转换为JSON字符串</span></div><div class="line">print(json_str)</div><div class="line">text = demjson.decode(json_str) <span class="comment"># 转换为字典</span></div><div class="line">print(text)</div><div class="line"></div><div class="line">&gt;&gt;&gt;&#123;<span class="string">"name"</span>:<span class="string">"ACME"</span>,<span class="string">"price"</span>:<span class="number">542.23</span>,<span class="string">"shares"</span>:<span class="number">100</span>&#125;</div><div class="line">&gt;&gt;&gt;&#123;<span class="string">'name'</span>: <span class="string">'ACME'</span>, <span class="string">'price'</span>: <span class="number">542.23</span>, <span class="string">'shares'</span>: <span class="number">100</span>&#125;</div></pre></td></tr></table></figure>
+<h3 id="Hashlib"><a href="#Hashlib" class="headerlink" title="Hashlib"></a>Hashlib</h3><p>hashlib 是一个提供了一些流行的hash算法的 Python 标准库，其中所包括的算法有 md5，sha1，sha224，sha256，sha384，sha512。另外，模块中所定义的 new(name, string=”) 方法可通过指定系统所支持的hash算法来构造相应的hash对象。<br>Python3 中 hashlib 模块代替了 Python2 中的 md5 和 sham 模块，使用这个模块一般分为3步：</p>
+<ul>
+<li>创建一个哈希对象，使用哈希算法命名的构造函数或通用构造函数来创建。</li>
+<li>使用哈希对象调用 update() 方法填充这个对象。</li>
+<li>调用 digest() 或 hexdigest() 方法来获取摘要（加密结果）。</li>
+</ul>
+<p><strong>md5加密：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># md5加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.md5()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">241</span>f166bdf9887f732ae06ba859da376</div></pre></td></tr></table></figure>
+<p><strong>也可以这样实现md5加密：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash1 = hashlib.md5(<span class="string">b'sliver'</span>)</div><div class="line">print(hash1.hexdigest())</div><div class="line"></div><div class="line">hash2 = hashlib.md5(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash2.hexdigest())</div><div class="line"></div><div class="line"><span class="comment"># 也就是加密前必须先指定编码</span></div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">241</span>f166bdf9887f732ae06ba859da376</div><div class="line">&gt;&gt;&gt;<span class="number">241</span>f166bdf9887f732ae06ba859da376</div></pre></td></tr></table></figure>
+<p><strong>sha1加密：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sha1加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.sha1()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;e7896b82b9fcccbba18d905c0e374c4e8d612b08</div></pre></td></tr></table></figure>
+<p><strong>sha256加密：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sha256加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.sha256()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">66</span>cb86b497f2b457cc6a19fafda4952bfbd831ed9c2d7ba12157ef269ecf3885</div></pre></td></tr></table></figure>
+<p><strong>sha512加密：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sha512加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.sha512()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;f3e8498d2d0b2a91cc29e085ca22c4ca27345633b023ba8ec83430784ee715a9bb5a27e758ce04eb7b653c079e7264753fc313d7eb5df352e43e34c324d88bf0</div></pre></td></tr></table></figure>
+<p><strong>“加盐”加密：</strong></p>
+<p>以上的算法确实是密码学大佬们的结晶，但比如sha1算法还是可以通过暴力破解被破解出来的，这时候，自己自定义加上key，俗称“加盐”，能让加密算法更加安全。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># “加盐”加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.md5(<span class="string">'ariel'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">077</span>ee0a6276e80b65a42de44a27b9f08</div></pre></td></tr></table></figure>
+<h3 id="Python-中的函数"><a href="#Python-中的函数" class="headerlink" title="Python 中的函数"></a>Python 中的函数</h3><p><strong>eval(str)</strong></p>
+<p>eval(str)函数很强大，它是Python用于执行字符串内的表达式的一个内置函数，使用eval，可以很方便的将字符串动态执行。</p>
+<p>eval()函数常见作用有： </p>
+<p>1、计算字符串中有效的表达式，并返回结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">'pow(2,2)'</span>)</div><div class="line"><span class="number">4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">'2 + 2'</span>)</div><div class="line"><span class="number">4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">"4 * 4"</span>)</div><div class="line"><span class="number">16</span></div></pre></td></tr></table></figure>
+<p>2、将字符串转成相应的 python 对象（如 list、tuple、dict 和 string 之间的转换）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">"[[1,2], [3,4], [5,6], [7,8], [9,0]]"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = eval(a)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b</div><div class="line">[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>], [<span class="number">9</span>, <span class="number">0</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">"&#123;1:'xx',2:'yy'&#125;"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = eval(a)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c</div><div class="line">&#123;<span class="number">1</span>: <span class="string">'xx'</span>, <span class="number">2</span>: <span class="string">'yy'</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">"(1,2,3,4)"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = eval(a)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</div></pre></td></tr></table></figure>
+<p>3、将利用反引号转换的字符串再反转回对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>`list1`</div><div class="line"><span class="string">'[1, 2, 3, 4, 5]'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>type(`list1`)</div><div class="line">&lt;type <span class="string">'str'</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>type(eval(`list1`))</div><div class="line">&lt;type <span class="string">'list'</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = eval(`list1`)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+<h3 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h3><p>先写这么多吧，未完待续。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/Python3爬虫之urllib模块的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -547,8 +760,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
+                  <a href="/categories/爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫</span>
                   </a>
                 </span>
 
@@ -1697,7 +1910,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1708,7 +1921,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
