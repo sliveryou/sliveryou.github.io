@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青柚。" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="写在前头 最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。首先，你一定会问：Linux有什么作用呢？可以归类为四点：  商业服务器基本都是Linux 开源软件都先支持Linux 大数据分析、机器学习首选Linux 整个互联网地基靠Linux撑起来  强大如斯，不得不用。为了去学Linux，首先需要忘掉Windows的东西：  Linux下是没有exe形式的程序的 文件名等">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux服务器基础配置">
+<meta property="og:url" content="http://yoursite.com/2017/12/26/Linux基础配置/index.html">
+<meta property="og:site_name" content="青柚。">
+<meta property="og:description" content="写在前头 最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。首先，你一定会问：Linux有什么作用呢？可以归类为四点：  商业服务器基本都是Linux 开源软件都先支持Linux 大数据分析、机器学习首选Linux 整个互联网地基靠Linux撑起来  强大如斯，不得不用。为了去学Linux，首先需要忘掉Windows的东西：  Linux下是没有exe形式的程序的 文件名等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/12/26/Linux基础配置/链接.png">
+<meta property="og:updated_time" content="2017-12-26T10:49:17.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux服务器基础配置">
+<meta name="twitter:description" content="写在前头 最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。首先，你一定会问：Linux有什么作用呢？可以归类为四点：  商业服务器基本都是Linux 开源软件都先支持Linux 大数据分析、机器学习首选Linux 整个互联网地基靠Linux撑起来  强大如斯，不得不用。为了去学Linux，首先需要忘掉Windows的东西：  Linux下是没有exe形式的程序的 文件名等">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/26/Linux基础配置/链接.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/26/Linux基础配置/"/>
+
+
+
+
+
+  <title>Linux服务器基础配置 | 青柚。</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青柚。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱在阳光指缝间。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/26/Linux基础配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="青柚。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青柚。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux服务器基础配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T16:28:54+08:00">
+                2017-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><hr>
+<p>最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。<br>首先，你一定会问：Linux有什么作用呢？<br>可以归类为四点：</p>
+<ul>
+<li>商业服务器基本都是Linux</li>
+<li>开源软件都先支持Linux</li>
+<li>大数据分析、机器学习首选Linux</li>
+<li>整个互联网地基靠Linux撑起来</li>
+</ul>
+<p>强大如斯，不得不用。<br>为了去学Linux，首先需要忘掉Windows的东西：</p>
+<ul>
+<li>Linux下是没有exe形式的程序的</li>
+<li>文件名等大小写在Linux下是需要区分的</li>
+<li>Linux下，一切皆文件</li>
+<li>文件的后缀名并不是必须要的，它只是为了找到正确的打开方式而已</li>
+</ul>
+<p>更多资料，参见百度百科：<a href="https://baike.baidu.com/item/linux/27050?fr=aladdin" target="_blank" rel="external">Linux 百度百科</a></p>
+<p>为了使用Linux，可以先去下载虚拟机。</p>
+<blockquote>
+<p>虚拟机（Virtual Machine）指通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算机系统。</p>
+</blockquote>
+<p>简单来说，其实就是通过虚拟机可以在自己的电脑上安装另一个操作系统，而不会影响原系统。比如，做渗透的人，一般就会在虚拟机下用Kali Linux去做专业的渗透测试。<br>Mac平台下，可以使用Parallels Desktop虚拟机软件。</p>
+<blockquote>
+<p>Parallels Desktop是一款运行在 Mac 电脑上的极为优秀的虚拟机软件。用户可以在 Mac OS X 下非常方便运行 Windows、Linux 等操作系统及应用。用户不必繁琐重复地重启电脑即可在 Win 与 Mac 之间切换甚至同时使用它们。</p>
+</blockquote>
+<p>各位可以Google一下各种资源，涉及版权问题，就不多提了。  </p>
+<h2 id="虚拟机软件安装并配置CentOS"><a href="#虚拟机软件安装并配置CentOS" class="headerlink" title="虚拟机软件安装并配置CentOS"></a>虚拟机软件安装并配置CentOS</h2><hr>
+<p><strong>CentOS下载：</strong></p>
+<p>装好虚拟机后，就可以开始装Linux系统了，这里装的是CentOS。<br>安装推荐网易镜像(后续可能还有更新版本，以最新版本为准)：<br><a href="http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso" target="_blank" rel="external">http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso</a><br>下载完毕后，我是使用Parallels Desktop进行无脑安装的，新手指导还是挺简单的。<br>安装完毕后，可以开始大干一场了。</p>
+<p><strong>配置网络：</strong></p>
+<p>终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-</div></pre></td></tr></table></figure>
+<p>按住Tab，补充显示的第一个文件名，我的是<code>ifcfg-eth0</code><br>即最后的命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</div></pre></td></tr></table></figure>
+<p>按i插入文字，找到<code>ONBOOT</code>一栏将其对应的值改成<code>yes</code>，按esc后输入:wq退出编辑。现在回到终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service network restart</div></pre></td></tr></table></figure>
+<p>这个时候再输入<code>ip addr</code>可以看到启动网络服务后的ip地址了。  </p>
+<p><strong>安装网络工具包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install net-tools</div></pre></td></tr></table></figure>
+<p>安装成功后在Parallels界面将CentOS的网络设置为桥接网络，再使用<code>ifconfig</code>命令查看ip。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</div><div class="line">        inet 192.168.3.12  netmask 255.255.255.0  broadcast 192.168.3.255</div><div class="line">        inet6 fe80::21c:42ff:fe50:f6f9  prefixlen 64  scopeid 0x20&lt;link&gt;</div><div class="line">        ether 00:1c:42:50:f6:f9  txqueuelen 1000  (Ethernet)</div><div class="line">        RX packets 32807  bytes 44041713 (42.0 MiB)</div><div class="line">        RX errors 0  dropped 3  overruns 0  frame 0</div><div class="line">        TX packets 13811  bytes 1092135 (1.0 MiB)</div><div class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</div><div class="line"></div><div class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</div><div class="line">        inet 127.0.0.1  netmask 255.0.0.0</div><div class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</div><div class="line">        loop  txqueuelen 1  (Local Loopback)</div><div class="line">        RX packets 72  bytes 6248 (6.1 KiB)</div><div class="line">        RX errors 0  dropped 0  overruns 0  frame 0</div><div class="line">        TX packets 72  bytes 6248 (6.1 KiB)</div><div class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</div></pre></td></tr></table></figure>
+<p><strong>192.168.3.12就是我们需要的ip了(当然ip肯定各不相同)。</strong></p>
+<p><strong>替换默认源</strong></p>
+<p>网易CentOS镜像使用帮助：</p>
+<p><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="external">http://mirrors.163.com/.help/centos.html</a></p>
+<p>首先查看我们当前的CentOS版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/redhat-release</div></pre></td></tr></table></figure>
+<p>我的是7.4版本，所以返回结果是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CentOS Linux release 7.4.1708 (Core)</div></pre></td></tr></table></figure>
+<p>知道版本后先去下载wget，这里分享一下wget的资料：</p>
+<blockquote>
+<p>wget 是一个从网络上自动下载文件的自由工具，支持通过 HTTP、HTTPS、FTP 三个最常见的 TCP/IP协议 下载，并可以使用 HTTP 代理。”wget” 这个名称来源于 “World Wide Web” 与 “get” 的结合。</p>
+</blockquote>
+<p>现在开始下载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install wget</div></pre></td></tr></table></figure>
+<p>按照网易镜像帮助的提示，先cd到yum.repos.d目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</div></pre></td></tr></table></figure>
+<p>这个时候复制响应版本的源镜像链接，再wget下载：<br><img src="/2017/12/26/Linux基础配置/链接.png" alt="链接"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo wget http://mirrors.163.com/.<span class="built_in">help</span>/CentOS7-Base-163.repo</div></pre></td></tr></table></figure>
+<p>替换完毕后，依次输入以下两个命令，生成缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum clean all</div><div class="line">yum makecache</div></pre></td></tr></table></figure>
+<p>这样可以快速下载vim了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install vim</div></pre></td></tr></table></figure>
+<h2 id="使用oh-my-zsh"><a href="#使用oh-my-zsh" class="headerlink" title="使用oh-my-zsh"></a>使用oh-my-zsh</h2><hr>
+<p><strong>获取配置zsh</strong></p>
+<p>zsh是一个很强的shell，拥有很多强劲的功能，它的的命令补全功能非常强大，可以补齐路径、补齐命令、补齐参数等，而且还有强大的别名功能，总之，一定好用。  </p>
+<p><a href="https://zhuanlan.zhihu.com/mactalk/19556676" target="_blank" rel="external">zsh详细介绍</a></p>
+<p>现在，开始配置zsh吧。<br>可以先查看目前CentOS的默认shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
+<p>返回结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/bash</div></pre></td></tr></table></figure>
+<p>果然不是zsh哈哈。<br>那不死心再看看bin下有没有zsh：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/shells</div></pre></td></tr></table></figure>
+<p>返回结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/bin/sh</div><div class="line">/bin/bash</div><div class="line">/sbin/nologin</div><div class="line">/bin/dash</div><div class="line">/bin/tcsh</div><div class="line">/bin/csh</div></pre></td></tr></table></figure>
+<p>好吧，还是没有…<br>那自己去下吧。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum -y install zsh</div></pre></td></tr></table></figure>
+<p>再去看看bin目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/shells</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/bin/sh</div><div class="line">/bin/bash</div><div class="line">/sbin/nologin</div><div class="line">/bin/dash</div><div class="line">/bin/tcsh</div><div class="line">/bin/csh</div><div class="line">/bin/zsh</div></pre></td></tr></table></figure>
+<p>已经有zsh了，将其替换为默认shell吧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chsh -s /bin/zsh</div></pre></td></tr></table></figure>
+<p>重启一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reboot</div></pre></td></tr></table></figure>
+<p>重新打开CentOS，看看默认shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/zsh</div></pre></td></tr></table></figure>
+<p>成功。</p>
+<p><strong>获取oh-my-zsh</strong></p>
+<p>首先当然是要安装git了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum -y install git</div></pre></td></tr></table></figure>
+<p>成功后下载oh-my-zsh：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</div></pre></td></tr></table></figure>
+<p>成功后会显示如下界面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">         __                                     __   </div><div class="line">  ____  / /_     ____ ___  __  __   ____  _____/ /_  </div><div class="line"> / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ </div><div class="line">/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / </div><div class="line">\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  </div><div class="line">                        /____/                       ....is now installed!</div><div class="line">Please look over the ~/.zshrc file to select plugins, themes, and options.</div><div class="line"></div><div class="line">p.s. Follow us at https://twitter.com/ohmyzsh.</div><div class="line"></div><div class="line">p.p.s. Get stickers and t-shirts at http://shop.planetargon.com.</div></pre></td></tr></table></figure>
+<p>还挺cool的哈哈。</p>
+<p><strong>更改主题</strong></p>
+<p>先cd到.zshrc所在目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">vim .zshrc</div></pre></td></tr></table></figure>
+<p>找到ZSH_THEME修改为agnoster(agnoster是我一直比较喜欢的主题)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ZSH_THEME=<span class="string">"agnoster"</span></div></pre></td></tr></table></figure>
+<p>保存启用修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.zshrc</div></pre></td></tr></table></figure>
+<p><strong>vim配色</strong></p>
+<p>终端还有vim还是赏心悦目的好，先下载Solarized：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git://github.com/altercation/solarized.git</div></pre></td></tr></table></figure>
+<p>颜色配置一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> solarized</div><div class="line"><span class="built_in">cd</span> vim-colors-solarized/colors</div><div class="line">mkdir -p ~/.vim/colors</div><div class="line">cp solarized.vim ~/.vim/colors/</div></pre></td></tr></table></figure>
+<p>再去给vim配置一下吧：<code>vim ~/.vimrc</code><br>这里我加入了一些简单的vim自定义配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">syntax <span class="built_in">enable</span></div><div class="line"><span class="built_in">set</span> background=dark</div><div class="line">colorscheme solarized</div><div class="line"><span class="built_in">set</span> showmatch         <span class="string">" 高亮显示对应的括号</span></div><div class="line"><span class="string">set number            "</span> 显示行号</div><div class="line"><span class="built_in">set</span> cindent           <span class="string">" C风格的对齐方式</span></div><div class="line"><span class="string">set autoindent        "</span> 自动对齐</div><div class="line"><span class="built_in">set</span> confirm           <span class="string">" 在处理未保存或只读文件的时候，弹出确认</span></div><div class="line"><span class="string">set tabstop=4         "</span> Tab键的宽度</div><div class="line">syntax on             <span class="string">" 自动语法高亮</span></div><div class="line"><span class="string">set softtabstop=4</span></div><div class="line"><span class="string">set shiftwidth=4      "</span>  统一缩进为4</div><div class="line"><span class="built_in">set</span> hlsearch</div><div class="line"><span class="built_in">set</span> incsearch         <span class="string">" 搜索逐字符高亮</span></div><div class="line"><span class="string">set gdefault          "</span> 行内替换</div><div class="line"><span class="built_in">set</span> encoding=utf-8</div><div class="line"><span class="built_in">set</span> completeopt=preview,menu</div></pre></td></tr></table></figure>
+<p>这样我们基本的Linux配置服务就完成了。</p>
+<h2 id="Mac利用SSH连接CentOS"><a href="#Mac利用SSH连接CentOS" class="headerlink" title="Mac利用SSH连接CentOS"></a>Mac利用SSH连接CentOS</h2><hr>
+<p><strong>SSH工具</strong></p>
+<blockquote>
+<p>SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。SSH在正确使用时可弥补网络中的漏洞。SSH客户端适用于多种平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。</p>
+</blockquote>
+<p>总而言之，SSH是为本地的客户端与服务器上的服务端相互之间进行远程登录会话提供安全的的协议。</p>
+<p><strong>服务器安装SSH服务</strong></p>
+<p>一般Linux的桌面发行版，即有GUI界面的发行版是没有安装SSH服务端的，可以使用如下命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install openssh-server</div></pre></td></tr></table></figure>
+<p>启动SSH：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service sshd start</div></pre></td></tr></table></figure>
+<p>查看是否启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef |grep ssh</div></pre></td></tr></table></figure>
+<p>成功就可以看到这个进程了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;root      1300     1  0 04:29 ?        00:00:00 /usr/sbin/sshd -D</div></pre></td></tr></table></figure>
+<p>设置开机运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chkconfig sshd on</div></pre></td></tr></table></figure>
+<p><strong>本地安装SSH服务</strong></p>
+<p>Linux平台可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install openssh-clients</div></pre></td></tr></table></figure>
+<p>Mac直接使用iTerm2就行了，还可以尝试一下SSH连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh sliver@192.168.3.12</div></pre></td></tr></table></figure>
+<p>输入服务器账户密码即可成功连接了。</p>
+<p><strong>使用ssh-copy-id-for-OSX工具将公钥复制至ssh服务器</strong></p>
+<p>每次连接都要输入密码还是挺麻烦的，可以使用公钥登录的方法，免去每次都要输入密码的烦恼。</p>
+<blockquote>
+<p>公钥登录是为了解决每次登录服务器都要输入密码的问题，流行使用RSA加密方案，主要流程包含：</p>
+<p>1.客户端生成RSA公钥和私钥<br>2.客户端将自己的公钥存放到服务器<br>3.客户端请求连接服务器，服务器将一个随机字符串发送给客户端<br>4.客户端根据自己的私钥加密这个随机字符串之后再发送给服务器<br>5.服务器接受到加密后的字符串之后用公钥解密，如果正确就让客户端登录，否则拒绝。</p>
+</blockquote>
+<p>这样也就不用使用密码了。<br>那么，第一步当然是要生成公钥和秘钥了，在用户主目录下输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen</div></pre></td></tr></table></figure>
+<p>直接一直回车到结束，生成的公钥和秘钥已经就在<code>~/.ssh/</code>目录下了，<code>id_rsa.pub</code>即为所要的公钥。<br>现在可以将公钥放到服务器上，这里使用一种比较简单的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">brew install ssh-copy-id</div><div class="line">ssh-copy-id username@hostname </div><div class="line"> </div><div class="line"><span class="comment"># 将username和hostname替换为你的ssh服务器用户名和IP</span></div><div class="line"><span class="comment"># 不加参数默认使用~/.ssh/id_rsa.pub</span></div><div class="line"><span class="comment"># 添加-i参数可以自定义添加的公钥</span></div><div class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub username@hostname</div></pre></td></tr></table></figure>
+<p>使用ssh-copy-id，可以将公钥自动保存到服务器用户目录下的<code>/.ssh/authorized_keys</code>文件中去，当然自己在服务器手动创建并复制粘贴公钥也是可以的。<br>以后使用ssh登录服务器就不用再输入密码了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh sliver@192.168.3.12</div><div class="line"></div><div class="line">&gt;&gt;&gt;Last login: Mon Dec 25 14:12:03 2017 from 192.168.3.5</div><div class="line">[sliver@localhost ~]$</div></pre></td></tr></table></figure>
+<p>可以输入exit退出ssh连接。<br>但还是要输入一大串不太好记的字符串，在zsh下可以使用别名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"alias ssh-to-username='ssh username@hostname'"</span> &gt;&gt; ~/.zshrc <span class="comment">#将username和hostname替换为你的服务器信息</span></div><div class="line"><span class="built_in">source</span> ~/.zshrc</div></pre></td></tr></table></figure>
+<p>看看怎么样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh-to-centos</div><div class="line"></div><div class="line">&gt;&gt;&gt;Last login: Mon Dec 25 14:17:31 2017 from 192.168.3.5</div><div class="line">[sliver@localhost ~]$</div></pre></td></tr></table></figure>
+<p>也可以在<code>~/.ssh/</code>目录下创建<code>config</code>文件，添加如下代码：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host alias_name</div><div class="line">   HostName ip_address</div><div class="line">   Port <span class="number">22</span>(默认)</div><div class="line">   User user_name</div></pre></td></tr></table></figure>
+<p>我是这样添加的：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host centos</div><div class="line">    HostName <span class="number">192.168</span>.<span class="number">3.12</span></div><div class="line">    Port <span class="number">22</span></div><div class="line">    User sliver</div></pre></td></tr></table></figure>
+<p>使用如下命令进行远程连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh centos</div></pre></td></tr></table></figure>
+<p>舒服多了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/alipay.jpg" alt="青柚。 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    青柚。
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2017/12/26/Linux基础配置/" title="Linux服务器基础配置">http://yoursite.com/2017/12/26/Linux基础配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/Python3爬虫相关库笔记/" rel="next" title="Python3爬虫相关库笔记">
+                <i class="fa fa-chevron-left"></i> Python3爬虫相关库笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/head.jpg"
+                alt="青柚。" />
+            
+              <p class="site-author-name" itemprop="name">青柚。</p>
+              <p class="site-description motion-element" itemprop="description">随便写写。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/SliverYou" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/wang-chuan-50-11/activities" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-pencil-square-o"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.0x1024.top/" title="Holen" target="_blank">Holen</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前头"><span class="nav-number">1.</span> <span class="nav-text">写在前头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机软件安装并配置CentOS"><span class="nav-number">2.</span> <span class="nav-text">虚拟机软件安装并配置CentOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用oh-my-zsh"><span class="nav-number">3.</span> <span class="nav-text">使用oh-my-zsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac利用SSH连接CentOS"><span class="nav-number">4.</span> <span class="nav-text">Mac利用SSH连接CentOS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">青柚。</span>
+
+  
+</div>
+
+
+  <div class="powered-by">import <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">class&nbsp<a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">Pisces</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-paw"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-camera"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/particle.js" count="150" zindex="-2" opacity="0.5" color="144,238,144"></script>
+
+  <!-- 小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+
+<a href="https://github.com/SliverYou"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+
+</body>
+</html>
