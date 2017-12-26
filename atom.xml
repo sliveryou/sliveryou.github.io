@@ -130,9 +130,9 @@
     
       <category term="Tips" scheme="http://yoursite.com/tags/Tips/"/>
     
-      <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
-    
       <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+    
+      <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
     
   </entry>
   
@@ -154,15 +154,15 @@
       <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
     
     
+      <category term="Tips" scheme="http://yoursite.com/tags/Tips/"/>
+    
+      <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
+    
       <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
       <category term="GitHub" scheme="http://yoursite.com/tags/GitHub/"/>
     
-      <category term="Tips" scheme="http://yoursite.com/tags/Tips/"/>
-    
       <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
-    
-      <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
     
   </entry>
   
@@ -186,9 +186,9 @@
     
       <category term="Tips" scheme="http://yoursite.com/tags/Tips/"/>
     
-      <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
-    
       <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
+    
+      <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
     
   </entry>
   
@@ -237,11 +237,11 @@
       <category term="命令" scheme="http://yoursite.com/categories/%E5%91%BD%E4%BB%A4/"/>
     
     
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
-    
       <category term="Tips" scheme="http://yoursite.com/tags/Tips/"/>
     
       <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
   </entry>
   
