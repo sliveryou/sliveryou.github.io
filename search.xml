@@ -56,8 +56,8 @@
       </categories>
       <tags>
         <tag>Tips</tag>
-        <tag>Markdown</tag>
         <tag>Study</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -68,11 +68,11 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>Tips</tag>
-        <tag>Study</tag>
         <tag>Hexo</tag>
         <tag>GitHub</tag>
+        <tag>Tips</tag>
         <tag>Mac</tag>
+        <tag>Study</tag>
       </tags>
   </entry>
   <entry>
@@ -84,8 +84,8 @@
       </categories>
       <tags>
         <tag>Tips</tag>
-        <tag>Study</tag>
         <tag>Mac</tag>
+        <tag>Study</tag>
       </tags>
   </entry>
   <entry>
@@ -109,9 +109,9 @@
         <category>命令</category>
       </categories>
       <tags>
+        <tag>Hexo</tag>
         <tag>Tips</tag>
         <tag>Study</tag>
-        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
