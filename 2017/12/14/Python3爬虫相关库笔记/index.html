@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Tips,Python," />
+  <meta name="keywords" content="Python,Notes," />
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
-<meta name="keywords" content="Tips,Python">
+<meta name="keywords" content="Python,Notes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3爬虫相关库笔记">
 <meta property="og:url" content="http://yoursite.com/2017/12/14/Python3爬虫相关库笔记/index.html">
 <meta property="og:site_name" content="青柚。">
 <meta property="og:description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-26T16:15:12.878Z">
+<meta property="og:updated_time" content="2017-12-30T03:59:57.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3爬虫相关库笔记">
 <meta name="twitter:description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
@@ -395,7 +395,7 @@
       
         <p>有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。</p>
 <a id="more"></a>
-<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>什么是 JSON ？<br>JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）</p>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>什么是 JSON ？<br>JSON 指的是 JavaScript 对象表示法 (JavaScript Object Notation）</p>
 <ul>
 <li>JSON 是轻量级的文本数据交换格式</li>
 <li>JSON 独立于语言 </li>
@@ -404,57 +404,69 @@
 </ul>
 <p>JSON 有什么优点？</p>
 <ul>
-<li>方便于传输，较少冗余的字符。当然直接传二进制是最好的，但面临难解析的问题。亦可以是 XML、纯字符串的方式，但 JSON 有其独到的好处。Google 有个自己的协议，叫 Protobuf，有兴趣可了解一下。</li>
-<li>方便转换。有很多的 JSON API 提供了 JSON 字符串转成对象、对象转换成json串的方法。</li>
-<li>易于阅读。JSON代码的良好结构，可以很直观地了解存的是什么内容。</li>
-<li>简而言之，JSON就是比XML的基础上，去掉了标签，这样也就节省了大量的存储空间。</li>
+<li>方便于传输，较少冗余的字符。当然直接传二进制是最好的，但面临难解析的问题。亦可以是 XML、纯字符串的方式，但 JSON 有其独到的好处。有兴趣可了解一下。</li>
+<li>方便转换。有很多的 JSON API 提供了 JSON 字符串转成对象、对象转换成 JSON 串的方法。</li>
+<li>易于阅读。JSON 代码的良好结构，可以很直观地了解存的是什么内容。</li>
+<li>简而言之，JSON 就是比 XML 的基础上，去掉了标签，这样也就节省了大量的存储空间。</li>
 </ul>
 <p><strong>Python中的JSON模块</strong></p>
 <p>json 模块提供了一种很简单的方式来编码和解码JSON数据。其中两个主要的函数是 json.dumps() 和 json.loads()，要比其他序列化函数库如pickle的接口少得多。下面演示如何将一个Python数据结构转换为JSON：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">data = &#123;</div><div class="line">    <span class="string">'name'</span> : <span class="string">'ACME'</span>,</div><div class="line">    <span class="string">'shares'</span> : <span class="number">100</span>,</div><div class="line">    <span class="string">'price'</span> : <span class="number">542.23</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">json_str = json.dumps(data)</div><div class="line">print(json_str)</div></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#返回结果</span></div><div class="line">&#123;<span class="string">"name"</span>: <span class="string">"ACME"</span>, <span class="string">"shares"</span>: <span class="number">100</span>, <span class="string">"price"</span>: <span class="number">542.23</span>&#125;</div></pre></td></tr></table></figure>
-<p>下面演示如何将一个JSON编码的字符串转换回一个Python数据结构：</p>
+<p>下面演示如何将一个 JSON 编码的字符串转换回一个 Python 数据结构：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>data = json.loads(json_str)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(data)</div><div class="line">&#123;<span class="string">'name'</span>: <span class="string">'ACME'</span>, <span class="string">'shares'</span>: <span class="number">100</span>, <span class="string">'price'</span>: <span class="number">542.23</span>&#125;</div></pre></td></tr></table></figure>
-<p>如果要处理的是文件而不是字符串，可以使用 json.dump() 和 json.load() 来编码和解码JSON数据。例如：</p>
+<p>如果要处理的是文件而不是字符串，可以使用 json.dump() 和 json.load() 来编码和解码 JSON 数据。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Writing JSON data</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">    json.dump(data, f)</div><div class="line"></div><div class="line"><span class="comment"># Reading data back</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">    data = json.load(f)</div></pre></td></tr></table></figure>
-<p>JSON编码支持的基本数据类型为 None ，bool ，int ，float 和 str ，以及包含这些类型数据的lists，tuples和dictionaries。 对于dictionaries，keys需要是字符串类型(字典中任何非字符串类型的key在编码时会先转换为字符串)。为了遵循JSON规范，你应该只编码Python的lists和dictionaries。而且，在web应用程序中，顶层对象被编码为一个字典是一个标准做法。</p>
-<p>JSON编码的格式对于Python语法而已几乎是完全一样的，除了一些小的差异之外。比如，True会被映射为true，False被映射为false，而None会被映射为null。下面是一个例子，演示了编码后的字符串效果：</p>
+<p>JSON编码支持的基本数据类型为 None，bool，int，float 和 str，以及包含这些类型数据的 lists，tuples和 dictionaries。 对 dictionaries，keys 需要是字符串类型(字典中任何非字符串类型的key在编码时会先转换为字符串)。为了遵循 JSON 规范，你应该只编 Python 的 lists 和 dictionaries。而且，在 Web 应用程序中，顶层对象被编码为一个字典是一个标准做法。</p>
+<p>JSON 编码的格式对于 Python 语法而已几乎是完全一样的，除了一些小的差异之外。比如，True 会被映射为 true，False 被映射为 false，而 None 会被映射为 null。下面是一个例子，演示了编码后的字符串效果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(<span class="keyword">False</span>)</div><div class="line"><span class="string">'false'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">'a'</span>: <span class="keyword">True</span>,</div><div class="line"><span class="meta">... </span>    <span class="string">'b'</span>: <span class="string">'Hello'</span>,</div><div class="line"><span class="meta">... </span>    <span class="string">'c'</span>: <span class="keyword">None</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(d)</div><div class="line"><span class="string">'&#123;"b": "Hello", "c": null, "a": true&#125;'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
 <p><strong>总结</strong></p>
 <p><strong>JSON字符串转为字典</strong></p>
-<p>json.load / json.loads<br>两个方法功能类似，可选参数也相同，最大的区别在于，json.load 方法接受的输入，即第一个参数，是包含 JSON 数据的文件对象，如open方法的返回对象。<br>json.loads 接受的输入是 JSON 字符串，而非文件对象。从输入类型的区别也可以看出两者的使用场合。<br>可选参数包括是否需要转换整型、浮点型等数值的参数，还有一些复杂的功能，暂时没有用到，以后有机会再了解。</p>
+<p>json.load / json.loads<br>两个方法功能类似，可选参数也相同，最大的区别在于，json.load 方法接受的输入，即第一个参数，是包含 JSON 数据的文件对象，如 open 方法的返回对象。<br>json.loads 接受的输入是 JSON 字符串，而非文件对象。从输入类型的区别也可以看出两者的使用场合。<br>可选参数包括是否需要转换整型、浮点型等数值的参数，还有一些复杂的功能，暂时没有用到，以后有机会再了解。</p>
 <p><strong>字典转换为JSON</strong></p>
-<p>json.dump / json.dumps<br>对应于 load 和 loads，dump 的第一个参数是对象字典，第二个参数是文件对象，可以直接将转换后的 JSON 数据写入文件，dumps的第一个参数是对象字典，其余都是可选参数。dump 和 dumps 的可选参数相同，这些参数都相当实用，现将用到的参数记录如下：</p>
+<p>json.dump / json.dumps<br>对应于 load 和 loads，dump 的第一个参数是对象字典，第二个参数是文件对象，可以直接将转换后的 JSON 数据写入文件，dumps 的第一个参数是对象字典，其余都是可选参数。dump 和 dumps 的可选参数相同，这些参数都相当实用，现将用到的参数记录如下：</p>
 <ul>
 <li>ensure_ascii 默认为 True，保证转换后的 JSON 字符串中全部是 ascii 字符，非 ascii 字符都会被转义。如果数据中存在中文或其他非 ascii 字符，最好将 ensure_ascii 设置为 False，保证输出结果正常。  </li>
 <li>indent 缩进，默认为 None ，没有缩进，设置为正整数时，输出的格式将按照 indent 指定的半角空格数缩进，相当实用。  </li>
-<li>separators 设置分隔符，默认的分隔符是(‘,’, ‘: ‘)，如果需要自定义 JSON 中的分隔符，例如调整冒号前后的空格数，可以按照(item_separator, key_separator)的形式设置。  </li>
+<li>separators 设置分隔符，默认的分隔符是(‘,’, ‘: ‘)，如果需要自定义 JSON 中的分隔符，例如调整冒号前后的空格数，可以按 (item_separator, key_separator) 的形式设置。  </li>
 <li>sort_keys 默认为 False，设为 True 时，输出结果将按照字典中的 key 排序。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 举例</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(json.dumps(data, indent=<span class="number">4</span>))</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"ACME"</span>,</div><div class="line">    <span class="string">"shares"</span>: <span class="number">100</span>,</div><div class="line">    <span class="string">"price"</span>: <span class="number">542.23</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Demjson"><a href="#Demjson" class="headerlink" title="Demjson"></a>Demjson</h3><p>Demjson 是 python 的第三方模块库，可用于编码和解码 JSON 数据，包含了 JSONLint 的格式化及校验功能。安装命令很简单，一个命令就可以搞定了：</p>
+<h3 id="Demjson"><a href="#Demjson" class="headerlink" title="Demjson"></a>Demjson</h3><p>Demjson 是 Python 的第三方模块库，可用于编码和解码 JSON 数据，包含了 JSON 的格式化及校验功能。安装命令很简单，一个命令就可以搞定了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install demjson</div></pre></td></tr></table></figure>
 <p>现在来使用一下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> demjson</div><div class="line"></div><div class="line">data = &#123;</div><div class="line">    <span class="string">'name'</span> : <span class="string">'ACME'</span>,</div><div class="line">    <span class="string">'shares'</span> : <span class="number">100</span>,</div><div class="line">    <span class="string">'price'</span> : <span class="number">542.23</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">json_str = demjson.encode(data) <span class="comment"># 转换为JSON字符串</span></div><div class="line">print(json_str)</div><div class="line">text = demjson.decode(json_str) <span class="comment"># 转换为字典</span></div><div class="line">print(text)</div><div class="line"></div><div class="line">&gt;&gt;&gt;&#123;<span class="string">"name"</span>:<span class="string">"ACME"</span>,<span class="string">"price"</span>:<span class="number">542.23</span>,<span class="string">"shares"</span>:<span class="number">100</span>&#125;</div><div class="line">&gt;&gt;&gt;&#123;<span class="string">'name'</span>: <span class="string">'ACME'</span>, <span class="string">'price'</span>: <span class="number">542.23</span>, <span class="string">'shares'</span>: <span class="number">100</span>&#125;</div></pre></td></tr></table></figure>
-<h3 id="Hashlib"><a href="#Hashlib" class="headerlink" title="Hashlib"></a>Hashlib</h3><p>hashlib 是一个提供了一些流行的hash算法的 Python 标准库，其中所包括的算法有 md5，sha1，sha224，sha256，sha384，sha512。另外，模块中所定义的 new(name, string=”) 方法可通过指定系统所支持的hash算法来构造相应的hash对象。<br>Python3 中 hashlib 模块代替了 Python2 中的 md5 和 sham 模块，使用这个模块一般分为3步：</p>
+<h3 id="Hashlib"><a href="#Hashlib" class="headerlink" title="Hashlib"></a>Hashlib</h3><p>hashlib 是一个提供了一些流行的hash算法的 Python 标准库，其中所包括的算法有 md5，sha1，sha224，sha256，sha384，sha512。另外，模块中所定义的 new(name, string=”) 方法可通过指定系统所支持的hash算法来构造相应的 hash 对象。<br>Python3 中 hashlib 模块代替了 Python2 中的 md5 和 sham 模块，使用这个模块一般分为3步：</p>
 <ul>
 <li>创建一个哈希对象，使用哈希算法命名的构造函数或通用构造函数来创建。</li>
 <li>使用哈希对象调用 update() 方法填充这个对象。</li>
 <li>调用 digest() 或 hexdigest() 方法来获取摘要（加密结果）。</li>
 </ul>
-<p><strong>md5加密：</strong></p>
+<p><strong>md5 加密：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># md5加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.md5()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">241</span>f166bdf9887f732ae06ba859da376</div></pre></td></tr></table></figure>
-<p><strong>也可以这样实现md5加密：</strong></p>
+<p><strong>也可以这样实现 md5 加密：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash1 = hashlib.md5(<span class="string">b'sliver'</span>)</div><div class="line">print(hash1.hexdigest())</div><div class="line"></div><div class="line">hash2 = hashlib.md5(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash2.hexdigest())</div><div class="line"></div><div class="line"><span class="comment"># 也就是加密前必须先指定编码</span></div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">241</span>f166bdf9887f732ae06ba859da376</div><div class="line">&gt;&gt;&gt;<span class="number">241</span>f166bdf9887f732ae06ba859da376</div></pre></td></tr></table></figure>
-<p><strong>sha1加密：</strong></p>
+<p><strong>sha1 加密：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sha1加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.sha1()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;e7896b82b9fcccbba18d905c0e374c4e8d612b08</div></pre></td></tr></table></figure>
-<p><strong>sha256加密：</strong></p>
+<p><strong>sha256 加密：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sha256加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.sha256()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">66</span>cb86b497f2b457cc6a19fafda4952bfbd831ed9c2d7ba12157ef269ecf3885</div></pre></td></tr></table></figure>
-<p><strong>sha512加密：</strong></p>
+<p><strong>sha512 加密：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># sha512加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.sha512()</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;f3e8498d2d0b2a91cc29e085ca22c4ca27345633b023ba8ec83430784ee715a9bb5a27e758ce04eb7b653c079e7264753fc313d7eb5df352e43e34c324d88bf0</div></pre></td></tr></table></figure>
 <p><strong>“加盐”加密：</strong></p>
 <p>以上的算法确实是密码学大佬们的结晶，但比如sha1算法还是可以通过暴力破解被破解出来的，这时候，自己自定义加上key，俗称“加盐”，能让加密算法更加安全。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># “加盐”加密</span></div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line">hash = hashlib.md5(<span class="string">'ariel'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">hash.update(<span class="string">'sliver'</span>.encode(<span class="string">'utf-8'</span>))</div><div class="line">print(hash.hexdigest())</div><div class="line"></div><div class="line">&gt;&gt;&gt;<span class="number">077</span>ee0a6276e80b65a42de44a27b9f08</div></pre></td></tr></table></figure>
+<h3 id="GetPass"><a href="#GetPass" class="headerlink" title="GetPass"></a>GetPass</h3><p>众所周知，Linux系统下，在终端输入密码时，是不显示密码位数的（不回显）。<br>这也告诉我们：为了安全，核心的操作应该要设为不可见的。<br>Python也为我们提供了类似功能的库，getpass。它的核心代码很短，却很有用。</p>
+<p>首先看看模块中主要的两个函数的 API 和介绍:  </p>
+<p><code>getpass.getpass(prompt=&#39;Password: &#39;, stream=None)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Prompt the user for a password without echoing.   </div><div class="line">The user is prompted using the string prompt, which defaults to &apos;Password: &apos;.</div><div class="line">On Unix, the prompt is written to the file-like object stream using the replace error handler if needed.   </div><div class="line">stream defaults to the controlling terminal (/dev/tty) or if that is unavailable to sys.stderr (this argument is ignored on Windows).</div><div class="line"></div><div class="line">If echo free input is unavailable getpass() falls back to printing a warning message to stream and reading from sys.stdin and issuing a GetPassWarning.</div><div class="line"></div><div class="line">Note: If you call getpass from within IDLE, the input may be done in the terminal you launched IDLE from rather than the idle window itself.</div><div class="line"></div><div class="line">exception getpass.GetPassWarning</div><div class="line">A UserWarning subclass issued when password input may be echoed.</div></pre></td></tr></table></figure>
+<p>调用该函数可以在命令行窗口里无回显输入密码。<br>参数 prompt 代表提示字符串，默认是<code>Password:</code>，有点类似 input。<br>在 Unix 系统中，stream 默认为当前控制的终端。而在 Windows 系统中 stream 参数会被忽略掉，默认使用 stdin，另外在 IDLE 下使用 getpass 的话，一般会转换成终端来运行脚本。<br>如果无法正常使用 getpass，会引发一个 GetPassWarning 错误，然后模块会使用有回显的输入模式读取数据。</p>
+<p><code>getpass.getuser()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Return the “login name” of the user.</div><div class="line"></div><div class="line">This function checks the environment variables LOGNAME, USER, LNAME and USERNAME, in order, and returns the value of the first one which is set to a non-empty string. </div><div class="line"></div><div class="line">If none are set, the login name from the password database is returned on systems which support the pwd module, otherwise, an exception is raised.</div></pre></td></tr></table></figure>
+<p>通过这个函数可以去 Sheel 的环境变量中获取当前用户名。</p>
+<p>动手试试吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import getpass</div><div class="line"></div><div class="line">user = getpass.getuser()</div><div class="line">print(&apos;Hello,&apos;,user)</div><div class="line">password = getpass.getpass(&apos;Please enter your password: &apos;)</div><div class="line">print(&quot;Your password is:&quot;, password)</div></pre></td></tr></table></figure>
+<p>返回结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Hello, sliver</div><div class="line">Please enter your password:</div><div class="line">Your password is: 123456</div></pre></td></tr></table></figure>
 <h3 id="Python-中的函数"><a href="#Python-中的函数" class="headerlink" title="Python 中的函数"></a>Python 中的函数</h3><p><strong>eval(str)</strong></p>
 <p>eval(str)函数很强大，它是Python用于执行字符串内的表达式的一个内置函数，使用eval，可以很方便的将字符串动态执行。</p>
 <p>eval()函数常见作用有： </p>
@@ -524,9 +536,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tips/" rel="tag"><i class="fa fa-tag"></i> Tips</a>
-          
             <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/Notes/" rel="tag"><i class="fa fa-tag"></i> Notes</a>
           
         </div>
       
@@ -685,7 +697,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -755,7 +767,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demjson"><span class="nav-number">2.</span> <span class="nav-text">Demjson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashlib"><span class="nav-number">3.</span> <span class="nav-text">Hashlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-中的函数"><span class="nav-number">4.</span> <span class="nav-text">Python 中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾声"><span class="nav-number">5.</span> <span class="nav-text">尾声</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demjson"><span class="nav-number">2.</span> <span class="nav-text">Demjson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashlib"><span class="nav-number">3.</span> <span class="nav-text">Hashlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GetPass"><span class="nav-number">4.</span> <span class="nav-text">GetPass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-中的函数"><span class="nav-number">5.</span> <span class="nav-text">Python 中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾声"><span class="nav-number">6.</span> <span class="nav-text">尾声</span></a></li></ol></div>
             
 
           </div>

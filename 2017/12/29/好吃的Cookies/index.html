@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Cookies," />
+  <meta name="keywords" content="Notes,Cookie," />
 
 
 
@@ -82,16 +82,16 @@
 
 
 <meta name="description" content="Cookie是什么？好吃么？">
-<meta name="keywords" content="Cookies">
+<meta name="keywords" content="Notes,Cookie">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好吃的Cookie">
+<meta property="og:title" content="Delicious Cookie">
 <meta property="og:url" content="http://yoursite.com/2017/12/29/好吃的Cookies/index.html">
 <meta property="og:site_name" content="青柚。">
 <meta property="og:description" content="Cookie是什么？好吃么？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-29T16:22:13.571Z">
+<meta property="og:updated_time" content="2017-12-30T03:56:13.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好吃的Cookie">
+<meta name="twitter:title" content="Delicious Cookie">
 <meta name="twitter:description" content="Cookie是什么？好吃么？">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>好吃的Cookie | 青柚。</title>
+  <title>Delicious Cookie | 青柚。</title>
   
 
 
@@ -316,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">好吃的Cookie</h1>
+          <h1 class="post-title" itemprop="name headline">Delicious Cookie</h1>
         
 
         <div class="post-meta">
@@ -398,16 +398,16 @@
 <blockquote>
 <p>一个 Cookie 就是存储在用户主机浏览器中的一小段文本文件。<br>Cookie 是纯文本形式，它们不包含任何可执行代码。<br>一个 Web 页面或服务器告知浏览器来将这些信息存储并且基于一系列规则在之后的每个请求中都将该信息返回至服务器。Web 服务器之后可以利用这些信息来标识用户。</p>
 </blockquote>
-<h4 id="上面是科普，这里随便说说。"><a href="#上面是科普，这里随便说说。" class="headerlink" title="上面是科普，这里随便说说。"></a>上面是科普，这里随便说说。</h4><p>其实要说 Cookie ，就要说它所立足的 HTTP 协议。<br>HTTP 是无状态协议，它不对之前发生过的请求和响应的状态进行管理。也就是说，无法根据之前的状态进行本次的请求处理。<br>那么就会发生这种情况：</p>
+<h3 id="上面是科普，这里随便说说。"><a href="#上面是科普，这里随便说说。" class="headerlink" title="上面是科普，这里随便说说。"></a>上面是科普，这里随便说说。</h3><p>其实要说 Cookie ，就要说它所立足的 HTTP 协议。<br>HTTP 是无状态协议，它不对之前发生过的请求和响应的状态进行管理。也就是说，无法根据之前的状态进行本次的请求处理。<br>那么就会发生这种情况：</p>
 <blockquote>
 <p>假设要求登录认证的 Web 页面本身无法进行状态的管理（不记录已登录的状态），那么每次跳转新页面就要再次登录，或者要在每次请求报文中附加参数来管理登录状态。</p>
 </blockquote>
-<h4 id="是不是很麻烦？"><a href="#是不是很麻烦？" class="headerlink" title="是不是很麻烦？"></a>是不是很麻烦？</h4><p>不过不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。</p>
+<h3 id="是不是很麻烦？"><a href="#是不是很麻烦？" class="headerlink" title="是不是很麻烦？"></a>是不是很麻烦？</h3><p>不过不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。</p>
 <p>所以，为了保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了 Cookie 技术。Cookie 技术通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。</p>
 <p>Cookie 会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。</p>
 <p>服务器端发现客户端发送过来的 Cookie 后，会去检查究竟是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
 <p>概括下来，其实就是服务器为了辨别每个用户，就给客户端们颁发一个通行证，一人一个，无论谁访问都必须携带自己的通行证。这样服务器就能从通行证上确认客户身份了，这也就是 Cookie 的工作原理。</p>
-<h4 id="为什么突然说-Cookie-呢？"><a href="#为什么突然说-Cookie-呢？" class="headerlink" title="为什么突然说 Cookie 呢？"></a>为什么突然说 Cookie 呢？</h4><p>因为之前爬教务系统，都是使用 requests 的 session 一口气保持会话的，很少去管 Cookie 的事，分模块和函数式编程的时候，才发现会话的中断和接下来请求的失败…<br>所以特地补全一下知识漏洞吧 hhh。</p>
+<h3 id="为什么突然说-Cookie-呢？"><a href="#为什么突然说-Cookie-呢？" class="headerlink" title="为什么突然说 Cookie 呢？"></a>为什么突然说 Cookie 呢？</h3><p>因为之前爬教务系统，都是使用 requests 的 session 一口气保持会话的，很少去管 Cookie 的事，分模块和函数式编程的时候，才发现会话的中断和接下来请求的失败…<br>所以特地补全一下知识漏洞吧 hhh。</p>
 <p>首先，查看 <a href="http://www.python-requests.org/en/latest/api/#api-cookies" target="_blank" rel="external">requests 的官方文档</a>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class requests.cookies.RequestsCookieJar(policy=None)[source]</div><div class="line"></div><div class="line">Compatibility class; is a cookielib.CookieJar, but exposes a dict interface.</div><div class="line"></div><div class="line">This is the CookieJar we create by default for requests and sessions that don&apos;t specify one, since some clients may expect response.cookies and session.cookies to support dict operations.</div><div class="line"></div><div class="line">Requests does not use the dict interface internally; it&apos;s just for compatibility with external client code. All requests code should work out of the box with externally provided instances of CookieJar, e.g. LWPCookieJar and FileCookieJar.</div><div class="line"></div><div class="line">Unlike a regular CookieJar, this class is pickleable.</div></pre></td></tr></table></figure>
 <p>差不多知道了 cookies 对象是 CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar等。<br>各个 CookieJar 的关系是：<br><code>CookieJar —-派生—-&gt;FileCookieJar —-派生—–&gt;MozillaCookieJar 和 LWPCookieJar</code></p>
@@ -474,7 +474,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/12/29/好吃的Cookies/" title="好吃的Cookie">http://yoursite.com/2017/12/29/好吃的Cookies/</a>
+    <a href="http://yoursite.com/2017/12/29/好吃的Cookies/" title="Delicious Cookie">http://yoursite.com/2017/12/29/好吃的Cookies/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -489,7 +489,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cookies/" rel="tag"><i class="fa fa-tag"></i> Cookies</a>
+            <a href="/tags/Notes/" rel="tag"><i class="fa fa-tag"></i> Notes</a>
+          
+            <a href="/tags/Cookie/" rel="tag"><i class="fa fa-tag"></i> Cookie</a>
           
         </div>
       
@@ -644,7 +646,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -714,7 +716,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#上面是科普，这里随便说说。"><span class="nav-number">1.</span> <span class="nav-text">上面是科普，这里随便说说。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是不是很麻烦？"><span class="nav-number">2.</span> <span class="nav-text">是不是很麻烦？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么突然说-Cookie-呢？"><span class="nav-number">3.</span> <span class="nav-text">为什么突然说 Cookie 呢？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#上面是科普，这里随便说说。"><span class="nav-number">1.</span> <span class="nav-text">上面是科普，这里随便说说。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是不是很麻烦？"><span class="nav-number">2.</span> <span class="nav-text">是不是很麻烦？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么突然说-Cookie-呢？"><span class="nav-number">3.</span> <span class="nav-text">为什么突然说 Cookie 呢？</span></a></li></ol></div>
             
 
           </div>
