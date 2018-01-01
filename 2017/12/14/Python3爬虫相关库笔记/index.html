@@ -97,7 +97,7 @@
 <meta property="og:description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/12/14/Python3爬虫相关库笔记/成绩.png">
-<meta property="og:updated_time" content="2017-12-31T05:42:02.205Z">
+<meta property="og:updated_time" content="2018-01-01T07:57:43.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3爬虫相关库笔记">
 <meta name="twitter:description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,695
+                  3,086
                 </span>
               
 
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  11
+                  13
                 </span>
               
             </div>
@@ -532,6 +532,17 @@
 <p>可将表按某列数值进行排序：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(table.get_string(sortby=<span class="string">"成绩"</span>, reversesort=<span class="keyword">True</span>))</div></pre></td></tr></table></figure>
 <p>想了解更多功能可转到 <a href="http://blog.csdn.net/codeway3d/article/details/52798804" target="_blank" rel="external">Python PrettyTable 模块</a></p>
+<hr>
+<h3 id="Functools"><a href="#Functools" class="headerlink" title="Functools"></a>Functools</h3><p>Functools 是一个很厉害的库，看看官方的介绍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The functools module is for higher-order functions: </div><div class="line">functions that act on or return other functions. </div><div class="line">In general, any callable object can be treated as a function for the purposes of this module.</div></pre></td></tr></table></figure>
+<p>简单来说，functools 是面向高阶函数的函数：指那些作用于函数或者返回其他函数的函数。通常情况下，只要是可以被当做函数调用的对象就是这个模块的目标。</p>
+<p>这里主要介绍该模块的 partial() 函数。</p>
+<p>partial() 函数是将所要承载的函数作为 partial() 函数的第一个参数，原函数的各个参数依次作为partial() 函数后续的参数，当然也可以使用关键字参数来赋值。</p>
+<p>有时候函数的参数个数可能会很多，但在后续使用时，我们已经知道要一直使用这个参数，就可以使用 partial() 函数来简化函数。partial() 可以创建一个新的函数，这个新函数可以固定住原函数的全部或部分参数，从而在调用函数时更简单。</p>
+<p>这里附上用于简化 BeautifulSoup 的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests, sys</div><div class="line"><span class="keyword">from</span> requests.exceptions <span class="keyword">import</span> RequestException</div><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line">headers = &#123;</div><div class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"</span></div><div class="line">&#125;</div><div class="line">bs = partial(BeautifulSoup, features=<span class="string">'html5lib'</span>)</div><div class="line">s = requests.Session()</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    html = s.get(<span class="string">"http://cas.hdu.edu.cn/cas/login"</span>, headers=headers, timeout=<span class="number">5</span>)</div><div class="line">    print(bs(html.text).prettify())</div><div class="line"><span class="keyword">except</span> RequestException:</div><div class="line">    print(<span class="string">"请求超时!请检查网络后再次尝试!"</span>)</div><div class="line">    sys.exit(<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p>查看更多函数：<a href="http://www.jb51.net/article/65778.htm" target="_blank" rel="external">Python functools模块学习总结
+</a></p>
 <hr>
 <h3 id="Python-中的函数"><a href="#Python-中的函数" class="headerlink" title="Python 中的函数"></a>Python 中的函数</h3><p><strong>eval(str)</strong></p>
 <p>eval(str) 函数很强大，它是 Python 用于执行字符串内的表达式的一个内置函数，使用 eval，可以很方便的将字符串动态执行。</p>
@@ -834,7 +845,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demjson"><span class="nav-number">2.</span> <span class="nav-text">Demjson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashlib"><span class="nav-number">3.</span> <span class="nav-text">Hashlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GetPass"><span class="nav-number">4.</span> <span class="nav-text">GetPass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PrettyTable"><span class="nav-number">5.</span> <span class="nav-text">PrettyTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-中的函数"><span class="nav-number">6.</span> <span class="nav-text">Python 中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾声"><span class="nav-number">7.</span> <span class="nav-text">尾声</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demjson"><span class="nav-number">2.</span> <span class="nav-text">Demjson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashlib"><span class="nav-number">3.</span> <span class="nav-text">Hashlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GetPass"><span class="nav-number">4.</span> <span class="nav-text">GetPass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PrettyTable"><span class="nav-number">5.</span> <span class="nav-text">PrettyTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functools"><span class="nav-number">6.</span> <span class="nav-text">Functools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-中的函数"><span class="nav-number">7.</span> <span class="nav-text">Python 中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾声"><span class="nav-number">8.</span> <span class="nav-text">尾声</span></a></li></ol></div>
             
 
           </div>
@@ -859,7 +870,7 @@ var jiathis_config={
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
