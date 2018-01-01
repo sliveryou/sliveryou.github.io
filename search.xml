@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[多SSH Key解决方法]]></title>
+    <url>%2F2018%2F01%2F01%2F%E5%A4%9ASSH-Key%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[有多个 SSH Key，如何在 SSH 连接时不产生冲突呢？ 在进行多个项目的时候，一般都会一个项目对应一个 SSH Key，算是为了避免冲突吧，也或者是碍于不可抗力因素需要多个 SSH Key… 通常都是使用ssh-keygen命令，一路回车生成 SSH Key： 1ssh-keygen -t rsa 这样在~/.ssh/目录下会默认生成id_rsa.pub和id_rsa文件，也就是公钥和私钥。 为了各自需要，有时候需要创建第二个 SSH Key： 1ssh-keygen -t rsa 在第一个返回结果下输入第二个 SSH Key 的名称，比如： 12Generating public/private rsa key pair.Enter file in which to save the key (/Users/sliver/.ssh/id_rsa): /Users/sliver/.ssh/id_second_rsa 输入密码可以选择回车跳过，然后将在.ssh目录下生成名称为id_second_rsa.pub和id_second_rsa的公钥和私钥。 之后在终端输入以下命令，将私钥添加到 ssh-agent 中： 12ssh-add ~/.ssh/id_rsassh-add ~/.ssh/id_second_rsa 如果有良好的密钥命名习惯的话可以直接输入： 1ssh-add ~/.ssh/*_rsa 一步到位，可以任意穿梭于多个SSH连接中了。 可使用ssh-add -l查看添加私钥的结果如何： 122048 SHA256:S97ZYNIuP0qqdDSBQLP6LD/2rGBgDlWCDyb2B3La1U0 /Users/sliver/.ssh/id_rsa (RSA)2048 SHA256:JWEstYUqxRK5tK2NVj17imvkaIN4kXTL7DSImImbmbI /Users/sliver/.ssh/id_second_rsa (RSA) 一般出现以上结果就对了。出问题时，可使用ssh-add -d删除指定私钥，或者ssh-add -D删除所有私钥，重新再来一遍即可。 在重启 PC 后，都要重新手动添加私钥到 ssh-agent，显然这是有些麻烦或是容易遗忘的。可以在 Shell 配置文件中，我是在~/.zshrc下，末尾添加： 1ssh-add ~/.ssh/*_rsa 以后终端也就可以自动添加私钥了，大功告成。 最后啰嗦一下 生成 Key 时，可能会需要添加自己的邮箱当做备注，可添加-C参数： 1ssh-keygen -t rsa -C &quot;your_email@gmail.com&quot; 在生成的公钥文件中可以看到添加的备注，自己去找找吧 hhh。]]></content>
+      <categories>
+        <category>方法</category>
+      </categories>
+      <tags>
+        <tag>Tips</tag>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Delicious Cookie]]></title>
     <url>%2F2017%2F12%2F29%2F%E5%A5%BD%E5%90%83%E7%9A%84Cookies%2F</url>
     <content type="text"><![CDATA[Cookie是什么？好吃么？ 一个 Cookie 就是存储在用户主机浏览器中的一小段文本文件。Cookie 是纯文本形式，它们不包含任何可执行代码。一个 Web 页面或服务器告知浏览器来将这些信息存储并且基于一系列规则在之后的每个请求中都将该信息返回至服务器。Web 服务器之后可以利用这些信息来标识用户。 上面是科普，这里随便说说。其实要说 Cookie ，就要说它所立足的 HTTP 协议。HTTP 是无状态协议，它不对之前发生过的请求和响应的状态进行管理。也就是说，无法根据之前的状态进行本次的请求处理。那么就会发生这种情况： 假设要求登录认证的 Web 页面本身无法进行状态的管理（不记录已登录的状态），那么每次跳转新页面就要再次登录，或者要在每次请求报文中附加参数来管理登录状态。 是不是很麻烦？不过不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。 所以，为了保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了 Cookie 技术。Cookie 技术通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。 Cookie 会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。 服务器端发现客户端发送过来的 Cookie 后，会去检查究竟是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。 概括下来，其实就是服务器为了辨别每个用户，就给客户端们颁发一个通行证，一人一个，无论谁访问都必须携带自己的通行证。这样服务器就能从通行证上确认客户身份了，这也就是 Cookie 的工作原理。 为什么突然说 Cookie 呢？因为之前爬教务系统，都是使用 requests 的 session 一口气保持会话的，很少去管 Cookie 的事，分模块和函数式编程的时候，才发现会话的中断和接下来请求的失败…所以特地补全一下知识漏洞吧 hhh。 首先，查看 requests 的官方文档： 123456789class requests.cookies.RequestsCookieJar(policy=None)[source]Compatibility class; is a cookielib.CookieJar, but exposes a dict interface.This is the CookieJar we create by default for requests and sessions that don&apos;t specify one, since some clients may expect response.cookies and session.cookies to support dict operations.Requests does not use the dict interface internally; it&apos;s just for compatibility with external client code. All requests code should work out of the box with externally provided instances of CookieJar, e.g. LWPCookieJar and FileCookieJar.Unlike a regular CookieJar, this class is pickleable. 差不多知道了 cookies 对象是 CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar等。各个 CookieJar 的关系是：CookieJar —-派生—-&gt;FileCookieJar —-派生—–&gt;MozillaCookieJar 和 LWPCookieJar 再查看 http.cookiejar — Cookie handling for HTTP clients 中 MozillaCookieJar 和 LWPCookieJar 的官方介绍： 123456789101112131415The following CookieJar subclasses are provided for reading and writing.class http.cookiejar.MozillaCookieJar(filename, delayload=None, policy=None) A FileCookieJar that can load from and save cookies to disk in the Mozilla cookies.txt file format (which is also used by the Lynx and Netscape browsers). Note This loses information about RFC 2965 cookies, and also about newer or non-standard cookie-attributes such as port. Warning Back up your cookies before saving if you have cookies whose loss / corruption would be inconvenient (there are some subtleties which may lead to slight changes in the file over a load / save round-trip). Also note that cookies saved while Mozilla is running will get clobbered by Mozilla.class http.cookiejar.LWPCookieJar(filename, delayload=None, policy=None) A FileCookieJar that can load from and save cookies to disk in format compatible with the libwww-perl library’s Set-Cookie3 file format. This is convenient if you want to store cookies in a human-readable file. 可见，MozillaCookieJar 和 LWPCookieJar 可对文件进行 Cookie 的存取改动。 可以开始练练手了，先利用 LWPCookieJar 对象实现存取 Cookie 到文件的功能： 12345678910111213141516171819import requests, sysfrom http.cookiejar import LWPCookieJar as Cookiefrom requests.exceptions import RequestExceptionheaders = &#123; "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"&#125;s = requests.Session()# 声明一个 LWPCookieJar 对象s.cookies = Cookie()try: html = s.get("http://cas.hdu.edu.cn/cas/login",headers=headers,timeout=5)except RequestException: print("请求超时！请检查网络后再次尝试！") sys.exit(1)# 将获取到的 Cookie 存入文件中s.cookies.save('cookies.txt',ignore_discard=True,ignore_expires=True) save 方法中的两个参数的官方解释是： gnore_discard: save even cookies set to be discarded. ignore_expires: save even cookies that have expiredThe file is overwritten if it already exists 显然 ignore_discard 的意思是即使 Cookie 将会被丢弃也要将它保存下来，ignore_expires 的意思是如果在该文件中 Cookie 已经存在，则覆盖原文件写入，在这里，如果两个全部设置为True，运行之后，Cookie 将会被保存到 cookies.txt 文件中。 成功后我们可以找到新建立的 cookies.txt 文件，打开可看到获取的 Cookie： 123#LWP-Cookies-2.0Set-Cookie3: key_dcp_cas=&quot;vK8zhGgBzT8S1QHcgnypKRpRxTny1B1LM20Cmcn8SfMtw2ch2QxG!-1218671341&quot;; path=&quot;/&quot;; domain=&quot;cas.hdu.edu.cn&quot;; path_spec; discard; HttpOnly=None; version=0Set-Cookie3: route=c4983b7b52b1d14e475c56063c71cbb3; path=&quot;/&quot;; domain=&quot;cas.hdu.edu.cn&quot;; path_spec; discard; version=0 现在可以试试从文件读取 Cookie 了： 12345678910111213141516import requestsfrom http.cookiejar import LWPCookieJar as Cookiedef load_cookies(): s = requests.session() s.cookies = Cookie() # 从文件读取 Cookie s.cookies.load('cookies.txt',ignore_discard=True,ignore_expires=True) return ss = load_cookies()# 直接打印 Cookieprint(s.cookies)dict = requests.utils.dict_from_cookiejar(s.cookies)# 打印字典形式的 Cookieprint(dict) 返回结果如下： 123&lt;LWPCookieJar[&lt;Cookie key_dcp_cas=vK8zhGgBzT8S1QHcgnypKRpRxTny1B1LM20Cmcn8SfMtw2ch2QxG!-1218671341 for cas.hdu.edu.cn/&gt;, &lt;Cookie route=c4983b7b52b1d14e475c56063c71cbb3 for cas.hdu.edu.cn/&gt;]&gt;&#123;&apos;key_dcp_cas&apos;: &apos;vK8zhGgBzT8S1QHcgnypKRpRxTny1B1LM20Cmcn8SfMtw2ch2QxG!-1218671341&apos;, &apos;route&apos;: &apos;c4983b7b52b1d14e475c56063c71cbb3&apos;&#125; 之后只要 Cookie 还在生存期内，就可以进教务网站利用Cookie 爬成绩、爬课表等，还是挺不错的。 Cookie 就讲这么多吧，以后用到更高级的方法再补充。]]></content>
@@ -20,8 +32,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>Tips</tag>
         <tag>Linux</tag>
+        <tag>Tips</tag>
       </tags>
   </entry>
   <entry>
@@ -80,9 +92,9 @@
         <category>教程</category>
       </categories>
       <tags>
+        <tag>Tips</tag>
         <tag>Hexo</tag>
         <tag>GitHub</tag>
-        <tag>Tips</tag>
         <tag>Mac</tag>
       </tags>
   </entry>
@@ -118,8 +130,8 @@
         <category>命令</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Tips</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
