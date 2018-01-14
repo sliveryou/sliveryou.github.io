@@ -58,9 +58,9 @@
       <category term="笔记" scheme="http://yoursite.com/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="Notes" scheme="http://yoursite.com/tags/Notes/"/>
-    
       <category term="Cookie" scheme="http://yoursite.com/tags/Cookie/"/>
+    
+      <category term="Notes" scheme="http://yoursite.com/tags/Notes/"/>
     
   </entry>
   
