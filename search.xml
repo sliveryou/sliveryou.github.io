@@ -1,6 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Battle Ship]]></title>
+    <url>%2F2018%2F02%2F25%2FBattleShip%2F</url>
+    <content type="text"><![CDATA[少年，你，想不想成为一个 Captain 呢？ 标题误导向 hhh。 前段时间学习了 JavaScript 这门语言，相比于 Python，它也是有很多优点的。结合之前看的 Head First HTML &amp; CSS 这本书，我写了一个普通的小游戏，仅为娱乐。 游戏规则： 有一个 7 * 7 的航海区域，敌方有三艘潜艇潜伏其中，每艘潜艇占据三格长度，它可能是竖着潜伏，也有可能是横着潜伏。我方有很多炮弹鱼雷，但希望在尽量少的发射次数下，击沉敌方三艘潜艇。 击沉条件： 因为潜艇占据三格长度，所以需要将炮弹击打在潜艇的三个部位才能将其击沉，重复击打是无效的。 温馨提醒： 请多多注意左上角的提示。 游戏有彩蛋，懂前端的一定能到找到。 ⚡️Battle Start⚡️]]></content>
+      <categories>
+        <category>娱乐</category>
+      </categories>
+      <tags>
+        <tag>Game</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0021 Merge Two Sorted Lists]]></title>
+    <url>%2F2018%2F02%2F25%2F0021-Merge-Two-Sorted-Lists%2F</url>
+    <content type="text"><![CDATA[21. Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists. Example: 12Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 Analysis: 看到这道题有似曾相识的感觉，其实就是当初上数据结构，老师讲了半天的链表合并题，印象很深刻，所以还原了一下他说的算法，代码虽然很丑很长，但是时间效率还是挺高的 O(m+n)。当然，这道题用递归来解决会更加的简便，因为给我们的两个链表是已经排序好的，如果当前l1的节点的值比l2的节点的值大，就将两个节点交换，要注意的是，这样的交换会将节点指向的后续节点也一起交换了，然后递归判断后续节点直到遍历结束，返回结果。 Answer: 1 1234567891011121314151617181920212223242526272829303132333435363738394041424344# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ output = ListNode(0) temp = output while l1 and l2: if l1.val &gt; l2.val: temp.next = ListNode(0) temp.next.val, l2 = l2.val, l2.next temp = temp.next elif l1.val &lt; l2.val: temp.next = ListNode(0) temp.next.val, l1 = l1.val, l1.next temp = temp.next else: temp.next = ListNode(0) temp.next.next = ListNode(0) temp.next.val, temp.next.next.val= l1.val, l1.val temp, l1, l2 = temp.next.next, l1.next, l2.next if l1: temp.next = ListNode(0) temp.next.next = ListNode(0) temp.next.val = l1.val temp.next.next = l1.next elif l2: temp.next = ListNode(0) temp.next.next = ListNode(0) temp.next.val = l2.val temp.next.next = l2.next return output.next Answer 2: 123456789101112131415161718# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if l1 and l2: if l1.val &gt; l2.val: l1, l2 = l2, l1 l1.next = self.mergeTwoLists(l1.next, l2) return l1 or l2]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0020 Valid Parentheses]]></title>
+    <url>%2F2018%2F02%2F25%2F0020-Valid-Parentheses%2F</url>
+    <content type="text"><![CDATA[20. Valid ParenthesesGiven a string containing just the characters &#39;(&#39;, &#39;)&#39;, &#39;{&#39;, &#39;}&#39;, &#39;[&#39; and &#39;]&#39;, determine if the input string is valid. The brackets must close in the correct order, &quot;()&quot; and &quot;()[]{}&quot; are all valid but &quot;(]&quot; and &quot;([)]&quot; are not. Analysis: 在这里，我们可以把列表当成栈来使用，然后遍历字符串且不断 push 数据到栈中，在插入数据后要判断当前栈顶两个元素能否构成合法的括号表达式，如果可以，就把这两个元素都 pop 出栈，当循环结束后，如果整个字符串是合法的，栈必为空，否则是非法的。Answer 1 我是将数据插入列表后再判断是否合法，合法会 pop 两次数据，有点浪费时间和空间，所以 Answer 2 改成插入前就判断数据是否合法，合法就不插入数据，直接 pop 一次数据。当然也看到高人的答案，具体请看 Answer 3。 Answer 1: 1234567891011121314class Solution: def isValid(self, s): """ :type s: str :rtype: bool """ stack = [] d = ['()', '&#123;&#125;', '[]'] for char in s: stack.append(char) if len(stack) &gt;= 2 and (stack[-2] + stack[-1]) in d: stack.pop() stack.pop() return not stack Answer 2: 12345678910111213141516class Solution: def isValid(self, s): """ :type s: str :rtype: bool """ if len(s) % 2 != 0: return False d = &#123;')':'(', '&#125;':'&#123;', ']':'['&#125; stack = [] for char in s: if stack and (char in d and stack[-1] == d[char]): stack.pop() else: stack.append(char) return not stack Answer 3: 123456789class Solution: def isValid(self, s): """ :type s: str :rtype: bool """ while "()" in s or "&#123;&#125;" in s or "[]" in s: s = s.replace("()","").replace("&#123;&#125;","").replace("[]","") return not s]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0019 Remove Nth Node From End of List]]></title>
+    <url>%2F2018%2F02%2F25%2F0019-Remove-Nth-Node-From-End-of-List%2F</url>
+    <content type="text"><![CDATA[19. Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head. For example: 123Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5. Note: Given n will always be valid.Try to do this in one pass. Analysis: 思路很简单，直接遍历整个链表得到长度 length，令 flag = length - n，这就是我们需要到达删除的位置的循环次数，如果为0，说明要删除的是头节点，直接返回 head.next即可，不为0时，要循环链表到低要删除的位置的前一个位置，改变指针指向节点即可。 Answer: 12345678910111213141516171819202122232425# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def removeNthFromEnd(self, head, n): """ :type head: ListNode :type n: int :rtype: ListNode """ p, q, length = head, head, 0 while p: p = p.next length += 1 flag = length - n if flag == 0: return head.next while flag &gt; 1 : q = q.next flag -= 1 q.next = q.next.next return head]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0018 4Sum]]></title>
+    <url>%2F2018%2F02%2F25%2F0018-4Sum%2F</url>
+    <content type="text"><![CDATA[18. 4SumGiven an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target. Note: The solution set must not contain duplicate quadruplets. 12345678For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.A solution set is:[ [-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2]] Analysis: 本题思路与15题 3Sum 相同，因为多了一个数求和，所以需要多枚举一个数，也就多了一个循环，其余解法同15题，排序后只需要不断移动首尾两个指针，碰到重复的数跳过循环即可。 Answer: 123456789101112131415161718192021222324252627282930class Solution: def fourSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[List[int]] """ nums.sort() output, length = [], len(nums) for i in range(0, length): if i and nums[i] == nums[i - 1]: continue for j in range(i + 1, length): if j != i + 1 and nums[j] == nums[j - 1]: continue sum = target - nums[i] - nums[j] start, end = j + 1, length - 1 while start &lt; end: if nums[start] + nums[end] &gt; sum: end -= 1 elif nums[start] + nums[end] &lt; sum: start += 1 else: output.append([nums[i], nums[j], nums[start], nums[end]]) start, end = start + 1, end - 1 while start &lt; end and nums[start] == nums[start - 1]: start += 1 while start &lt; end and nums[end] == nums[end + 1]: end -= 1 return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0017 Letter Combinations of a Phone Number]]></title>
+    <url>%2F2018%2F02%2F25%2F0017-Letter-Combinations-of-a-Phone-Number%2F</url>
+    <content type="text"><![CDATA[17. Letter Combinations of a Phone NumberGiven a digit string, return all possible letter combinations that the number could represent. A mapping of digit to letters (just like on the telephone buttons) is given below. 12Input:Digit string &quot;23&quot;Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;]. Note: Although the above answer is in lexicographical order, your answer could be in any order you want. Analysis: 考察的就是映射和排列组合，通过三层循环再不断更新组合列表即可。需要注意的有效数字只有 2~9，构造这个范围内的数字映射即可。 Answer: 12345678910111213141516class Solution: def letterCombinations(self, digits): """ :type digits: str :rtype: List[str] """ map = &#123;'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'&#125; combinations = [''] if digits else [] for digit in digits: new_combinations = [] for letter in map[digit]: for combination in combinations: new_combinations.append(combination + letter) combinations = new_combinations return combinations]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0016 3Sum Closest]]></title>
+    <url>%2F2018%2F02%2F25%2F0016-3Sum-Closest%2F</url>
+    <content type="text"><![CDATA[16. 3Sum ClosestGiven an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution. 123For example, given array S = &#123;-1 2 1 -4&#125;, and target = 1.The sum that is closest to the target is 2. (-1 + 2 + 1 = 2). Analysis: 本题类似于15题，所以大部分代码和思路与15题相似，但是因为这次的 target 不是准确值，所以 while 循环内要比较三个数的和与 target 的大小关系，根据大小关系移动 start 和 end 指针，并在循环内根据 abs(sums - target) &lt; abs(output - target) 更新最接近的 target 的和，直到循环结束。 Answer: class Solution: def threeSumClosest(self, nums, target): """ :type nums: List[int] :type target: int :rtype: int """ nums.sort() length, output= len(nums), None for i in range(length): if i &gt; 0 and nums[i] == nums[i - 1]: continue start, end = i + 1, length - 1 while start &lt; end: sums = nums[i] + nums[start] + nums[end] if sums &lt;= target: start += 1 else: end -= 1 if output is None or abs(sums - target) &lt; abs(output - target): output = sums return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0015 3Sum]]></title>
+    <url>%2F2018%2F02%2F25%2F0015-3Sum%2F</url>
+    <content type="text"><![CDATA[15. 3SumGiven an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 1234567For example, given array S = [-1, 0, 1, 2, -1, -4],A solution set is:[ [-1, 0, 1], [-1, -1, 2]] Analysis: 本道题一开始的思路是将在列表中取出3个数形成一个组合的结果全部列出来，再得到元素和为0的组合，如 Answer 1，不出所料超时了。换种思路，a + b + c = 0，其实也就是 0 - a = b + c，如果先将这个整数列表升序排序，在 for 循环中，令 target = 0 - nums[i]，我们设两个指针 start， end，根据两个指针对应的值的结果来调整指针的位置，也就可以解决问题了。需要注意的是，列表中相邻的两个元素如果相等，要选择跳过，这样会更加省时间。 Answer 1: 123456789101112# Time Limit Exceededclass Solution: def threeSum(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: List[List[int]] &quot;&quot;&quot; from itertools import combinations nums.sort() temp = list(set([x for x in combinations(nums, 3) if sum(x) == 0])) output = [list(x) for x in temp] return(output) Answer 2: 1234567891011121314151617181920212223242526class Solution: def threeSum(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: List[List[int]] &quot;&quot;&quot; nums.sort() length, output= len(nums), [] for i in range(length): if i &gt; 0 and nums[i] == nums[i - 1]: continue target = 0 - nums[i] start, end = i + 1, length - 1 while start &lt; end: if nums[start] + nums[end] &gt; target: end -= 1 elif nums[start] + nums[end] &lt; target: start += 1 else: output.append([nums[i], nums[start], nums[end]]) start, end = start + 1, end - 1 while start &lt; end and nums[end] == nums[end + 1]: end -= 1 while start &lt; end and nums[start] == nums[start - 1]: start += 1 return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0014 Longest Common Prefix]]></title>
+    <url>%2F2018%2F02%2F25%2F0014-Longest-Common-Prefix%2F</url>
+    <content type="text"><![CDATA[14. Longest Common PrefixWrite a function to find the longest common prefix string amongst an array of strings. Description: 题目给的描述有点不清晰的感觉，这里给出讨论区好心人的例子和描述。总体来说，是求出一组字符串中每个字符串的前缀公共子串，也就是求公共键问题。 It seems that it is not to check between pair of strings but on all the strings in the array. For example: {“a”,“a”,“b”} should give “” as there is nothing common in all the 3 strings. {“a”, “a”} should give “a” as a is longest common prefix in all the strings. {“abca”, “abc”} as abc {“ac”, “ac”, “a”, “a”} as a. Logic goes something like this: Pick a character at i=0th location and compare it with the character at that location in every string. If anyone doesn’t have that just return “” Else append that character in to the result. Increment i and do steps 1-3 till the length of that string. return result. Analysis: 将 strs 序列解包后再用 zip，我们可以将各个字符串里面的字符一一对应，每个字符串的第一个字符将会构成一个元组，每个字符串的第二个字符也会构成一个元组…因此我们可以根据集合的性质，将每个位置的元组转化为集合，如果集合的长度为1，说明这个位置的字符都是相同的，即可说明这是一个公共字符，不断循环直到遍历完数组或者找到集合长度大于1也就是不存在相同字符的位置，返回结果。 Answer 1: 12345678910111213class Solution: def longestCommonPrefix(self, strs): """ :type strs: List[str] :rtype: str """ if not strs: return "" for i, group in enumerate(zip(*strs)): if len(set(group)) &gt; 1: return strs[0][:i] else: return min(strs) 在本题中，公共键其实是包含在最短的字符串中的，我们只需要找到最短的字符串，并让其他字符串的字符与其比较即可。 Answer 2: 1234567891011121314class Solution: def longestCommonPrefix(self, strs): """ :type strs: List[str] :rtype: str """ if not strs: return "" shortstr = min(strs, key=len) for i, char in enumerate(shortstr): for otherstr in strs: if otherstr[i] != char: return shortstr[:i] return shortstr]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0013 Roman to Integer]]></title>
+    <url>%2F2018%2F02%2F25%2F0013-Roman-to-Integer%2F</url>
+    <content type="text"><![CDATA[13. Roman to IntegerGiven a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999. Analysis: 罗马数字的符号一共只有7个： I - 1 V - 5 X - 10 L - 50 C - 100 D - 500 M - 1000 运算规则（右加左减）：在一个较大的罗马数字的右边记上一个较小的罗马数字，表示大数字加小数字。在一个较大的数字的左边记上1个较小的罗马数字，表示大数字减小数字。并且，1个罗马数字重复几次，就表示这个数的几倍。 但是左减不能跨越一个位数。比如，99 不可以用 IC 表示，而是用 XCIX 表示。此外，左减数字不能超过1位，比如8写成 VIII，而非 IIX。并且左键减数字有限制，只能是 I、X、C。同理，右加数字不能超过3位，比如14写成 XIV，而非 XIIII。 罗马数字规则罗马数字1-100对照表 综上所述，给定一个罗马数字，循环时，如果 s[i] &lt;= s[i - 1]，可直接将 s[i] 加到 output 中，如果 s[i] &gt; s[i - 1]，就需要加上 s[i] 再减去两个 s[i - 1]，因为在上一次循环，已经加上了 s[i - 1]。 Answer: 1234567891011121314class Solution: def romanToInt(self, s): """ :type s: str :rtype: int """ d = &#123;'I': 1,'V': 5,'X': 10,'L': 50,'C': 100,'D': 500,'M': 1000&#125; output = 0 for i in range(len(s)): if i &gt; 0 and d[s[i]] &gt; d[s[i - 1]]: output += d[s[i]] - 2 * d[s[i - 1]] else: output += d[s[i]] return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0012 Integer to Roman]]></title>
+    <url>%2F2018%2F02%2F25%2F0012-Integer-to-Roman%2F</url>
+    <content type="text"><![CDATA[12. Integer to RomanGiven an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999. Analysis: 罗马数字的符号一共只有7个： I - 1 V - 5 X - 10 L - 50 C - 100 D - 500 M - 1000 运算规则（右加左减）：在一个较大的罗马数字的右边记上一个较小的罗马数字，表示大数字加小数字。在一个较大的数字的左边记上1个较小的罗马数字，表示大数字减小数字。并且，1个罗马数字重复几次，就表示这个数的几倍。 但是左减不能跨越一个位数。比如，99 不可以用 IC 表示，而是用 XCIX 表示。此外，左减数字不能超过1位，比如8写成 VIII，而非 IIX。并且左键减数字有限制，只能是 I、X、C。同理，右加数字不能超过3位，比如14写成 XIV，而非 XIIII。 罗马数字规则罗马数字1-100对照表 想实现算法时，发现只用上面提到的七个字符来当基准数是有点麻烦的，应该要再增加几个基准数。根据罗马数字运算规则，可以知道减法出现的情况是 IV - 4; IX - 9; XL - 40; XC - 90; CD - 400; CM - 900，我们将这些数字添加到基准数中，实现算法时，就只需考虑加法的情况了。 考虑到第一个答案要两层 while 循环，想能提高效率，所以第二个答案改成一个 for 循环。 Answer 1: 12345678910111213141516class Solution(object): def intToRoman(self, num): """ :type num: int :rtype: str """ n = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1] d = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'] output, i, count = '', 0, 0 while num &gt; 0: count, num = divmod(num, n[i]) # count = num // n[i]; num = num % n[i] while count &gt; 0: output += d[i] count -= 1 i += 1 return output Answer 2: 12345678910111213class Solution(object): def intToRoman(self, num): """ :type num: int :rtype: str """ nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1] dicts = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'] output = "" for n, d in zip(nums, dicts): output += d * (num // n) num %= n return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0011 Container With Most Water]]></title>
+    <url>%2F2018%2F02%2F25%2F0011-Container-With-Most-Water%2F</url>
+    <content type="text"><![CDATA[11. Container With Most WaterGiven n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. Analysis: 图片来源：NapoleonY 本题场景可以模拟成两块木板加上任意调节的板底构成装水的容器，容器高度就像短板原理，与最短的板的高度有关，板底长度与两板之间的距离有关，为了得到装最多水的容器，应使两板的高度尽量大，两板的距离尽量长。所以我们可以设置首尾两个指针，不断向中间扫描，每次都更新最大值，等到结束就可以找到最大值了。 Answer: 1234567891011121314151617class Solution: def maxArea(self, height): """ :type height: List[int] :rtype: int """ start, end = 0, len(height) - 1 output = 0 while start &lt; end: if height[start] &lt; height[end]: area = height[start] * (end - start) start += 1 else: area = height[end] * (end - start) end -= 1 output = max(output, area) return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0010 Regular Expression Matching]]></title>
+    <url>%2F2018%2F02%2F25%2F0010-Regular-Expression-Matching%2F</url>
+    <content type="text"><![CDATA[10. Regular Expression MatchingImplement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&apos;.&apos; Matches any single character.&apos;*&apos; Matches zero or more of the preceding element.The matching should cover the entire input string (not partial).The function prototype should be:bool isMatch(const char *s, const char *p)Some examples:isMatch(&quot;aa&quot;,&quot;a&quot;) → falseisMatch(&quot;aa&quot;,&quot;aa&quot;) → trueisMatch(&quot;aaa&quot;,&quot;aa&quot;) → falseisMatch(&quot;aa&quot;, &quot;a*&quot;) → trueisMatch(&quot;aa&quot;, &quot;.*&quot;) → trueisMatch(&quot;ab&quot;, &quot;.*&quot;) → trueisMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true Analysis: 贯彻不重复造轮子的思想，这道题直接运用 re 模块再加上一些 if 语句是可以直接秒杀的。 Answer: 12345678910111213class Solution: def isMatch(self, s, p): """ :type s: str :type p: str :rtype: bool """ import re result = re.match(p, s) if not result: return False else: return True if result.group() == s else False]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0009 Palindrome Number]]></title>
+    <url>%2F2018%2F02%2F25%2F0009-Palindrome-Number%2F</url>
+    <content type="text"><![CDATA[9. Palindrome NumberDetermine whether an integer is a palindrome. Do this without extra space. Some hints: Could negative integers be palindromes? (ie, -1) If you are thinking of converting the integer to string, note the restriction of using extra space. You could also try reversing an integer. However, if you have solved the problem “Reverse Integer”, you know that the reversed integer might overflow. How would you handle such case? There is a more generic way of solving this problem. Analysis: 秒杀题，其实将数字转化为字符串再判断回文更快，不过题目要求不能额外申请空间，所以可以先计算翻转后的整数，如果翻转后的整数等于原来的数，就可以判断是回文数。AC 后看了一下 LeetCode 的推荐技巧是只将后面的一半数字回文，然后让前面一半与后面一半进行比较。这个方法很巧妙，于是改写得到新的代码。留意的是负数和末尾有多个0的数肯定不是回文数，所以可以直接排除。 Answer 1: 1234567891011class Solution: def isPalindrome(self, x): """ :type x: int :rtype: bool """ num, compare, x = x, 0, abs(x) while x: compare = compare * 10 + x % 10 x //= 10 return compare == num Answer 2: 12345678910111213class Solution: def isPalindrome(self, x): """ :type x: int :rtype: bool """ if x &lt; 0 or (x != 0 and x % 10 == 0): return False half = 0 while x &gt; half: half = half * 10 + x % 10 x //= 10 return x == half or half // 10 == x]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0008 String to Integer (atoi)]]></title>
+    <url>%2F2018%2F02%2F25%2F0008-String-to-Integer%2F</url>
+    <content type="text"><![CDATA[8. String to Integer (atoi)Implement atoi to convert a string to an integer. Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases. Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front. Requirements for atoi: The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value. The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function. If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed. If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned. Analysis: 本题虽然简单，但还是有很多坑的…atoi 函数是 C 中标准库的一个函数，题目要求需要防止数据溢出，且经过测试或者查询 API 可知道，无效的转换都要返回 0。 12345678910int atoi（con​​st char * str）;将字符串转换为整数解析 C 字符串 str，将其内容解释为一个整数，该整数作为类型的值返回 int。该函数首先丢弃尽可能多的空白字符，直到找到第一个非空白字符。然后，从这个字符开始，选择一个可选的初始正号或负号，后面跟随尽可能多的基数为 10 的数字，并将它们解释为数字值。该字符串可以在形成整数的那些字符之后包含额外的字符，这些字符被忽略并且对该函数的行为没有影响。如果 str 中的第一个非空白字符序列不是有效整数，或者如果由于 str 为空或仅包含空格字符而不存在此类序列，则不执行转换并返回零。 Answer: 12345678910111213141516171819202122232425class Solution: def myAtoi(self, s): """ :type s: str :rtype: int """ s = s.strip() flag = 1 if not s: return 0 if s[0] in ['+', '-']: flag = -1 if s[0] == '-' else 1 s = s[1:] output = 0 for char in s: if char.isdigit(): output = output * 10 + int(char) else: break output *= flag if output &lt; -2147483648: return -2147483648 elif output &gt; 2147483647: return 2147483647 return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0007 Reverse Integer]]></title>
+    <url>%2F2018%2F02%2F25%2F0007-Reverse-Integer%2F</url>
+    <content type="text"><![CDATA[7. Reverse IntegerGiven a 32-bit signed integer, reverse digits of an integer. Example: 12345678910Input: 123Output: 321Example 2:Input: -123Output: -321Example 3:Input: 120Output: 21 Note: Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows. Analysis: 题目要求将数字反转，但是要注意整数类型是 32-bit signed integer，所以返回的数字，范围要在 [-2^31, 2^31-1] 中。一开始想到是把数字转化为字符串，再根据切片的性质反转字符串，然后觉得用常规的除法也不错，所以有两种解法。 Answer 1: 12345678class Solution: def reverse(self, x): """ :type x: int :rtype: int """ x = int(str(x)[::-1]) if x &gt;= 0 else - int(str(-x)[::-1]) return x if - 2147483648 &lt;= x &lt;= 2147483647 else 0 Answer 2: 123456789101112class Solution: def reverse(self, x): """ :type x: int :rtype: int """ flag = 1 if x &gt; 0 else -1 x, output = abs(x), 0 while x: output = output * 10 + x % 10 x = x // 10 return output * flag if - 2147483648 &lt;= output * flag &lt;= 2147483647 else 0]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0006 ZigZag Conversion]]></title>
+    <url>%2F2018%2F02%2F25%2F0006-ZigZag-Conversion%2F</url>
+    <content type="text"><![CDATA[6. ZigZag ConversionThe string &quot;PAYPALISHIRING&quot; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) 123P A H NA P L S I I GY I R And then read line by line: &quot;PAHNAPLSIIGYIR&quot;Write the code that will take a string and make this conversion given a number of rows: 1string convert(string text, int nRows); convert(&quot;PAYPALISHIRING&quot;, 3) should return &quot;PAHNAPLSIIGYIR&quot;. Analysis: 首先应该知道到底什么是 ZipZag，比如我们有一个字符串 0123456789。 图片来源：ZigZag Conversion 解题报告 根据图可以看出，当 rows = 3 时，我们要输出 0481357926，也就是第0层的字符串加第1层的字符串加第2层的字符串，那我们可以这么解决问题：先创建一个列表，里面存着与 rows 相等的空字符串，如 rows = 3，这个列表也就是 [&#39;&#39;, &#39;&#39;, &#39;&#39;]，这些字符串对应着第0层，第1层，第2层。显而易见，ZipZag 结构是按照字符串遍历，以列为基准填充字符的，要解决的就是何时将字符填入第0层，何时填入第1层等。仔细观察，从第一列开始，遇到最后1层也就是第2层时，填充方向反转，此时的数据将会被填入第1层，当遇到第0层时，填充方向又反转了。讲到这里，上代码！ Answer: 123456789101112131415class Solution: def convert(self, s, numRows): """ :type s: str :type numRows: int :rtype: str """ axis = 0 if numRows == 1 else -1 rows, idx = [''] * numRows, 0 for char in s: rows[idx] += char if idx == 0 or idx == numRows - 1: axis *= -1 idx += axis return ''.join(rows)]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0005 Longest Palindromic Substring]]></title>
+    <url>%2F2018%2F02%2F25%2F0005-Longest-Palindromic-Substring%2F</url>
+    <content type="text"><![CDATA[5. Longest Palindromic SubstringGiven a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. Example 1: 12345Input: &quot;babad&quot;Output: &quot;bab&quot;Note: &quot;aba&quot; is also a valid answer. Example 2: 123Input: &quot;cbbd&quot;Output: &quot;bb&quot; Analysis: 得到最大回文字符子串有很多方法。比如，我们可以为子字符串选择所有可能的开始和结束位置，并逐一验证它是否是回文的。这是一种暴力解决方法，往往会超出时间限制。另一种解法，可以从中间往两边探索，如果一样就继续找，不一样就停止。这种解法需要我们不断探索最重要的中间值，比如 cababade，我们找到的最大回文子串是 ababa，而 a 是中间值，我们从 a 入手，不断向左右扩展 a -&gt; bab -&gt; ababa，最终得到了最大回文子串。 Answer: 123456789101112131415161718class Solution: def longestPalindrome(self, s): """ :type s: str :rtype: str """ sub, longest, length = '', 0, len(s) for i in range(length): for j in range(i, i + 2): left, right = i, j while left &gt;= 0 and right &lt; length and s[left] == s[right]: left -= 1 right += 1 long = right - left - 1 if long &gt; longest: longest = long sub = s[left + 1 : right] return sub]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0004 Median of Two Sorted Arrays]]></title>
+    <url>%2F2018%2F02%2F25%2F0004-Median-of-Two-Sorted-Arrays%2F</url>
+    <content type="text"><![CDATA[4. Median of Two Sorted ArraysThere are two sorted arrays nums1 and nums2 of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)). Example 1: 12nums1 = [1, 3]nums2 = [2] The median is 2.0 Example 2: 12nums1 = [1, 2]nums2 = [3, 4] The median is (2 + 3) / 2 = 2.5 Analysis: 一看到中位数就想到 numpy 或者 statistics 模块了，抱着试一试的想法，没想到 AC 了，不重复造轮子嘛 hhh。 Answer: 123456789class Solution: def findMedianSortedArrays(self, nums1, nums2): """ :type nums1: List[int] :type nums2: List[int] :rtype: float """ import statistics return statistics.median(nums1 + nums2)]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0003 Longest Substring Without Repeating Characters]]></title>
+    <url>%2F2018%2F02%2F25%2F0003-Longest-Substring-Without-Repeating-Characters%2F</url>
+    <content type="text"><![CDATA[3. Longest Substring Without Repeating CharactersGiven a string, find the length of the longest substring without repeating characters. Example: Given &quot;abcabcbb&quot;, the answer is &quot;abc&quot;, which the length is 3. Given &quot;bbbbb&quot;, the answer is &quot;b&quot;, with the length of 1``. Given &quot;pwwkew&quot;, the answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring. Analysis: 题目很清晰，需要查找不重复的具有最大长度的子串。可以先遍历字符串，设置一个游标 start，并构造一个字典结构，当字符不在字典中时，将字符插入到字典。而字符如果能够插入到字典中，说明此时没有重复的字符，最大子串的长度显而易见是当前的 索引 i - start 与 maxLength 的最大值。当遇到重复的字符时，从重复字符出现的位置之后一位开始扫描，但此时，需要把游标 start 指向重复的元素的前一个位置的索引，相当于之后的 i - start 的前面的重复元素剔除了，这样又让子串里的元素不重复了。 Answer: 12345678910111213class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ maxLength, start, charDict = 0, 0, &#123;&#125; for i, char in enumerate(s, 1): if charDict.get(char, -1) &gt;= start: start = charDict[char] charDict[char] = i maxLength = max(maxLength, i - start) return maxLength Simulation: 123456789101112131415161718192021222324252627282930313233s = 'abcabcbb'# 第一次循环：start = 0i = 1charDict['a'] = 1maxLength = 1# 第二次循环：start = 0i = 2charDict['b'] = 2maxLength = 2# 第三次循环：start = 0i = 3charDict['c'] = 3maxLength = 3# 第四次循环：i = 4start = 1charDict['a'] = 4maxLength = 3# 第五次循环：i = 5start = 2charDict['b'] = 5maxLength = 3# ...]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0002 Add Two Numbers]]></title>
+    <url>%2F2018%2F02%2F25%2F0002-Add-Two-Numbers%2F</url>
+    <content type="text"><![CDATA[2. Add Two NumbersYou are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself. Example: 123Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. Analysis: 本题类似于竖式的加法，需要考虑各位相加产生的进位问题：相同位相加时，大于10，就往前进1，可设置一个 flag，产生进位其就为1，否则为0，当运算进行到两个数已经没有最高位且本次运算不产生进位时，说明运算已完成，可退出循环。 Answer: 1234567891011121314151617181920212223242526272829303132# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ output = ListNode(0) tempNode, tempSum, flag = output, 0, 0 while True: if l1: tempSum += l1.val l1 = l1.next if l2: tempSum += l2.val l2 = l2.next tempNode.val = (tempSum + flag) % 10 flag = 1 if (tempSum + flag) &gt;= 10 else 0 tempSum = 0 if l1 == None and l2 == None and flag == 0: break tempNode.next = ListNode(0) tempNode = tempNode.next return output]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 0001 Two Sum]]></title>
+    <url>%2F2018%2F02%2F25%2F0001-Two-Sum%2F</url>
+    <content type="text"><![CDATA[1. Two SumGiven an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same element twice. Example: 1234Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1]. Analysis: 题目很简单，使用哈希表即可，需要注意的是不能使用同一个索引的元素两次，比如 [3, 3] 6 ，应该返回 [0, 1] 而不是 [0, 0]。一开始想先通过构建一个字典结构再循环判断 other_num 是否在字典中，如果在即可直接返回索引，所以有了 Answer 1，但是先构建字典结构效率会降低，可以在循环之中不断加入数据到字典，遂使用 Answer 2 解决。 Answer 1: 123456789101112class Solution: def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ d = &#123;num: i for i, num in enumerate(nums)&#125; for i, num in enumerate(nums): other_num = target - num if other_num in d and i != d[other_num]: return [i, d[other_num]] Answer 2: 1234567891011121314class Solution: def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ d = dict() for i, num in enumerate(nums): other_num = target - num if other_num in d: return [i, d[other_num]] else: d[num] = i]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Study</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2018%2F02%2F13%2FBattleShip%2Fbattleship%2F</url>
+    <content type="text"><![CDATA[body { background-color: black; } div#board { position: relative; width: 1024px; height: 863px; margin: auto; background: url("board.jpg") no-repeat; } div#messageArea { position: absolute; top: 0px; left: 0px; color: rgb(83, 175, 19); } .hit { background: url("ship.png") no-repeat center center; } .miss { background: url("miss.png") no-repeat center center; } table { border-spacing: 0px; position: absolute; left: 173px; top: 98px; } td { width: 94px; height: 94px; } form { position: absolute; bottom: 0px; right: 0px; padding: 15px; background-color: rgb(83, 175, 19); } form input { background-color: rgb(152, 207, 113); border-color: rgb(83, 175, 19); font-size: 1em; }]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[多SSH Key解决方法]]></title>
     <url>%2F2018%2F01%2F01%2F%E5%A4%9ASSH-Key%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[有多个 SSH Key，如何在 SSH 连接时不产生冲突呢？ 在进行多个项目的时候，一般都会一个项目对应一个 SSH Key，算是为了避免冲突吧，也或者是碍于不可抗力因素需要多个 SSH Key… 通常都是使用ssh-keygen命令，一路回车生成 SSH Key： 1ssh-keygen -t rsa 这样在~/.ssh/目录下会默认生成id_rsa.pub和id_rsa文件，也就是公钥和私钥。 为了各自需要，有时候需要创建第二个 SSH Key： 1ssh-keygen -t rsa 在第一个返回结果下输入第二个 SSH Key 的名称，比如： 12Generating public/private rsa key pair.Enter file in which to save the key (/Users/sliver/.ssh/id_rsa): /Users/sliver/.ssh/id_second_rsa 输入密码可以选择回车跳过，然后将在.ssh目录下生成名称为id_second_rsa.pub和id_second_rsa的公钥和私钥。 之后在终端输入以下命令，将私钥添加到 ssh-agent 中： 12ssh-add ~/.ssh/id_rsassh-add ~/.ssh/id_second_rsa 如果有良好的密钥命名习惯的话可以直接输入： 1ssh-add ~/.ssh/*_rsa 一步到位，可以任意穿梭于多个SSH连接中了。 可使用ssh-add -l查看添加私钥的结果如何： 122048 SHA256:S97ZYNIuP0qqdDSBQLP6LD/2rGBgDlWCDyb2B3La1U0 /Users/sliver/.ssh/id_rsa (RSA)2048 SHA256:JWEstYUqxRK5tK2NVj17imvkaIN4kXTL7DSImImbmbI /Users/sliver/.ssh/id_second_rsa (RSA) 一般出现以上结果就对了。出问题时，可使用ssh-add -d删除指定私钥，或者ssh-add -D删除所有私钥，重新再来一遍即可。 在重启 PC 后，都要重新手动添加私钥到 ssh-agent，显然这是有些麻烦或是容易遗忘的。可以在 Shell 配置文件中，我是在~/.zshrc下，末尾添加： 1ssh-add ~/.ssh/*_rsa 以后终端也就可以自动添加私钥了，大功告成。 最后啰嗦一下 生成 Key 时，可能会需要添加自己的邮箱当做备注，可添加-C参数： 1ssh-keygen -t rsa -C &quot;your_email@gmail.com&quot; 在生成的公钥文件中可以看到添加的备注，自己去找找吧 hhh。]]></content>
@@ -20,8 +310,8 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>Cookie</tag>
         <tag>Notes</tag>
+        <tag>Cookie</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +346,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>Tips</tag>
         <tag>Python</tag>
+        <tag>Tips</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +358,8 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>Tips</tag>
         <tag>Python</tag>
+        <tag>Tips</tag>
       </tags>
   </entry>
   <entry>
@@ -92,9 +382,9 @@
         <category>教程</category>
       </categories>
       <tags>
+        <tag>Tips</tag>
         <tag>Hexo</tag>
         <tag>GitHub</tag>
-        <tag>Tips</tag>
         <tag>Mac</tag>
       </tags>
   </entry>
@@ -130,8 +420,18 @@
         <category>命令</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Tips</tag>
+        <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2017%2F02%2F28%2FBattleShip%2Fbattleship%2F</url>
+    <content type="text"><![CDATA[// model对象：生成所有的潜艇模型 var model = { boardSize: 7, // 定义7*7的网格 numShips: 3, // 定义三艘潜艇 shipLength: 3, // 定义潜艇占据三格位置 shipsSunk: 0, // 初始化击沉数目 ships: [ { locations: [0, 0, 0], hits: ["", "", ""] }, { locations: [0, 0, 0], hits: ["", "", ""] }, { locations: [0, 0, 0], hits: ["", "", ""] } ], // 初始化三艘潜艇，ships是modle的属性 fire: function(guess) { // 如A0会转化为00传给guess for (var i = 0; i < this.numShips; i++) { var ship = this.ships[i]; var index = ship.locations.indexOf(guess); // 得到猜测的位置的index，如果不匹配，返回-1 if (ship.hits[index] === "hit") { view.displayMessage("You already hit that location!"); return true; // 重复击打位置是不累计加分的 } else if (index >= 0) { ship.hits[index] = "hit"; view.displayHit(guess); // 成功位置处显示潜艇 view.displayMessage("HIT!!!"); // index大于0，说明位置匹配成功，并显示击中信息 if (this.isSunk(ship)) { // 判断这艘潜艇是否击沉 view.displayMessage("You sank my battleship!"); this.shipsSunk++; } return true; } } view.displayMiss(guess); // 失败位置处显示miss view.displayMessage("You missed."); return false; }, // 定义fire方法，攻击潜艇 isSunk: function(ship) { for (var i = 0; i < this.shipLength; i++) { if (ship.hits[i] !== "hit") { return false; } } return true; }, // 判断某艘潜艇是否击沉 generateShipLocations: function() { var locations; for (var i = 0; i < this.numShips; i++) { do { locations = this.generateShip(); // 不断生成一艘潜艇的位置，并判断是否有位置冲突，有冲突则继续循环，重新生成位置 } while (this.collision(locations)); this.ships[i].locations = locations; } console.log("Ships array: "); console.log(this.ships); }, // 生成3艘潜艇的位置 generateShip: function() { var direction = Math.floor(Math.random() * 2); // 随机生成横纵轴方向，1为横轴，0位纵轴 var row, col; if (direction === 1) { row = Math.floor(Math.random() * this.boardSize); col = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1)); } else { row = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1)); col = Math.floor(Math.random() * this.boardSize); } var newShipLocations = []; for (var i = 0; i < this.shipLength; i++) { if (direction === 1) { newShipLocations.push(row + "" + (col + i)); } else { newShipLocations.push((row + i) + "" + col); } } return newShipLocations; // 返回一个新的潜艇位置 }, // 生成潜艇 collision: function(locations) { // 传入的是位置数组 for (var i = 0; i < this.numShips; i++) { var ship = this.ships[i]; for (var j = 0; j < locations.length; j++) { if (ship.locations.indexOf(locations[j]) >= 0) { return true; // 存在冲突则返回true } } } return false; } // 判断现有的潜艇位置是否有冲突 }; // view对象：带来浏览器界面视觉的变化 var view = { displayMessage: function(msg) { var messageArea = document.getElementById("messageArea"); messageArea.innerHTML = msg; }, displayHit: function(location) { var cell = document.getElementById(location); cell.setAttribute("class", "hit"); // 添加hit的类型 }, displayMiss: function(location) { var cell = document.getElementById(location); cell.setAttribute("class", "miss"); // 添加miss的类型 } }; // controller对象：中央控制器 var controller = { guesses: 0, processGuess: function(guess) { var location = parseGuess(guess); if (location) { this.guesses++; var hit = model.fire(location); if (hit && model.shipsSunk === model.numShips) { view.displayMessage("You sank all my battleships, in " + this.guesses + " guesses!"); alert("You sank all my battleships, in " + this.guesses + " guesses!"); } } } } // 解析函数：将坐标输入的字符串转化为字符串 function parseGuess(guess) { var mapDict = ["A", "B", "C", "D", "E", "F", "G"]; // 映射字典 if (guess === null || guess.length !== 2) { alert("Sorry, please enter a letter and a number on the board."); } else { var first = guess.charAt(0); // 得到猜测的第一个字符 var row = mapDict.indexOf(first); // 得到横坐标 var column = guess.charAt(1); // 得到猜测的第二个字符，也就是纵坐标 if (isNaN(row) || isNaN(column)) { alert("Sorry, that isn't on the board."); } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize) { alert("Sorry, that's off the board!"); } else { return row + column; } } return null; } // 获取玩家输入的值 function handleFireButton() { var guessInput = document.getElementById("guessInput"); var guess = guessInput.value.toUpperCase(); controller.processGuess(guess); // 控制器打开猜测进程 guessInput.value = ""; // 清空已数入的值 } // 处理按键触发事件 function handleKeyPress(e) { var fireButton = document.getElementById("fireButton"); e = e || window.event; if (e.keyCode === 13) { fireButton.click(); return false; // false挂载这个事件，true重新得到事件 } } // 初始化整个游戏进程 window.onload = init; function init() { // 对 Fire! 按钮的 onclick 事件进行绑定 var fireButton = document.getElementById("fireButton"); fireButton.onclick = handleFireButton; // 输入完后回车也可以触发 click 事件 var guessInput = document.getElementById("guessInput"); guessInput.onkeypress = handleKeyPress; // 放置生成的潜艇，开始游戏 model.generateShipLocations(); }]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2017%2F02%2F28%2FBattleShip%2Fbattleship%2F</url>
+    <content type="text"><![CDATA[Battleship]]></content>
   </entry>
 </search>
