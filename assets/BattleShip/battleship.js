@@ -186,4 +186,3 @@ function init() {
 	// 放置生成的潜艇，开始游戏
 	model.generateShipLocations();
 }
-</纯数字></字母+数字>
