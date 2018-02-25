@@ -286,11 +286,6 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2018%2F02%2F13%2FBattleShip%2Fbattleship%2F</url>
-    <content type="text"><![CDATA[body { background-color: black; } div#board { position: relative; width: 1024px; height: 863px; margin: auto; background: url("board.jpg") no-repeat; } div#messageArea { position: absolute; top: 0px; left: 0px; color: rgb(83, 175, 19); } .hit { background: url("ship.png") no-repeat center center; } .miss { background: url("miss.png") no-repeat center center; } table { border-spacing: 0px; position: absolute; left: 173px; top: 98px; } td { width: 94px; height: 94px; } form { position: absolute; bottom: 0px; right: 0px; padding: 15px; background-color: rgb(83, 175, 19); } form input { background-color: rgb(152, 207, 113); border-color: rgb(83, 175, 19); font-size: 1em; }]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[多SSH Key解决方法]]></title>
     <url>%2F2018%2F01%2F01%2F%E5%A4%9ASSH-Key%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[有多个 SSH Key，如何在 SSH 连接时不产生冲突呢？ 在进行多个项目的时候，一般都会一个项目对应一个 SSH Key，算是为了避免冲突吧，也或者是碍于不可抗力因素需要多个 SSH Key… 通常都是使用ssh-keygen命令，一路回车生成 SSH Key： 1ssh-keygen -t rsa 这样在~/.ssh/目录下会默认生成id_rsa.pub和id_rsa文件，也就是公钥和私钥。 为了各自需要，有时候需要创建第二个 SSH Key： 1ssh-keygen -t rsa 在第一个返回结果下输入第二个 SSH Key 的名称，比如： 12Generating public/private rsa key pair.Enter file in which to save the key (/Users/sliver/.ssh/id_rsa): /Users/sliver/.ssh/id_second_rsa 输入密码可以选择回车跳过，然后将在.ssh目录下生成名称为id_second_rsa.pub和id_second_rsa的公钥和私钥。 之后在终端输入以下命令，将私钥添加到 ssh-agent 中： 12ssh-add ~/.ssh/id_rsassh-add ~/.ssh/id_second_rsa 如果有良好的密钥命名习惯的话可以直接输入： 1ssh-add ~/.ssh/*_rsa 一步到位，可以任意穿梭于多个SSH连接中了。 可使用ssh-add -l查看添加私钥的结果如何： 122048 SHA256:S97ZYNIuP0qqdDSBQLP6LD/2rGBgDlWCDyb2B3La1U0 /Users/sliver/.ssh/id_rsa (RSA)2048 SHA256:JWEstYUqxRK5tK2NVj17imvkaIN4kXTL7DSImImbmbI /Users/sliver/.ssh/id_second_rsa (RSA) 一般出现以上结果就对了。出问题时，可使用ssh-add -d删除指定私钥，或者ssh-add -D删除所有私钥，重新再来一遍即可。 在重启 PC 后，都要重新手动添加私钥到 ssh-agent，显然这是有些麻烦或是容易遗忘的。可以在 Shell 配置文件中，我是在~/.zshrc下，末尾添加： 1ssh-add ~/.ssh/*_rsa 以后终端也就可以自动添加私钥了，大功告成。 最后啰嗦一下 生成 Key 时，可能会需要添加自己的邮箱当做备注，可添加-C参数： 1ssh-keygen -t rsa -C &quot;your_email@gmail.com&quot; 在生成的公钥文件中可以看到添加的备注，自己去找找吧 hhh。]]></content>
@@ -382,9 +377,9 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>Tips</tag>
         <tag>Hexo</tag>
         <tag>GitHub</tag>
+        <tag>Tips</tag>
         <tag>Mac</tag>
       </tags>
   </entry>
@@ -420,18 +415,8 @@
         <category>命令</category>
       </categories>
       <tags>
-        <tag>Tips</tag>
         <tag>Hexo</tag>
+        <tag>Tips</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2017%2F02%2F28%2FBattleShip%2Fbattleship%2F</url>
-    <content type="text"><![CDATA[// model对象：生成所有的潜艇模型 var model = { boardSize: 7, // 定义7*7的网格 numShips: 3, // 定义三艘潜艇 shipLength: 3, // 定义潜艇占据三格位置 shipsSunk: 0, // 初始化击沉数目 ships: [ { locations: [0, 0, 0], hits: ["", "", ""] }, { locations: [0, 0, 0], hits: ["", "", ""] }, { locations: [0, 0, 0], hits: ["", "", ""] } ], // 初始化三艘潜艇，ships是modle的属性 fire: function(guess) { // 如A0会转化为00传给guess for (var i = 0; i < this.numShips; i++) { var ship = this.ships[i]; var index = ship.locations.indexOf(guess); // 得到猜测的位置的index，如果不匹配，返回-1 if (ship.hits[index] === "hit") { view.displayMessage("You already hit that location!"); return true; // 重复击打位置是不累计加分的 } else if (index >= 0) { ship.hits[index] = "hit"; view.displayHit(guess); // 成功位置处显示潜艇 view.displayMessage("HIT!!!"); // index大于0，说明位置匹配成功，并显示击中信息 if (this.isSunk(ship)) { // 判断这艘潜艇是否击沉 view.displayMessage("You sank my battleship!"); this.shipsSunk++; } return true; } } view.displayMiss(guess); // 失败位置处显示miss view.displayMessage("You missed."); return false; }, // 定义fire方法，攻击潜艇 isSunk: function(ship) { for (var i = 0; i < this.shipLength; i++) { if (ship.hits[i] !== "hit") { return false; } } return true; }, // 判断某艘潜艇是否击沉 generateShipLocations: function() { var locations; for (var i = 0; i < this.numShips; i++) { do { locations = this.generateShip(); // 不断生成一艘潜艇的位置，并判断是否有位置冲突，有冲突则继续循环，重新生成位置 } while (this.collision(locations)); this.ships[i].locations = locations; } console.log("Ships array: "); console.log(this.ships); }, // 生成3艘潜艇的位置 generateShip: function() { var direction = Math.floor(Math.random() * 2); // 随机生成横纵轴方向，1为横轴，0位纵轴 var row, col; if (direction === 1) { row = Math.floor(Math.random() * this.boardSize); col = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1)); } else { row = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1)); col = Math.floor(Math.random() * this.boardSize); } var newShipLocations = []; for (var i = 0; i < this.shipLength; i++) { if (direction === 1) { newShipLocations.push(row + "" + (col + i)); } else { newShipLocations.push((row + i) + "" + col); } } return newShipLocations; // 返回一个新的潜艇位置 }, // 生成潜艇 collision: function(locations) { // 传入的是位置数组 for (var i = 0; i < this.numShips; i++) { var ship = this.ships[i]; for (var j = 0; j < locations.length; j++) { if (ship.locations.indexOf(locations[j]) >= 0) { return true; // 存在冲突则返回true } } } return false; } // 判断现有的潜艇位置是否有冲突 }; // view对象：带来浏览器界面视觉的变化 var view = { displayMessage: function(msg) { var messageArea = document.getElementById("messageArea"); messageArea.innerHTML = msg; }, displayHit: function(location) { var cell = document.getElementById(location); cell.setAttribute("class", "hit"); // 添加hit的类型 }, displayMiss: function(location) { var cell = document.getElementById(location); cell.setAttribute("class", "miss"); // 添加miss的类型 } }; // controller对象：中央控制器 var controller = { guesses: 0, processGuess: function(guess) { var location = parseGuess(guess); if (location) { this.guesses++; var hit = model.fire(location); if (hit && model.shipsSunk === model.numShips) { view.displayMessage("You sank all my battleships, in " + this.guesses + " guesses!"); alert("You sank all my battleships, in " + this.guesses + " guesses!"); } } } } // 解析函数：将坐标输入的字符串转化为字符串 function parseGuess(guess) { var mapDict = ["A", "B", "C", "D", "E", "F", "G"]; // 映射字典 if (guess === null || guess.length !== 2) { alert("Sorry, please enter a letter and a number on the board."); } else { var first = guess.charAt(0); // 得到猜测的第一个字符 var row = mapDict.indexOf(first); // 得到横坐标 var column = guess.charAt(1); // 得到猜测的第二个字符，也就是纵坐标 if (isNaN(row) || isNaN(column)) { alert("Sorry, that isn't on the board."); } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize) { alert("Sorry, that's off the board!"); } else { return row + column; } } return null; } // 获取玩家输入的值 function handleFireButton() { var guessInput = document.getElementById("guessInput"); var guess = guessInput.value.toUpperCase(); controller.processGuess(guess); // 控制器打开猜测进程 guessInput.value = ""; // 清空已数入的值 } // 处理按键触发事件 function handleKeyPress(e) { var fireButton = document.getElementById("fireButton"); e = e || window.event; if (e.keyCode === 13) { fireButton.click(); return false; // false挂载这个事件，true重新得到事件 } } // 初始化整个游戏进程 window.onload = init; function init() { // 对 Fire! 按钮的 onclick 事件进行绑定 var fireButton = document.getElementById("fireButton"); fireButton.onclick = handleFireButton; // 输入完后回车也可以触发 click 事件 var guessInput = document.getElementById("guessInput"); guessInput.onkeypress = handleKeyPress; // 放置生成的潜艇，开始游戏 model.generateShipLocations(); }]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2017%2F02%2F28%2FBattleShip%2Fbattleship%2F</url>
-    <content type="text"><![CDATA[Battleship]]></content>
   </entry>
 </search>

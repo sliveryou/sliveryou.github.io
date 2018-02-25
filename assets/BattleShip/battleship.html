@@ -88,17 +88,17 @@
 
 
 
-<meta name="description" content="body {     background-color: black; }  div#board {     position: relative;     width: 1024px;     height: 863px;     margin: auto;     background: url(&quot;board.jpg&quot;) no-repeat; }  div#messageArea {">
-<meta property="og:type" content="article">
+<meta name="description" content="Battleship">
+<meta property="og:type" content="website">
 <meta property="og:title" content="青柚。">
-<meta property="og:url" content="http://home.junyouxiaowu.top/2018/02/13/BattleShip/battleship/index.html">
+<meta property="og:url" content="http://home.junyouxiaowu.top/assets/BattleShip/battleship.html">
 <meta property="og:site_name" content="青柚。">
-<meta property="og:description" content="body {     background-color: black; }  div#board {     position: relative;     width: 1024px;     height: 863px;     margin: auto;     background: url(&quot;board.jpg&quot;) no-repeat; }  div#messageArea {">
+<meta property="og:description" content="Battleship">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-13T11:30:54.102Z">
+<meta property="og:updated_time" content="2018-02-13T11:16:27.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="青柚。">
-<meta name="twitter:description" content="body {     background-color: black; }  div#board {     position: relative;     width: 1024px;     height: 863px;     margin: auto;     background: url(&quot;board.jpg&quot;) no-repeat; }  div#messageArea {">
+<meta name="twitter:description" content="Battleship">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://home.junyouxiaowu.top/2018/02/13/BattleShip/battleship/"/>
+  <link rel="canonical" href="http://home.junyouxiaowu.top/assets/BattleShip/battleship.html"/>
 
 
 
@@ -293,296 +293,81 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://home.junyouxiaowu.top/2018/02/13/BattleShip/battleship/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="青柚。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/img/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青柚。">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline"></h1>
-        
+	<h1 class="post-title" itemprop="name headline"></h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T19:07:11+08:00">
-                2018-02-13
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  98
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        body {
-    background-color: black;
-}
+      <div class="post-body">
+        
+        
+          <!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Battleship</title>
+		<link rel="stylesheet" type="text/css" href="battleship.css">
+	</head>
+<body>
+<div id="board">
+	<div id="messageArea"></div>
+		<table>
+			<tr>
+				<td id="00"></td> <td id="01"></td> <td id="02"></td> <td id="03"></td>
+				<td id="04"></td> <td id="05"></td> <td id="06"></td>
+			</tr>
+			<tr>
+				<td id="10"></td> <td id="11"></td> <td id="12"></td> <td id="13"></td>
+				<td id="14"></td> <td id="15"></td> <td id="16"></td>
+			</tr>
+			<tr>
+				<td id="20"></td> <td id="21"></td> <td id="22"></td> <td id="23"></td>
+				<td id="24"></td> <td id="25"></td> <td id="26"></td>
+			</tr>
+			<tr>
+				<td id="30"></td> <td id="31"></td> <td id="32"></td> <td id="33"></td>
+				<td id="34"></td> <td id="35"></td> <td id="36"></td>
+			</tr>
+			<tr>
+				<td id="40"></td> <td id="41"></td> <td id="42"></td> <td id="43"></td>
+				<td id="44"></td> <td id="45"></td> <td id="46"></td>
+			</tr>
+			<tr>
+				<td id="50"></td> <td id="51"></td> <td id="52"></td> <td id="53"></td>
+				<td id="54"></td> <td id="55"></td> <td id="56"></td>
+			</tr>
+			<tr>
+				<td id="60"></td> <td id="61"></td> <td id="62"></td> <td id="63"></td>
+				<td id="64"></td> <td id="65"></td> <td id="66"></td>
+			</tr>
+		</table>
+		<form>
+			<input type="text" id="guessInput" placeholder="A0">
+			<input type="button" id="fireButton" value="Fire!">
+		</form>
+</div>
+<script src="battleship.js"></script>
+</body>
+</html>
 
-div#board {
-    position: relative;
-    width: 1024px;
-    height: 863px;
-    margin: auto;
-    background: url("board.jpg") no-repeat;
-}
-
-div#messageArea {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    color: rgb(83, 175, 19);
-}
-
-.hit {
-    background: url("ship.png") no-repeat center center;
-}
-
-.miss {
-    background: url("miss.png") no-repeat center center;
-}
-
-table {
-    border-spacing: 0px; 
-    position: absolute;
-    left: 173px;
-    top: 98px;
-}
-
-td {
-    width: 94px;
-    height: 94px;
-}
-
-form {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    padding: 15px;
-    background-color: rgb(83, 175, 19);
-}
-
-form input {
-    background-color: rgb(152, 207, 113);
-    border-color: rgb(83, 175, 19);
-    font-size: 1em;
-}
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div></div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/assets/img/alipay.jpg" alt="青柚。 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    青柚。
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://home.junyouxiaowu.top/2018/02/13/BattleShip/battleship/" title="">http://home.junyouxiaowu.top/2018/02/13/BattleShip/battleship/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/01/01/多SSH-Key解决方法/" rel="next" title="多SSH Key解决方法">
-                <i class="fa fa-chevron-left"></i> 多SSH Key解决方法
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/25/0001-Two-Sum/" rel="prev" title="LeetCode 0001 Two Sum">
-                LeetCode 0001 Two Sum <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-<span class="jiathis_txt">分享到：</span>
-<a class="jiathis_button_fav">收藏夹</a>
-<a class="jiathis_button_copy">复制网址</a>
-<a class="jiathis_button_email">邮件</a>
-<a class="jiathis_button_weixin">微信</a>
-<a class="jiathis_button_qzone">QQ空间</a>
-<a class="jiathis_button_tqq">腾讯微博</a>
-<a class="jiathis_button_douban">豆瓣</a>
-<a class="jiathis_button_share">一键分享</a>
-
-<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-<a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-var jiathis_config={
-  data_track_clickback:true,
-  summary:"",
-  shortUrl:false,
-  hideMore:false
-}
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-      
-    </div>
   </div>
 
 
@@ -640,7 +425,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
