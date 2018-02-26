@@ -45,7 +45,7 @@
     <link href="http://home.junyouxiaowu.top/2018/02/25/BattleShip/"/>
     <id>http://home.junyouxiaowu.top/2018/02/25/BattleShip/</id>
     <published>2018-02-25T09:49:27.000Z</published>
-    <updated>2018-02-26T07:47:12.191Z</updated>
+    <updated>2018-02-26T08:10:31.005Z</updated>
     
     <content type="html"><![CDATA[<p>少年，你，想不想成为一个 Captain 呢？</p><a id="more"></a><p>标题误导向 hhh。  </p><p>前段时间学习了 <code>JavaScript</code> 这门语言，相比于 <code>Python</code>，它也是有很多优点的。结合之前看的 <code>Head First HTML &amp; CSS</code> 这本书，我写了一个普通的小游戏，仅为娱乐。</p><p><strong>游戏规则：</strong></p><p>有一个 <code>7 * 7</code> 的航海区域，敌方有三艘潜艇潜伏其中，每艘潜艇占据三格长度，它可能是竖着潜伏，也有可能是横着潜伏。我方有很多炮弹鱼雷，但希望在尽量少的发射次数下，击沉敌方三艘潜艇。</p><p><strong>击沉条件：</strong> </p><p>因为潜艇占据三格长度，所以需要将炮弹击打在潜艇的三个部位才能将其击沉，重复击打是无效的。</p><p><strong>温馨提醒：</strong></p><ul><li>请多多注意左上角的提示。</li><li>游戏有彩蛋，懂前端的一定能到找到。</li></ul><p>⚡️<a href="/assets/BattleShip/battleship.html">Battle Start</a>⚡️</p>]]></content>
     

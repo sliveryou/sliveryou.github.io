@@ -2067,7 +2067,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0dffff;
+  background: #9549ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2904,10 +2904,16 @@ embed {
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
+@font-face {
+  font-family: GuDianMingChaoTi;
+  src: url("/fonts/GuDianMingChaoTi.ttf");
+  font-weight: bold;
+}
 body {
   background: url("/images/background.jpg");
   background-attachment: fixed;
-  background-size: 100% 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 code {
   color: #ff7600;
