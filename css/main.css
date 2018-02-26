@@ -2067,7 +2067,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffff94;
+  background: #f166cc;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2905,7 +2905,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/background.jpg");
+  background: url("/images/background.png");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -2913,6 +2913,9 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+.header {
+  background-image: url("/images/header1.png");
 }
 code {
   color: #ff7600;
@@ -2941,7 +2944,7 @@ pre {
   display: inline-block;
   padding: 0 40px;
   color: #fff;
-  background: #fff;
+  background: rgba(255,255,255,0);
   border-bottom: none;
 }
 .site-title,
@@ -2981,7 +2984,7 @@ pre {
 }
 .menu {
   margin: 0 auto;
-  background-color: #eee;
+  background-color: rgba(238,238,238,0.51);
   max-width: 450px;
   font-weight: 700;
 }
