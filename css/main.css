@@ -445,11 +445,11 @@ body {
 .header-inner {
   margin: 0 auto;
   padding: 100px 0 70px;
-  width: 700px;
+  width: 800px;
 }
 @media (min-width: 1600px) {
   .container .header-inner {
-    width: 900px;
+    width: 1000px;
   }
 }
 .main {
@@ -457,11 +457,11 @@ body {
 }
 .main-inner {
   margin: 0 auto;
-  width: 700px;
+  width: 800px;
 }
 @media (min-width: 1600px) {
   .container .main-inner {
-    width: 900px;
+    width: 1000px;
   }
 }
 .footer {
@@ -474,11 +474,11 @@ body {
 .footer-inner {
   box-sizing: border-box;
   margin: 20px auto;
-  width: 700px;
+  width: 800px;
 }
 @media (min-width: 1600px) {
   .container .footer-inner {
-    width: 900px;
+    width: 1000px;
   }
 }
 pre,
@@ -2067,7 +2067,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #365371;
+  background: #0dffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2931,4 +2931,53 @@ pre {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.brand {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #fff;
+  border-bottom: none;
+}
+.site-title,
+.site-subtitle {
+  font-family: GuDianMingChaoTi, cursive, serif, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+  font-size: 22px;
+  color: #555;
+}
+.site-title {
+  font-size: 52px;
+  line-height: 60px;
+  letter-spacing: 2px;
+}
+.menu .menu-item {
+  display: inline-block;
+  margin: 0 10px;
+  list-style: none;
+}
+.sidebar {
+  background-color: #eee;
+}
+.site-author-name {
+  margin: 5px 0 0;
+  text-align: center;
+  color: #7b7977;
+  font-weight: normal;
+}
+.menu .menu-item a {
+  display: block;
+  font-size: 15px;
+  line-height: inherit;
+  border-bottom: 1px solid transparent;
+  transition-property: border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.menu {
+  margin: 0 auto;
+  background-color: #eee;
+  max-width: 450px;
+  font-weight: 700;
 }
