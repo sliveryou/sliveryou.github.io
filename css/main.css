@@ -2067,7 +2067,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9549ff;
+  background: #6e32e4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2904,16 +2904,15 @@ embed {
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
-@font-face {
-  font-family: GuDianMingChaoTi;
-  src: url("/fonts/GuDianMingChaoTi.ttf");
-  font-weight: bold;
-}
 body {
   background: url("/images/background.jpg");
-  background-attachment: fixed;
-  background-size: 100%;
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
 }
 code {
   color: #ff7600;
@@ -2948,7 +2947,7 @@ pre {
 }
 .site-title,
 .site-subtitle {
-  font-family: GuDianMingChaoTi, cursive, serif, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+  font-family: cursive, serif, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
   font-size: 22px;
   color: #555;
 }
