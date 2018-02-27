@@ -106,12 +106,12 @@
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/链接.png">
-<meta property="og:updated_time" content="2018-02-27T13:46:16.538Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d332c72agy1fovgwodk6nj20nb09mwga.jpg">
+<meta property="og:updated_time" content="2018-02-27T16:26:40.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux服务器基础配置">
 <meta name="twitter:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
-<meta name="twitter:image" content="http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/链接.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/d332c72agy1fovgwodk6nj20nb09mwga.jpg">
 
 
 
@@ -514,7 +514,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install wget</div></pre></td></tr></table></figure>
 <p>按照网易镜像帮助的提示，先 cd 到 yum.repos.d 目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</div></pre></td></tr></table></figure>
-<p>这个时候复制响应版本的源镜像链接，再用 wget 下载：<br><img src="/2017/12/26/Linux基础配置/链接.png" alt="链接"></p>
+<p>这个时候复制响应版本的源镜像链接，再用 wget 下载：<br><img src="https://ws1.sinaimg.cn/large/d332c72agy1fovgwodk6nj20nb09mwga.jpg" alt="链接"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo wget http://mirrors.163.com/.<span class="built_in">help</span>/CentOS7-Base-163.repo</div></pre></td></tr></table></figure>
 <p>替换完毕后，依次输入以下两个命令，生成缓存：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum clean all</div><div class="line">yum makecache</div></pre></td></tr></table></figure>
