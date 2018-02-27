@@ -106,12 +106,12 @@
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/d332c72agy1fovgxnnemrj205003ajri.jpg">
-<meta property="og:updated_time" content="2018-02-27T16:27:35.168Z">
+<meta property="og:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E6%88%90%E7%BB%A9.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDtKliB1gpal57IrLANe0HaoHZVMgd30h4%26q-sign-time%3D1519753464%3B1519755264%26q-key-time%3D1519753464%3B1519755264%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dfbc8bb65febbe373f2bb27202b6d5a653e7e18a7&token=cb33860f9d30b9d8dd3d4980637987be0c83db3410001&clientIP=111.1.107.81&clientUA=0f10b96f-14a2-426c-b935-e0d85332b586">
+<meta property="og:updated_time" content="2018-02-27T17:44:39.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3爬虫相关库笔记">
 <meta name="twitter:description" content="有时候一个爬虫程序，可能只有几行代码，但是它涉及到的知识面却很广，这里先记下一些相关知识，以此共勉。">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/d332c72agy1fovgxnnemrj205003ajri.jpg">
+<meta name="twitter:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E6%88%90%E7%BB%A9.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDtKliB1gpal57IrLANe0HaoHZVMgd30h4%26q-sign-time%3D1519753464%3B1519755264%26q-key-time%3D1519753464%3B1519755264%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dfbc8bb65febbe373f2bb27202b6d5a653e7e18a7&token=cb33860f9d30b9d8dd3d4980637987be0c83db3410001&clientIP=111.1.107.81&clientUA=0f10b96f-14a2-426c-b935-e0d85332b586">
 
 
 
@@ -545,7 +545,7 @@
 <p>这个模块可以将数据输出的如表格一般好看、整齐，很适合强迫症患者 hhh。<br>现在来使用一下吧：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> prettytable <span class="keyword">import</span> PrettyTable <span class="keyword">as</span> pt</div><div class="line"></div><div class="line">table = pt([<span class="string">"姓名"</span>, <span class="string">"性别"</span>, <span class="string">"成绩"</span>])</div><div class="line">table.add_row([<span class="string">"Sliver"</span>, <span class="string">"男"</span>, <span class="number">95</span>])</div><div class="line">table.add_row([<span class="string">"Ariel"</span>, <span class="string">"女"</span>, <span class="number">99</span>])</div><div class="line">table.add_row([<span class="string">"Hollen"</span>, <span class="string">"男"</span>, <span class="number">80</span>])</div><div class="line">print(table)</div></pre></td></tr></table></figure>
 <p>结果如下：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d332c72agy1fovgxnnemrj205003ajri.jpg" alt="成绩表"></p>
+<p><img src="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E6%88%90%E7%BB%A9.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDtKliB1gpal57IrLANe0HaoHZVMgd30h4%26q-sign-time%3D1519753464%3B1519755264%26q-key-time%3D1519753464%3B1519755264%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dfbc8bb65febbe373f2bb27202b6d5a653e7e18a7&amp;token=cb33860f9d30b9d8dd3d4980637987be0c83db3410001&amp;clientIP=111.1.107.81&amp;clientUA=0f10b96f-14a2-426c-b935-e0d85332b586" alt="成绩表"></p>
 <p><strong>总结</strong></p>
 <p>想要创建一个表，先进行初始化：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> prettytable <span class="keyword">import</span> PrettyTable <span class="keyword">as</span> pt</div><div class="line"></div><div class="line">table = pt()</div></pre></td></tr></table></figure>
