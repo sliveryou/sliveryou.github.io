@@ -2073,7 +2073,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #771b4b;
+  background: #f9edd4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2911,7 +2911,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("http://myblog-1256123790.cossh.myqcloud.com/imgbackground.png");
+  background: url("https://ws1.sinaimg.cn/large/d332c72agy1fovg088khbj21400aamy6.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -2921,7 +2921,7 @@ body {
   background-size: cover;
 }
 .header {
-  background-image: url("http://myblog-1256123790.cossh.myqcloud.com/imgheader1.png");
+  background-image: url("https://ws1.sinaimg.cn/large/d332c72agy1fovg1xsm62j21400a5tlx.jpg");
 }
 code {
   color: #ff7600;
