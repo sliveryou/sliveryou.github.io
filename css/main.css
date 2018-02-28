@@ -2073,7 +2073,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff138e;
+  background: #b8ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2911,7 +2911,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("https://blog-1256123790.cos.ap-shanghai.myqcloud.com/background.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID3leNcTxKG5NKe4S20N1Z5nJKYzzN7Ycn%26q-sign-time%3D1519754920%3B1519756720%26q-key-time%3D1519754920%3B1519756720%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dc5de7cf6281492fe56623352725d2a7148f6dc47&token=bafc4c78120b0666ed2979d82151fea6b9ca475910001&clientIP=111.1.107.81&clientUA=dab508be-eab0-4842-8e69-84c951953f36");
+  background: url("http://myblog-1256123790.cossh.myqcloud.com/imgbackground.png");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -2921,7 +2921,7 @@ body {
   background-size: cover;
 }
 .header {
-  background-image: url("https://blog-1256123790.cos.ap-shanghai.myqcloud.com/header1.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDTirO6B4grlDuc1BxIHhizkt3g6xKFt0b%26q-sign-time%3D1519754987%3B1519756787%26q-key-time%3D1519754987%3B1519756787%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3D02bab40c2938171c4d7ee70810f574285fc8f9a3&token=d0bcaa1fda7a377d058826fc2ee8b55b88ab2ad310001&clientIP=111.1.107.81&clientUA=e734285e-5b0d-45be-a421-0950127e7528");
+  background-image: url("http://myblog-1256123790.cossh.myqcloud.com/imgheader1.png");
 }
 code {
   color: #ff7600;

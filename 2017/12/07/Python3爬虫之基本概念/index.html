@@ -106,13 +106,13 @@
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="学了 Python 也有一段时间了，这几天才开始去接触爬虫，再一次感叹 Python 的强大。而爬虫是之前一直接触的名词，但自以为一直没有学好基础，就一直没有去接触，在这次在学习的过程中，终于揭开了它的面纱。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID4BSd3eWfdgiaATszwR5rtmwAcE3w1kYf%26q-sign-time%3D1519753345%3B1519755145%26q-key-time%3D1519753345%3B1519755145%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dd4e4e1b2b47cf56ae005fbb3133f4ebc541ea6ba&token=52b399f8f8a947262cba733e4b56d38fde7fae0b10001&clientIP=111.1.107.81&clientUA=8f63b5e8-dbdb-439c-b2e2-6a03dad60b8a">
-<meta property="og:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDPMX2MSazJZmvyoWcvymf7Hp7ajaQc3qD%26q-sign-time%3D1519753364%3B1519755164%26q-key-time%3D1519753364%3B1519755164%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dea6b19133479f7f77381bf19f2b15e7b9f66efad&token=da1a10ccc2bdb2c3ee2658a2412540d05c9cceff10001&clientIP=111.1.107.81&clientUA=f9e01c9b-c4f4-4d64-b532-64962f098c4d">
-<meta property="og:updated_time" content="2018-02-27T17:43:03.775Z">
+<meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF.jpg">
+<meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.jpg">
+<meta property="og:updated_time" content="2018-02-28T02:17:26.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3爬虫之基本概念">
 <meta name="twitter:description" content="学了 Python 也有一段时间了，这几天才开始去接触爬虫，再一次感叹 Python 的强大。而爬虫是之前一直接触的名词，但自以为一直没有学好基础，就一直没有去接触，在这次在学习的过程中，终于揭开了它的面纱。">
-<meta name="twitter:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID4BSd3eWfdgiaATszwR5rtmwAcE3w1kYf%26q-sign-time%3D1519753345%3B1519755145%26q-key-time%3D1519753345%3B1519755145%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dd4e4e1b2b47cf56ae005fbb3133f4ebc541ea6ba&token=52b399f8f8a947262cba733e4b56d38fde7fae0b10001&clientIP=111.1.107.81&clientUA=8f63b5e8-dbdb-439c-b2e2-6a03dad60b8a">
+<meta name="twitter:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF.jpg">
 
 
 
@@ -476,13 +476,13 @@
 </ul>
 <p><strong>那么什么是 Request 和 Response 呢？</strong> </p>
 <p>首先要了解一下 HTTP 协议，这里简单说一下。在 HTTP 协议中，请求访问文本或图像资源的一端称为客户端，而提供资源响应的一端称为服务器端。在我们用浏览器访问一个网页时，浏览器和远在云端的服务器其实就分别扮演着客户端和服务端的角色。 </p>
-<p><img src="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID4BSd3eWfdgiaATszwR5rtmwAcE3w1kYf%26q-sign-time%3D1519753345%3B1519755145%26q-key-time%3D1519753345%3B1519755145%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dd4e4e1b2b47cf56ae005fbb3133f4ebc541ea6ba&amp;token=52b399f8f8a947262cba733e4b56d38fde7fae0b10001&amp;clientIP=111.1.107.81&amp;clientUA=8f63b5e8-dbdb-439c-b2e2-6a03dad60b8a" alt="图1"></p>
+<p><img src="http://myblog-1256123790.cossh.myqcloud.com/img%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF.jpg" alt="图1"></p>
 <ul>
 <li>当浏览器发送消息给我们请求的网页所在的服务器时，这个过程就是 HTTP Request。</li>
 <li>服务器收到浏览器发送的消息后，能够根据浏览器发送消息的内容，采取相应处理，然后把消息传回给浏览器，这个过程叫做 HTTP Response。</li>
 <li>浏览器收到服务器的 Response 信息后，会对信息进行相应处理，然后展示。</li>
 </ul>
-<p><img src="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDPMX2MSazJZmvyoWcvymf7Hp7ajaQc3qD%26q-sign-time%3D1519753364%3B1519755164%26q-key-time%3D1519753364%3B1519755164%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dea6b19133479f7f77381bf19f2b15e7b9f66efad&amp;token=da1a10ccc2bdb2c3ee2658a2412540d05c9cceff10001&amp;clientIP=111.1.107.81&amp;clientUA=f9e01c9b-c4f4-4d64-b532-64962f098c4d" alt="图2"></p>
+<p><img src="http://myblog-1256123790.cossh.myqcloud.com/img%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94.jpg" alt="图2"></p>
 <p><strong>下面分别来看看 Request 和 Response 的内容</strong></p>
 <ul>
 <li>Request<ul>

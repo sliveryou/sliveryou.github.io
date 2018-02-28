@@ -106,12 +106,12 @@
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E9%93%BE%E6%8E%A5.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID6sWhXF10YPiQGgUjnuad5ho1vmscwcdk%26q-sign-time%3D1519753418%3B1519755218%26q-key-time%3D1519753418%3B1519755218%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Df6c460b737e14f2fe9561d8be5328a09d6fc45b1&token=e095745af1cae5d3ff241ca30e0ba93c10caab4f10001&clientIP=111.1.107.81&clientUA=f229417e-745f-4ce6-a13a-aa70a06c38d2">
-<meta property="og:updated_time" content="2018-02-27T17:43:49.061Z">
+<meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E9%93%BE%E6%8E%A5.png">
+<meta property="og:updated_time" content="2018-02-28T02:15:04.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux服务器基础配置">
 <meta name="twitter:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
-<meta name="twitter:image" content="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E9%93%BE%E6%8E%A5.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID6sWhXF10YPiQGgUjnuad5ho1vmscwcdk%26q-sign-time%3D1519753418%3B1519755218%26q-key-time%3D1519753418%3B1519755218%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Df6c460b737e14f2fe9561d8be5328a09d6fc45b1&token=e095745af1cae5d3ff241ca30e0ba93c10caab4f10001&clientIP=111.1.107.81&clientUA=f229417e-745f-4ce6-a13a-aa70a06c38d2">
+<meta name="twitter:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E9%93%BE%E6%8E%A5.png">
 
 
 
@@ -514,7 +514,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install wget</div></pre></td></tr></table></figure>
 <p>按照网易镜像帮助的提示，先 cd 到 yum.repos.d 目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</div></pre></td></tr></table></figure>
-<p>这个时候复制响应版本的源镜像链接，再用 wget 下载：<br><img src="https://blog-1256123790.cos.ap-shanghai.myqcloud.com/%E9%93%BE%E6%8E%A5.png?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKID6sWhXF10YPiQGgUjnuad5ho1vmscwcdk%26q-sign-time%3D1519753418%3B1519755218%26q-key-time%3D1519753418%3B1519755218%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Df6c460b737e14f2fe9561d8be5328a09d6fc45b1&amp;token=e095745af1cae5d3ff241ca30e0ba93c10caab4f10001&amp;clientIP=111.1.107.81&amp;clientUA=f229417e-745f-4ce6-a13a-aa70a06c38d2" alt="链接"></p>
+<p>这个时候复制响应版本的源镜像链接，再用 wget 下载：<br><img src="http://myblog-1256123790.cossh.myqcloud.com/img%E9%93%BE%E6%8E%A5.png" alt="链接"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo wget http://mirrors.163.com/.<span class="built_in">help</span>/CentOS7-Base-163.repo</div></pre></td></tr></table></figure>
 <p>替换完毕后，依次输入以下两个命令，生成缓存：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum clean all</div><div class="line">yum makecache</div></pre></td></tr></table></figure>
