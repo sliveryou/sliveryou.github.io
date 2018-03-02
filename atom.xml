@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://home.junyouxiaowu.top/"/>
-  <updated>2018-02-28T03:23:31.076Z</updated>
+  <updated>2018-03-02T05:46:10.349Z</updated>
   <id>http://home.junyouxiaowu.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iTerm2常用快捷键</title>
+    <link href="http://home.junyouxiaowu.top/2018/03/02/iTerm2%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://home.junyouxiaowu.top/2018/03/02/iTerm2快捷键/</id>
+    <published>2018-03-02T04:39:27.000Z</published>
+    <updated>2018-03-02T05:46:10.349Z</updated>
+    
+    <content type="html"><![CDATA[<p>你不能不知道的 iTerm2 技巧。</p><a id="more"></a><p><img src="http://myblog-1256123790.cossh.myqcloud.com/imgiTerm2.jpg" width="600px"></p><h3 id="常用功能快捷键"><a href="#常用功能快捷键" class="headerlink" title="常用功能快捷键"></a>常用功能快捷键</h3><table><thead><tr><th style="text-align:center">功能</th><th style="text-align:center">快捷键</th></tr></thead><tbody><tr><td style="text-align:center">新建标签</td><td style="text-align:center">command + t</td></tr><tr><td style="text-align:center">关闭标签</td><td style="text-align:center">command + w</td></tr><tr><td style="text-align:center">切换标签</td><td style="text-align:center">command + 数字 / command + 左右方向键</td></tr><tr><td style="text-align:center">切换全屏</td><td style="text-align:center">command + enter</td></tr><tr><td style="text-align:center">查找</td><td style="text-align:center">command + f</td></tr><tr><td style="text-align:center">垂直分屏</td><td style="text-align:center">command + d</td></tr><tr><td style="text-align:center">水平分屏</td><td style="text-align:center">command + shift + d</td></tr><tr><td style="text-align:center">切换屏幕</td><td style="text-align:center">command + option + 左右方向键 / command + [ / command + ]</td></tr><tr><td style="text-align:center">查看历史命令</td><td style="text-align:center">command + ;</td></tr><tr><td style="text-align:center">查看剪贴板历史</td><td style="text-align:center">command + shift + h</td></tr><tr><td style="text-align:center">清除当前行</td><td style="text-align:center">ctrl + u</td></tr><tr><td style="text-align:center">光标到行首</td><td style="text-align:center">ctrl + a</td></tr><tr><td style="text-align:center">光标到行尾</td><td style="text-align:center">ctrl + e</td></tr><tr><td style="text-align:center">光标前进后退</td><td style="text-align:center">ctrl + f/b (相当于左右方向键)</td></tr><tr><td style="text-align:center">上一条命令</td><td style="text-align:center">ctrl + p</td></tr><tr><td style="text-align:center">搜索命令历史</td><td style="text-align:center">ctrl + r</td></tr><tr><td style="text-align:center">删除当前光标的字符</td><td style="text-align:center">ctrl + d</td></tr><tr><td style="text-align:center">删除光标之前的字符</td><td style="text-align:center">ctrl + h</td></tr><tr><td style="text-align:center">删除光标之前的单词</td><td style="text-align:center">ctrl + w</td></tr><tr><td style="text-align:center">删除光标之后的字符</td><td style="text-align:center">ctrl + k</td></tr><tr><td style="text-align:center">交换光标处文本</td><td style="text-align:center">ctrl + t</td></tr><tr><td style="text-align:center">清屏</td><td style="text-align:center">command + r / ctrl + l</td></tr></tbody></table><h3 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h3><p>简单配置一些插件，往往能显著提高工作效率。<br>只要在 <code>~/.zshrc</code> 文件的 <code>plugin</code> 下面添加上想要的插件名称就可以了，并且 <code>oh-my-zsh</code> 自带了很多插件，可以通过 <code>ls ~/.oh-my-zsh/plugins</code> 来查看。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plugins=(git-extras git mvn svn osx brew brew-cask npm  colored-man colorize copydir history sublime command-not-found zsh-syntax-highlighting Z)</div></pre></td></tr></table></figure><ul><li>git：当你处于一个 git 受控的目录下时，shell 会明确显示 <code>git</code> 和 <code>branch</code>，另外对 git 很多命令进行了简化，例如 <code>gco=’git checkout’</code>、<code>gd=’git diff’</code>、<code>gst=’git status’</code>、<code>g=’git’</code> 等等，熟练使用可以大大减少 git 的命令长度，命令内容可以参考 <code>~/.oh-my-zsh/plugins/git/git.plugin.zsh</code>。</li><li>textmate：<code>mr</code> 可以创建 ruby 的框架项目，<code>tm finename</code> 可以用 textmate 打开指定文件。<br>osx：tab 增强，<code>quick-look filename</code> 可以直接预览文件，<code>man-preview grep</code> 可以生成 grep 手册的 pdf 版本等。</li><li>git-extras: Git extras 工具与 zsh 的继承，很方便，在 git 仓库目录下试试 <code>git summary</code> 即可看到整个仓库的汇总信息。</li><li>sublime : 此插件能够在终端下使用命令 <code>stt</code> 在 SublimeText 中打开当前文件夹，使用 <code>subl</code> 或者 <code>st</code> 来编辑某个特定文件，比如 <code>st 1.txt</code>，当然前提你得安装了 SublimeText。</li><li>zsh-syntax-highlighting: 让终端的每一条命令智能显示颜色，就像在 IDE 里面写代码一样，强烈推荐，安装只需要输入 <code>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</code> 命令再添加 <code>zsh-syntax-highlighting</code> 插件即可。</li><li>z : Z is awesome ，让你在不同的目录中快速跳转，比如想访问 <code>~/work/code/project/testApp</code>，只要是之前访问过，直接输入 <code>z testApp</code> 按 <code>tab</code> 键直接显示完整目录，按 <code>enter</code> 键直接进入当前目录，即使只输入了 <code>z testa</code> 也能完成同样的工作，大大提升效率。</li><li>ag: 终端里面快速搜索当前目录下所有文件中所匹配的关键字的命令，类似与 <code>awk</code>，但是速度极快，速度极快，速度极快，使用 <code>brew install</code>，其实就是组件 <code>the_silver_searcher</code> ，详细参考地址 GitHub 。</li><li>tree : mac 下的 <code>tree</code> 命令，方便排查问题，直接 <code>brew install tree</code> 即可。</li></ul><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul><li><a href="http://blog.csdn.net/ws1352864983/article/details/51512904" target="_blank" rel="external">http://blog.csdn.net/ws1352864983/article/details/51512904</a></li><li><a href="https://www.jianshu.com/p/5ec4ba334102" target="_blank" rel="external">https://www.jianshu.com/p/5ec4ba334102</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;你不能不知道的 iTerm2 技巧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技巧" scheme="http://home.junyouxiaowu.top/categories/%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="Tips" scheme="http://home.junyouxiaowu.top/tags/Tips/"/>
+    
+      <category term="iTerm2" scheme="http://home.junyouxiaowu.top/tags/iTerm2/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo自定义Markdown渲染</title>
@@ -508,33 +532,6 @@
     
       &lt;p&gt;&lt;strong&gt;6. ZigZag Conversion&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The string &lt;code&gt;&amp;quot;PAYPALISHIRING&amp;quot;&lt;/code&gt; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="刷题" scheme="http://home.junyouxiaowu.top/categories/%E5%88%B7%E9%A2%98/"/>
-    
-    
-      <category term="LeetCode" scheme="http://home.junyouxiaowu.top/tags/LeetCode/"/>
-    
-      <category term="Study" scheme="http://home.junyouxiaowu.top/tags/Study/"/>
-    
-      <category term="Python" scheme="http://home.junyouxiaowu.top/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 0005 Longest Palindromic Substring</title>
-    <link href="http://home.junyouxiaowu.top/2018/02/25/0005-Longest-Palindromic-Substring/"/>
-    <id>http://home.junyouxiaowu.top/2018/02/25/0005-Longest-Palindromic-Substring/</id>
-    <published>2018-02-25T09:44:31.000Z</published>
-    <updated>2018-02-25T12:40:47.540Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>5. Longest Palindromic Substring</strong></p><p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</p><a id="more"></a><p><strong>Example 1:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: &quot;babad&quot;</div><div class="line"></div><div class="line">Output: &quot;bab&quot;</div><div class="line"></div><div class="line">Note: &quot;aba&quot; is also a valid answer.</div></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: &quot;cbbd&quot;</div><div class="line"></div><div class="line">Output: &quot;bb&quot;</div></pre></td></tr></table></figure><p><strong>Analysis:</strong></p><p>得到最大回文字符子串有很多方法。比如，我们可以为子字符串选择所有可能的开始和结束位置，并逐一验证它是否是回文的。这是一种暴力解决方法，往往会超出时间限制。<br>另一种解法，可以从中间往两边探索，如果一样就继续找，不一样就停止。这种解法需要我们不断探索最重要的中间值，比如 <code>cababade</code>，我们找到的最大回文子串是 <code>ababa</code>，而 <code>a</code> 是中间值，我们从 <code>a</code> 入手，不断向左右扩展 <code>a -&gt; bab -&gt; ababa</code>，最终得到了最大回文子串。  </p><p><strong>Answer:</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type s: str</span></div><div class="line"><span class="string">        :rtype: str</span></div><div class="line"><span class="string">        """</span></div><div class="line">        sub, longest, length = <span class="string">''</span>, <span class="number">0</span>, len(s)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i, i + <span class="number">2</span>):</div><div class="line">                left, right = i, j</div><div class="line">                <span class="keyword">while</span> left &gt;= <span class="number">0</span> <span class="keyword">and</span> right &lt; length <span class="keyword">and</span> s[left] == s[right]:</div><div class="line">                    left -= <span class="number">1</span></div><div class="line">                    right += <span class="number">1</span></div><div class="line">                long = right - left - <span class="number">1</span></div><div class="line">                <span class="keyword">if</span> long &gt; longest:</div><div class="line">                    longest = long</div><div class="line">                    sub = s[left + <span class="number">1</span> : right]</div><div class="line">        <span class="keyword">return</span> sub</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;5. Longest Palindromic Substring&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.&lt;/p&gt;
     
     </summary>
     
