@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "96b9722f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,Notes," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青柚" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="“人生苦短，我用 Python。”">
+<meta name="keywords" content="Python,Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python代码风格指南（自译）">
+<meta property="og:url" content="http://home.junyouxiaowu.top/2018/03/03/Python代码风格指南/index.html">
+<meta property="og:site_name" content="青柚">
+<meta property="og:description" content="“人生苦短，我用 Python。”">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-04T07:02:22.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python代码风格指南（自译）">
+<meta name="twitter:description" content="“人生苦短，我用 Python。”">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://home.junyouxiaowu.top/2018/03/03/Python代码风格指南/"/>
+
+
+
+
+
+  <title>Python代码风格指南（自译） | 青柚</title>
+  
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+  <script type="text/javascript">
+   /*$youziku.load(".site-subtitle", "da2dfc0362c0476da9190e4863da820d", "cyjianxk");*/
+   $youziku.load(".site-title, .site-subtitle", "246f5245372643709946dcffbd31dfd1", "HanWangKaiMedium-Gb5");
+   $youziku.draw();
+</script>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青柚</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">琴瑟在御 莫不静好</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklists">
+          <a href="/booklists/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://home.junyouxiaowu.top/2018/03/03/Python代码风格指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sliver">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青柚">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python代码风格指南（自译）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T22:39:27+08:00">
+                2018-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,411
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>“人生苦短，我用 Python。”</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>英语渣，但就是很想翻译它。</p>
+</blockquote>
+<p>当你询问一个程序员为什么最爱 Python 语言的时候，他们常说它可读性很高。确实，高度的可读性是设计 Python 这门语言的核心。</p>
+<p>一个使 Python 代码易读且易理解的原因是 Python 语言相对完善的编码指南和 Pythonic 风格。</p>
+<p>并且，当一个经验丰富的 Python 开发者指着一段代码说：“这段代码并不 Pythonic” 的时候，这常常意味着这些代码没有遵循一个普遍的代码准则，没有通过最好的方式表达出它的意图。</p>
+<p>虽然在一些极端情况下，关于如何用 Python 代码表达意图的最好方式没有达成共识，但这样的情况是比较少的。</p>
+<h2 id="一般概念"><a href="#一般概念" class="headerlink" title="一般概念"></a>一般概念</h2><h3 id="明确的代码"><a href="#明确的代码" class="headerlink" title="明确的代码"></a>明确的代码</h3><p>虽然任何类型的魔法方法都可以通过 Python 来实现，但是最明确和最直接的方式往往是最好的。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_complex</span><span class="params">(*args)</span>:</span></div><div class="line">    x, y = args</div><div class="line">    <span class="keyword">return</span> dict(**locals())</div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_complex</span><span class="params">(x, y)</span>:</span></div><div class="line">    <span class="keyword">return</span> &#123;<span class="string">'x'</span>: x, <span class="string">'y'</span>: y&#125;</div></pre></td></tr></table></figure>
+<p>在上面优秀的代码中，函数明确地显式调用 x 和 y, 明确的返回相关字典。开发者通过读第一行和最后一行就可以知道函数的用法。</p>
+<h3 id="一行一句"><a href="#一行一句" class="headerlink" title="一行一句"></a>一行一句</h3><p>尽管在一些复杂语句中，例如 <code>列表生成式</code> 是被允许的，并且这些语句可以展现简洁的表达能力。但将不相关的语句放在同一行是很差的代码风格。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'one'</span>; <span class="keyword">print</span> <span class="string">'two'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> x == <span class="number">1</span>: <span class="keyword">print</span> <span class="string">'one'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> &lt;complex comparison&gt; <span class="keyword">and</span> &lt;other complex comparison&gt;:</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'one'</span></div><div class="line"><span class="keyword">print</span> <span class="string">'two'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> x == <span class="number">1</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'one'</span></div><div class="line">    </div><div class="line">cond1 = &lt;complex comparison&gt;</div><div class="line">cond2 = &lt;other complex comparison&gt;</div><div class="line"><span class="keyword">if</span> cond1 <span class="keyword">and</span> cond2:</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><p>函数的参数可以有四种不同的方式：</p>
+<h4 id="1-位置参数"><a href="#1-位置参数" class="headerlink" title="1.位置参数"></a>1.位置参数</h4><p>位置参数是强制性的，并且它们没有默认值。它们是最简单的参数形式，可以用少量的函数参数，用来表达函数意义的全部部分，而它们的位置顺序是自然的，是被严格要求的。例如，在 <code>send(message, recipient)</code> 或者 <code>point(x, y)</code> 这些函数中，函数的使用者并不会对函数的使用觉得很困难，这些函数仅仅需要两个参数，并按照顺序传入即可。  </p>
+<p>在这两种情况下，可以在调用函数时使用参数的名称赋值，这样做可以切换参数的顺序，例如调用实例 <code>send(recipient=&#39;World&#39;, message=&#39;Hello&#39;)</code> 和 <code>point(y=2, x=1)</code>，但与直接的调用 <code>send(&#39;Hello&#39;, &#39;World&#39;)</code> 和 <code>point(1, 2)</code> 相比，这会降低可读性并且将会不必要地冗长。</p>
+<h4 id="2-关键字参数"><a href="#2-关键字参数" class="headerlink" title="2. 关键字参数"></a>2. 关键字参数</h4><p>关键字参数不是强制性的，并且它们具有默认值。它们通常是用于发送给函数的可选参数。当一个函数有多于两个或者三个位置参数的时候，函数参数样式就很难记忆了。这个时候，使用具有默认值的关键字参数是很有帮助的。例如，一个完整的 <code>send</code> 函数可以定义成 <code>send(message, to, cc=None, bcc=None)</code>，这里的 <code>cc</code> 和 <code>bcc</code> 参数是可选的，当没有传值时默认为 <code>None</code>。</p>
+<p>使用关键字参数调用一个函数可以通过 Python 以多种方式完成。例如，可以在定义中遵循参数的顺序，而不必明确命名参数，比如 <code>send(&#39;Hello&#39;, &#39;World&#39;, &#39;Cthulhu&#39;, &#39;God&#39;)</code> 是将密件发送给上帝。我们也可以使用命名参数而无需遵循参数顺序来调用函数，比如 <code>send(&#39;Hello again&#39;, &#39;World&#39;, bcc=&#39;God&#39;, cc=&#39;Cthulhu&#39;)</code>。如果没有任何强有力的理由不去遵循最接近函数定义的语法： <code>send(&#39;Hello&#39;, &#39;World&#39;, cc=&#39;Cthulhu&#39;, bcc=&#39;God&#39;)</code>，那么这两种方式都应该是要极力避免的。</p>
+<p>作为一个方面的说明，请遵循 <a href="http://en.wikipedia.org/wiki/You_ain&#39;t_gonna_need_it" target="_blank" rel="external">YAGNI</a> 原则。通常，移除一个用作“以防万一”但却看起来从未使用的可选参数（以及它在函数中的逻辑），比添加一个所需的新的可选参数和它的逻辑要来的困难。</p>
+<h4 id="3-任意参数列表"><a href="#3-任意参数列表" class="headerlink" title="3. 任意参数列表"></a>3. 任意参数列表</h4><p>任意参数列表是函数传值的第三种方式，如果一个函数意图通过定义可扩展数目的位置参数实现更好的表达，那么可以定义 <code>*args</code> 的结构。在函数体中，<code>args</code> 是包含所有剩余参数的元组。例如，我们可以用任意长度的位置参数作为参数去调用 <code>send(message, *args)</code> 这个函数，比如 <code>send(&#39;Hello&#39;, &#39;God&#39;, &#39;Mom&#39;, &#39;Cthulhu&#39;)</code>。在此函数体中，<code>args</code> 相当于 <code>(&#39;God&#39;,&#39;Mom&#39;, &#39;Cthulhu&#39;)</code>。</p>
+<p>尽管如此，这种结构有一些缺点，应谨慎使用。如果一个函数接收到相同性质的参数列表，通常将其定义为一个参数，这样函数为更为清晰，而这个参数可以是一个列表或其他任何序列。在这里，如果 <code>send</code> 参数有多个接受者，将之定义成 <code>send(message, recipients)</code> 会更明确。调用它时就使用 <code>send(&#39;Hello&#39;, [&#39;God&#39;, &#39;Mom&#39;, &#39;Cthulhu&#39;])</code>。这样的话，函数的使用者可以事先将接收者们维护成列表形式，这为传递各种不能被转变成其他序列的序列（包括迭代器）带来了可能。</p>
+<h4 id="4-任意关键字参数字典"><a href="#4-任意关键字参数字典" class="headerlink" title="4. 任意关键字参数字典"></a>4. 任意关键字参数字典</h4><p>关键字参数字典是最后一种函数传参的方式，如果函数要求一系列待定的命名参数，我们可以使用 <code>**kwargs</code> 的结构。在函数体中，<code>kwargs</code> 是一个 字典，它包含所有传递给函数但没有被其他关键字参数捕捉的命名参数。</p>
+<p>和<strong>任意参数列表</strong>中所需注意的一样，这些强大的技术是要用在被证明确实需要用到它们的时候，它们不应该被用在能用更简单和更明确的结构就可以充分表达意图的函数中。</p>
+<p>编写函数的时候采用何种参数形式，是用位置参数，还是可选关键字参数，是否使用形如任意参数列表等的高级技术，这些都由程序员自己决定的。如果能明智地遵循上面的建议，就可能且非常愉悦地写出这样的 Python 函数：</p>
+<ul>
+<li>易读（名字和参数不需要解释）</li>
+<li>易改（添加新的关键字参数不会破坏代码的其他部分）</li>
+</ul>
+<h3 id="避免魔法方法"><a href="#避免魔法方法" class="headerlink" title="避免魔法方法"></a>避免魔法方法</h3><p>Python 对黑客来说是一个强有力的工具，它拥有非常丰富的 <code>hooks</code> 和 <code>tools</code>，允许使用者施展几乎任何形式的技巧。比如，它可以做到：</p>
+<ul>
+<li>改变对象的创建和初始化的方式</li>
+<li>改变 Python 解释器引入模块的方式</li>
+<li>在 Python 中嵌入 C 程序代码</li>
+</ul>
+<p>然而，这些操作都有着许多缺陷，更好的方式是使用最直接的方式达到目的。这些操作最主要的缺陷在于当使用这些方式时，程序可读性将发生很大改变。许多代码分析工具，例如: <code>pylint</code> 或者 <code>pyflakes</code> 是无法解析这些 <code>&quot;magic&quot; code</code> 的。</p>
+<p>Python 开发者应该知道这些近乎无限的可能性，因为它让我们拥有了 <code>没有不可能完成的任务</code> 的自信。但是知道如何，尤其是何时不能使用它们是非常重要的。</p>
+<p>一个 <code>Pythonista</code> 就像一位功夫大师，他知道如何用一个手指杀死对方，但他从不会那么去做。</p>
+<h3 id="我们都是负责任的用户"><a href="#我们都是负责任的用户" class="headerlink" title="我们都是负责任的用户"></a>我们都是负责任的用户</h3><p>通过上面知道 Python 有许多的技巧，但其中一些是有潜在危险的。一个好的范例是：任何用户都能够重写对象的属性和方法（Python中没有 “private” 关键字）。这种哲学不同于其他高级语言，如 <code>Java</code>。因为 <code>Java</code> 中有许多防止滥用的机制。而这种哲学其实是在表达： <code>We are all responsible users</code>。</p>
+<p>这并不意味着，比如说，Python 中没有属性是私有的，也不意味着没有合适的封装方法。与其依赖在开发者和代码之间树立起的一道道隔墙，Python 社区更愿意依靠一些约定，来表明这些元素不应该被直接访问，而应该是私有的。</p>
+<p>私有属性实现细节的主要约定是对所有的 <code>内部变量</code> 前添加一个下划线。如果用户破坏约定去访问前缀带有下划线的变量，当被修改后的代码产生问题时，都是客户端代码的责任。</p>
+<p>使用这些约定是被广泛鼓励的：任何不想被客户端代码使用的属性或者方法都应该加上一个前缀下划线。这样可以更好的将代码进行职责划分，也方便对已有的代码进行修改；私有属性公有化总是有可能的，而公有属性私有化可能会是很难的操作。</p>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>当一个函数变得复杂时，在函数体中使用有多个返回值的语句并不少见。然而，为了保证明确的意图和可读性，应在函数体中避免使用返回多个值的语句。</p>
+<p>在函数中主要有两种返回情况：当函数正常运行时，返回结果；当一个错误的情况产生，返回输入错误的参数，或者其他导致函数不能正常运行的原因。</p>
+<p>如果在第二种情况不想抛出异常，应该返回一个值（比如 <code>None</code> 或者 <code>False</code>），指明函数没有正常执行。在这种情况下，最好尽早返回检测到的错误信息。这将有利于后续改善函数的结构。</p>
+<p>在正常情况下，当一个函数中有多个返回出口点时，会变得很难去调试和返回结果。所以最好保持单个出口点，这会有助于提取某些代码路径，并且，多个出口点往往意味着代码需要重构了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">complex_function</span><span class="params">(a, b, c)</span>:</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> a:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span>  <span class="comment"># Raising an exception might be better</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> b:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span>  <span class="comment"># Raising an exception might be better</span></div><div class="line">    <span class="comment"># Some complex code trying to compute x from a, b and c</span></div><div class="line">    <span class="comment"># Resist temptation to return x if succeeded</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> x:</div><div class="line">        <span class="comment"># Some Plan-B computation of x</span></div><div class="line">    <span class="keyword">return</span> x  <span class="comment"># One single exit point for the returned value x will help</span></div><div class="line">              <span class="comment"># when maintaining the code.</span></div></pre></td></tr></table></figure>
+<h2 id="惯用方法"><a href="#惯用方法" class="headerlink" title="惯用方法"></a>惯用方法</h2><p>编程惯用方法是一种代码编写的方式，Python 的惯用方法通常被称为 <code>Pythonic</code>。</p>
+<p>尽管通常有一种（而且最好只有一种）明显的方式去将代码写得 <code>Pythonic</code>；但对 Python 初学者来说，写出惯用法式的 Python 代码的方式是不太明显的。所以，好的惯用法必须有意识地获取。</p>
+<p>下面是一些 Python 惯用法：</p>
+<h3 id="解包"><a href="#解包" class="headerlink" title="解包"></a>解包</h3><p>如果你知道一个列表或者元组的长度，你可以将其解包并为它的元素取名。比如，<code>enumerate()</code> 会对列表中的每个项提供包含索引和列表数据两个元素的元组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> index, item <span class="keyword">in</span> enumerate(some_list):</div><div class="line">    <span class="comment"># 使用index和item做一些工作</span></div></pre></td></tr></table></figure>
+<p>也可以通过这种方式交换两个变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a, b = b, a</div></pre></td></tr></table></figure>
+<p>嵌套解包任务：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a, (b, c) = <span class="number">1</span>, (<span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>在 Python3 中，扩展解包的新方法在 <a href="https://www.python.org/dev/peps/pep-3132" target="_blank" rel="external">PEP 3132</a> 有介绍:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a, *rest = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="comment"># a = 1, rest = [2, 3]</span></div><div class="line">a, *middle, c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line"><span class="comment"># a = 1, middle = [2, 3], c = 4</span></div></pre></td></tr></table></figure>
+<h3 id="创建一个可忽略的变量"><a href="#创建一个可忽略的变量" class="headerlink" title="创建一个可忽略的变量"></a>创建一个可忽略的变量</h3><p>如果需要赋值但不需要变量（比如，使用解包方法），可以使用 <code>__</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">filename = <span class="string">'foobar.txt'</span></div><div class="line">basename, __, ext = filename.rpartition(<span class="string">'.'</span>)</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">许多 Python 风格指南建议使用单下划线而不是双下划线。</div><div class="line">然而，单下划线普遍在 gettext() 函数中用作别名，也常被用在交互式命令行中保存最后一次操作的值。</div><div class="line">所以，使用双下划线更清晰方便，并能够消除一些使用情况的干扰。</div></pre></td></tr></table></figure>
+<h3 id="创建一个长度为-N-且所有元素相同的列表"><a href="#创建一个长度为-N-且所有元素相同的列表" class="headerlink" title="创建一个长度为 N 且所有元素相同的列表"></a>创建一个长度为 N 且所有元素相同的列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">four_nones = [<span class="keyword">None</span>] * <span class="number">4</span></div></pre></td></tr></table></figure>
+<h3 id="创建一个长度为-N-的列表"><a href="#创建一个长度为-N-的列表" class="headerlink" title="创建一个长度为 N 的列表"></a>创建一个长度为 N 的列表</h3><p>因为列表是可变的，<code>*</code> 操作对于同样的列表会创建创建 N 个原列表的引用，这可能不是你想要的结果。正确的写法应该是使用列表生成式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">four_lists = [[] <span class="keyword">for</span> __ <span class="keyword">in</span> xrange(<span class="number">4</span>)]</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在 Python3 中应该使用 range() 而不是 xrange()。</div></pre></td></tr></table></figure>
+<h3 id="根据列表来创建字符串"><a href="#根据列表来创建字符串" class="headerlink" title="根据列表来创建字符串"></a>根据列表来创建字符串</h3><p>根据列表来创建字符串的一个常见用法是在空的字符串上使用 <code>str.join(list)</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">letters = [<span class="string">'s'</span>, <span class="string">'p'</span>, <span class="string">'a'</span>, <span class="string">'m'</span>]</div><div class="line">word = <span class="string">''</span>.join(letters)</div></pre></td></tr></table></figure>
+<p>这会将 <code>word</code> 变量赋值为 <code>spam</code>。这个惯用法可以用在列表和元组中。</p>
+<h3 id="在序列中查找一个元素"><a href="#在序列中查找一个元素" class="headerlink" title="在序列中查找一个元素"></a>在序列中查找一个元素</h3><p>有时我们需要在序列中查找元素。让我们来看看这两个选择：列表和集合。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">s = set([<span class="string">'s'</span>, <span class="string">'p'</span>, <span class="string">'a'</span>, <span class="string">'m'</span>])</div><div class="line">l = [<span class="string">'s'</span>, <span class="string">'p'</span>, <span class="string">'a'</span>, <span class="string">'m'</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lookup_set</span><span class="params">(s)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'s'</span> <span class="keyword">in</span> s</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lookup_list</span><span class="params">(l)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'s'</span> <span class="keyword">in</span> l</div></pre></td></tr></table></figure>
+<p>即使这两个函数看起来完全一样，但因为 <code>lookup_set(s)</code> 是利用了 Python 中的集合类型是 <code>可哈希</code> 的特性，两者的查询性能是完全不同的。为了判断一个项是否在列表中，Python 将会查看每个元素直到它找到匹配的项。这是非常耗时的，尤其是对长列表来说。另一方面，在集合中，项的哈希值将会告诉 Python 应在集合的哪里去查找匹配的元素。结果是，即使集合很大，但因为哈希表的原理，查询的速度也会很快。在字典中，查询也是同样的原理。</p>
+<p>因为这些性能上的差异，在下列场合中使用集合或者字典而不是列表，通常会是个好主意：</p>
+<ul>
+<li>序列中包含大量的元素</li>
+<li>需要在序列中重复地查找元素</li>
+<li>序列中没有重复的项</li>
+</ul>
+<p>对于小的序列，或者你不会频繁查找的序列，建立哈希所消耗的额外时间和内存开销经常会大过改进搜索速度所节省的时间和内存开销。</p>
+<h2 id="Python之禅"><a href="#Python之禅" class="headerlink" title="Python之禅"></a>Python之禅</h2><p>也被称为 <a href="">PEP 20</a>，它是 Python 设计的指导准则。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> this</div><div class="line">The Zen of Python, by Tim Peters</div><div class="line"></div><div class="line">Beautiful <span class="keyword">is</span> better than ugly.</div><div class="line">Explicit <span class="keyword">is</span> better than implicit.</div><div class="line">Simple <span class="keyword">is</span> better than complex.</div><div class="line">Complex <span class="keyword">is</span> better than complicated.</div><div class="line">Flat <span class="keyword">is</span> better than nested.</div><div class="line">Sparse <span class="keyword">is</span> better than dense.</div><div class="line">Readability counts.</div><div class="line">Special cases aren<span class="string">'t special enough to break the rules.</span></div><div class="line"><span class="string">Although practicality beats purity.</span></div><div class="line"><span class="string">Errors should never pass silently.</span></div><div class="line"><span class="string">Unless explicitly silenced.</span></div><div class="line"><span class="string">In the face of ambiguity, refuse the temptation to guess.</span></div><div class="line"><span class="string">There should be one-- and preferably only one --obvious way to do it.</span></div><div class="line"><span class="string">Although that way may not be obvious at first unless you'</span>re Dutch.</div><div class="line">Now <span class="keyword">is</span> better than never.</div><div class="line">Although never <span class="keyword">is</span> often better than *right* now.</div><div class="line">If the implementation <span class="keyword">is</span> hard to explain, it<span class="string">'s a bad idea.</span></div><div class="line"><span class="string">If the implementation is easy to explain, it may be a good idea.</span></div><div class="line"><span class="string">Namespaces are one honking great idea -- let'</span>s do more of those!</div><div class="line"></div><div class="line">Python之禅 by Tim Peters</div><div class="line"></div><div class="line">优美胜于丑陋（Python以编写优美的代码为目标）</div><div class="line">明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）</div><div class="line">简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）</div><div class="line">复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）</div><div class="line">扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）</div><div class="line">间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）</div><div class="line">可读性很重要（优美的代码是可读的）</div><div class="line">即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）</div><div class="line">不要包容所有错误，除非您确定需要这样做（精准地捕获异常，不写 <span class="keyword">except</span>:<span class="keyword">pass</span> 风格的代码）</div><div class="line">当存在多种可能，不要尝试去猜测</div><div class="line">而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）</div><div class="line">虽然这并不容易，因为您不是 Python 之父（这里的 Dutch 是指 Guido ）</div><div class="line">做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）</div><div class="line">如果您无法向人描述您的方案，那肯定不是一个好方案；反之亦然（方案测评标准）</div><div class="line">命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）</div></pre></td></tr></table></figure>
+<p>如果想要了解一些具有 Python 风格的例子，可以访问 <a href="http://artifex.org/~hblanks/talks/2011/pep20_by_example.pdf" target="_blank" rel="external">these slides from a Python user group</a>。</p>
+<h2 id="PEP8"><a href="#PEP8" class="headerlink" title="PEP8"></a>PEP8</h2><p><code>PEP 8</code> 是 Python 事实上的代码风格指南，我们可以在 <a href="http://pep8.org/" target="_blank" rel="external">pep8.org</a> 上获得高质量的 <code>PEP 8</code> 版本详细介绍。</p>
+<p>强烈推荐阅读这部分。整个 Python 社区都尽力遵循本文档中规定的准则。一些项目可能受其影响，而其他项目可以参考修改建议。</p>
+<p>也就是说，让你的 Python 代码遵循 <code>PEP 8</code> 通常是个好主意，这也有助于在与其他开发人员一起工作时使代码更加具有可持续性和维护性。命令行程序 <a href="https://github.com/PyCQA/pycodestyle" target="_blank" rel="external">pycodestyle</a>（以前叫做 <code>pep8</code>），可以检查代码一致性。可在终端上运行以下命令来安装它：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install pycodestyle</span></div></pre></td></tr></table></figure>
+<p>然后在文件或者很多文件中运行，如果检测到问题，会得到违反 <code>PEP8</code> 准则的报告</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ pycodestyle optparse.py</div><div class="line">optparse.py:<span class="number">69</span>:<span class="number">11</span>: E401 multiple imports on one line</div><div class="line">optparse.py:<span class="number">77</span>:<span class="number">1</span>: E302 expected <span class="number">2</span> blank lines, found <span class="number">1</span></div><div class="line">optparse.py:<span class="number">88</span>:<span class="number">5</span>: E301 expected <span class="number">1</span> blank line, found <span class="number">0</span></div><div class="line">optparse.py:<span class="number">222</span>:<span class="number">34</span>: W602 deprecated form of raising exception</div><div class="line">optparse.py:<span class="number">347</span>:<span class="number">31</span>: E211 whitespace before <span class="string">'('</span></div><div class="line">optparse.py:<span class="number">357</span>:<span class="number">17</span>: E201 whitespace after <span class="string">'&#123;'</span></div><div class="line">optparse.py:<span class="number">472</span>:<span class="number">29</span>: E221 multiple spaces before operator</div><div class="line">optparse.py:<span class="number">544</span>:<span class="number">21</span>: W601 .has_key() <span class="keyword">is</span> deprecated, use <span class="string">'in'</span></div></pre></td></tr></table></figure>
+<p>程序 <code>autopep8</code> 能自动将代码格式化成 <code>PEP 8</code> 风格。可用以下指令安装此程序：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install autopep8</span></div></pre></td></tr></table></figure>
+<p>使用以下命令来格式化一个文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> autopep8 --<span class="keyword">in</span>-place optparse.py</span></div></pre></td></tr></table></figure>
+<p>不包含 <code>--in-place</code> 标志将会使得程序直接将更改的代码输出到控制台，以供审查。<code>--aggressive</code> 标志则会执行更多实质性的变化，而且可以多次使用以达到更佳的效果。</p>
+<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p>遵循以下的一些约定可以以让您的代码更加易读。</p>
+<h3 id="检查变量是否等于常量"><a href="#检查变量是否等于常量" class="headerlink" title="检查变量是否等于常量"></a>检查变量是否等于常量</h3><p>你不需要明确的与 <code>None</code>、<code>True</code> 或者 <code>0</code>比较，只需要直接使用 <code>if</code> 语句。也可以<a href="https://docs.python.org/3/library/stdtypes.html#truth-value-testing" target="_blank" rel="external">查阅文档</a>，来查看什么会被判定为 <code>False</code>。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> attr == <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'True!'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> attr == <span class="keyword">None</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'attr is None!'</span></div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Just check the value</span></div><div class="line"><span class="keyword">if</span> attr:</div><div class="line">    <span class="keyword">print</span> <span class="string">'attr is truthy!'</span></div><div class="line"></div><div class="line"><span class="comment"># or check for the opposite</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> attr:</div><div class="line">    <span class="keyword">print</span> <span class="string">'attr is falsey!'</span></div><div class="line"></div><div class="line"><span class="comment"># or, since None is considered false, explicitly check for it</span></div><div class="line"><span class="keyword">if</span> attr <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'attr is None!'</span></div></pre></td></tr></table></figure>
+<h3 id="访问字典元素"><a href="#访问字典元素" class="headerlink" title="访问字典元素"></a>访问字典元素</h3><p>不要使用 <code>dict.has_key()</code> 方法，使用 <code>x in d</code> 语法或者传入一个默认参数到 <code>dict.get()</code>。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">d = &#123;<span class="string">'hello'</span>: <span class="string">'world'</span>&#125;</div><div class="line"><span class="keyword">if</span> d.has_key(<span class="string">'hello'</span>):</div><div class="line">    <span class="keyword">print</span> d[<span class="string">'hello'</span>]    <span class="comment"># prints 'world'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'default_value'</span></div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">d = &#123;<span class="string">'hello'</span>: <span class="string">'world'</span>&#125;</div><div class="line"></div><div class="line"><span class="keyword">print</span> d.get(<span class="string">'hello'</span>, <span class="string">'default_value'</span>) <span class="comment"># prints 'world'</span></div><div class="line"><span class="keyword">print</span> d.get(<span class="string">'thingy'</span>, <span class="string">'default_value'</span>) <span class="comment"># prints 'default_value'</span></div><div class="line"></div><div class="line"><span class="comment"># Or:</span></div><div class="line"><span class="keyword">if</span> <span class="string">'hello'</span> <span class="keyword">in</span> d:</div><div class="line">    <span class="keyword">print</span> d[<span class="string">'hello'</span>]</div></pre></td></tr></table></figure>
+<h3 id="维护列表的捷径"><a href="#维护列表的捷径" class="headerlink" title="维护列表的捷径"></a>维护列表的捷径</h3><p><a href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions" target="_blank" rel="external">列表生成式</a>提供了强大简洁的列表工作方式。而且，<code>map()</code> 和 <code>filter()</code> 函数是用一种不同且更简洁的语法处理列表。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Filter elements greater than 4</span></div><div class="line">a = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line">b = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</div><div class="line">    <span class="keyword">if</span> i &gt; <span class="number">4</span>:</div><div class="line">        b.append(i)</div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line">b = [i <span class="keyword">for</span> i <span class="keyword">in</span> a <span class="keyword">if</span> i &gt; <span class="number">4</span>]</div><div class="line"><span class="comment"># Or:</span></div><div class="line">b = filter(<span class="keyword">lambda</span> x: x &gt; <span class="number">4</span>, a)</div></pre></td></tr></table></figure>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Add three to all list members.</span></div><div class="line">a = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</div><div class="line">    a[i] += <span class="number">3</span></div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line">a = [i + <span class="number">3</span> <span class="keyword">for</span> i <span class="keyword">in</span> a]</div><div class="line"><span class="comment"># Or:</span></div><div class="line">a = map(<span class="keyword">lambda</span> i: i + <span class="number">3</span>, a)</div><div class="line">Use enumerate() keep a count of your place <span class="keyword">in</span> the list.</div><div class="line"></div><div class="line">a = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line"><span class="keyword">for</span> i, item <span class="keyword">in</span> enumerate(a):</div><div class="line">    <span class="keyword">print</span> i, item</div><div class="line"><span class="comment"># prints</span></div><div class="line"><span class="comment"># 0 3</span></div><div class="line"><span class="comment"># 1 4</span></div><div class="line"><span class="comment"># 2 5</span></div></pre></td></tr></table></figure>
+<p>使用 <code>enumerate()</code> 函数比手动维护计数有更好的可读性。而且，它对 <code>迭代器</code> 进行了更好的优化。</p>
+<h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><p>推荐使用 <code>with open</code> 语法来读取文件，它会自动关闭读取的文件。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">'file.txt'</span>)</div><div class="line">a = f.read()</div><div class="line"><span class="keyword">print</span> a</div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open(<span class="string">'file.txt'</span>) <span class="keyword">as</span> f:</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line">        <span class="keyword">print</span> line</div></pre></td></tr></table></figure>
+<p><code>with</code> 语句更好是因为它总是会去确定你的文件是否关闭，即使在 <code>with</code> 区块中引发了一个异常。</p>
+<h3 id="行的延续"><a href="#行的延续" class="headerlink" title="行的延续"></a>行的延续</h3><p>当一个代码逻辑行长度超过可接受的限度时，需要划分为多行，如果一行最后一个字符是反斜杠 <code>\</code>， Python 解释器会连接下一行。这在一些情况下很有帮助。但是它非常脆弱，应该避免使用：比如在行末反斜杠后加一个空格，可能会破坏代码结构并产生意外的结果。</p>
+<p>一个更好的解决方案是在元素周围使用括号。左边以一个未闭合的括号开头，Python 解释器会把行的结尾和下一行连接起来直到遇到闭合的括号。同样的行为适用中括号和大括号。</p>
+<p><strong>Bad</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">my_very_big_string = <span class="string">"""For a long time I used to go to bed early. Sometimes, \</span></div><div class="line"><span class="string">    when I had put out my candle, my eyes would close so quickly that I had not even \</span></div><div class="line"><span class="string">    time to say “I’m going to sleep.”"""</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> some.deep.module.inside.a.module <span class="keyword">import</span> a_nice_function, another_nice_function, \</div><div class="line">    yet_another_nice_function</div></pre></td></tr></table></figure>
+<p><strong>Good</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">my_very_big_string = (</div><div class="line">    <span class="string">"For a long time I used to go to bed early. Sometimes, "</span></div><div class="line">    <span class="string">"when I had put out my candle, my eyes would close so quickly "</span></div><div class="line">    <span class="string">"that I had not even time to say “I’m going to sleep.”"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">from</span> some.deep.module.inside.a.module <span class="keyword">import</span> (</div><div class="line">    a_nice_function, another_nice_function, yet_another_nice_function)</div></pre></td></tr></table></figure>
+<p>尽管如此，更多时候对于很长的逻辑行并没有进行划分，毕竟试图同时做更多的事情，容易影响可读性。</p>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li><a href="http://docs.python-guide.org/en/latest/writing/style/#code-style" target="_blank" rel="external">Code Style</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/alipay.jpg" alt="Sliver 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Sliver
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://home.junyouxiaowu.top/2018/03/03/Python代码风格指南/" title="Python代码风格指南（自译）">http://home.junyouxiaowu.top/2018/03/03/Python代码风格指南/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-envira" aria-hidden="true"></i> Python</a>
+          
+            <a href="/tags/Notes/" rel="tag"><i class="fa fa-envira" aria-hidden="true"></i> Notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/02/MongoDB学习笔记/" rel="next" title="MongoDB学习笔记">
+                <i class="fa fa-chevron-left"></i> MongoDB学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjcxNC85Mjc1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/head.jpg"
+                alt="Sliver" />
+            
+              <p class="site-author-name" itemprop="name">Sliver</p>
+              <p class="site-description motion-element" itemprop="description">春风十里，不如你。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/SliverYou" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/wang-chuan-50-11/activities" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-pencil-square-o"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.0x1024.top/" title="Holen" target="_blank">Holen</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            <div id="musicplayer">
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=265 src="//music.163.com/outchain/player?type=0&id=2119402197&auto=0&height=430"></iframe>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般概念"><span class="nav-number">1.</span> <span class="nav-text">一般概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#明确的代码"><span class="nav-number">1.1.</span> <span class="nav-text">明确的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一行一句"><span class="nav-number">1.2.</span> <span class="nav-text">一行一句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数参数"><span class="nav-number">1.3.</span> <span class="nav-text">函数参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-位置参数"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.位置参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-关键字参数"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 关键字参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-任意参数列表"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 任意参数列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-任意关键字参数字典"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 任意关键字参数字典</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免魔法方法"><span class="nav-number">1.4.</span> <span class="nav-text">避免魔法方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们都是负责任的用户"><span class="nav-number">1.5.</span> <span class="nav-text">我们都是负责任的用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回值"><span class="nav-number">1.6.</span> <span class="nav-text">返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#惯用方法"><span class="nav-number">2.</span> <span class="nav-text">惯用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解包"><span class="nav-number">2.1.</span> <span class="nav-text">解包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个可忽略的变量"><span class="nav-number">2.2.</span> <span class="nav-text">创建一个可忽略的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个长度为-N-且所有元素相同的列表"><span class="nav-number">2.3.</span> <span class="nav-text">创建一个长度为 N 且所有元素相同的列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个长度为-N-的列表"><span class="nav-number">2.4.</span> <span class="nav-text">创建一个长度为 N 的列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据列表来创建字符串"><span class="nav-number">2.5.</span> <span class="nav-text">根据列表来创建字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在序列中查找一个元素"><span class="nav-number">2.6.</span> <span class="nav-text">在序列中查找一个元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python之禅"><span class="nav-number">3.</span> <span class="nav-text">Python之禅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PEP8"><span class="nav-number">4.</span> <span class="nav-text">PEP8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#约定"><span class="nav-number">5.</span> <span class="nav-text">约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查变量是否等于常量"><span class="nav-number">5.1.</span> <span class="nav-text">检查变量是否等于常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问字典元素"><span class="nav-number">5.2.</span> <span class="nav-text">访问字典元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维护列表的捷径"><span class="nav-number">5.3.</span> <span class="nav-text">维护列表的捷径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取文件"><span class="nav-number">5.4.</span> <span class="nav-text">读取文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行的延续"><span class="nav-number">5.5.</span> <span class="nav-text">行的延续</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#来源"><span class="nav-number">6.</span> <span class="nav-text">来源</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sliver</span>
+
+  
+</div>
+
+
+  <div class="powered-by">import <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">class&nbsp<a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">Muse</a> v5.1.3</div>
+
+
+
+
+<div class="footer-custom">
+  <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-paw"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-camera"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+  
+    <a href="https://github.com/SliverYou" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+
+</body>
+</html>
