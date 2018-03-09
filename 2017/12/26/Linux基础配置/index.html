@@ -101,15 +101,15 @@
 <meta name="description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
 <meta name="keywords" content="Tips,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux服务器基础配置">
+<meta property="og:title" content="Linux服务器基础配置(New)">
 <meta property="og:url" content="http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/index.html">
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E9%93%BE%E6%8E%A5.png">
-<meta property="og:updated_time" content="2018-02-28T03:14:04.373Z">
+<meta property="og:updated_time" content="2018-03-09T15:57:09.496Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux服务器基础配置">
+<meta name="twitter:title" content="Linux服务器基础配置(New)">
 <meta name="twitter:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
 <meta name="twitter:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E9%93%BE%E6%8E%A5.png">
 
@@ -147,7 +147,7 @@
 
 
 
-  <title>Linux服务器基础配置 | 青柚</title>
+  <title>Linux服务器基础配置(New) | 青柚</title>
   
 
 
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux服务器基础配置</h1>
+          <h1 class="post-title" itemprop="name headline">Linux服务器基础配置(New)</h1>
         
 
         <div class="post-meta">
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,782
+                  3,543
                 </span>
               
 
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  15
                 </span>
               
             </div>
@@ -602,10 +602,76 @@
 <p>也可以在 <code>~/.ssh/</code> 目录下创建 <code>config</code> 文件，添加如下代码：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host alias_name</div><div class="line">   HostName ip_address</div><div class="line">   Port <span class="number">22</span>(默认)</div><div class="line">   User user_name</div></pre></td></tr></table></figure>
 <p>我是这样添加的：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host centos</div><div class="line">    HostName <span class="number">192.168</span>.<span class="number">3.12</span></div><div class="line">    Port <span class="number">22</span></div><div class="line">    User sliver</div></pre></td></tr></table></figure>
-<p>使用如下命令进行远程连接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh centos</div></pre></td></tr></table></figure>
-<p>舒服多了。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host server</div><div class="line">    HostName <span class="number">192.168</span>.<span class="number">3.12</span></div><div class="line">    Port <span class="number">22</span></div><div class="line">    User sliver</div></pre></td></tr></table></figure>
+<p>可使用如下命令进行远程连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh server</div></pre></td></tr></table></figure>
+<p>也可以利用 <code>scp</code> 命令传输文件到远程服务器了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp /Users/sliver/test.py sliver@192.168.3.12:/home/sliver/<span class="built_in">test</span></div></pre></td></tr></table></figure>
+<p>传输文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -r /Users/sliver/<span class="built_in">test</span> sliver@192.168.3.12:/home/sliver/helloworld</div></pre></td></tr></table></figure>
+<p>很舒服。</p>
+<h2 id="安装-Python-3-6"><a href="#安装-Python-3-6" class="headerlink" title="安装 Python 3.6"></a>安装 Python 3.6</h2><p>CentOS 默认是有 Python2 的环境的，不过我需要的是 Python3，所有需要下载安装一手。</p>
+<p>首先无脑安装所有可能需要的依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</div></pre></td></tr></table></figure>
+<p>因为以后肯定会经常需要下载包，可以新建一个 <code>download</code> 文件夹来存储包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mkdir /usr/download</div></pre></td></tr></table></figure>
+<p>进入 <code>download</code> 文件夹，从官网下载 Python 3.6:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz</div></pre></td></tr></table></figure>
+<p>下载完成后，开始解压：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf Python-3.6.4.tgz</div></pre></td></tr></table></figure>
+<p>创建之后用来安装 Python 的路径，一般放在 <code>/usr/local</code> 目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mkdir /usr/<span class="built_in">local</span>/python3</div></pre></td></tr></table></figure>
+<p>如果解压完成了，<code>download</code> 目录下会出现解压好的 <code>python3.6.4</code> 文件夹，我们先进入该文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/download/python3.6.4</div></pre></td></tr></table></figure>
+<p>在 <code>/usr/download/python3.6.4</code> 文件夹下，开始将源码编译进我们已经建好的指定安装文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/usr/<span class="built_in">local</span>/python3</div></pre></td></tr></table></figure>
+<p>编译完成后，开始安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+<p>快要完成了，准备创建新版本的软连接：</p>
+<ul>
+<li>先修改旧版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv /usr/bin/python /usr/bin/python_bak</div></pre></td></tr></table></figure>
+<ul>
+<li>创建新的 <code>python</code> 软连接</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /usr/<span class="built_in">local</span>/python3/bin/python3 /usr/bin/python</div></pre></td></tr></table></figure>
+<ul>
+<li>检验一下是否安装成功</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -V</div></pre></td></tr></table></figure>
+<p>如果返回结果如下，说明成功安装了 Python 3.6：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Python 3.6.4</div></pre></td></tr></table></figure>
+<p>当然，现在安装的 Python 可能是有缺陷的，我们需要将 <code>/usr/local/python3/bin</code> 添加到环境变量：</p>
+<p>用 <code>vim</code> 编辑 <code>.zshrc</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.zshrc</div></pre></td></tr></table></figure>
+<p>加入这两句即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/usr/bin:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/python3/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
+<p>之后，可以尽情使用 <code>pip3</code> 和 <code>Python 3.6.4</code> 啦：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip3 install requests</div></pre></td></tr></table></figure>
+<p>觉得慢可以使用 <code>pip</code> 的国内源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip3 install requests -i https://pypi.tuna.tsinghua.edu.cn/simple</div></pre></td></tr></table></figure>
+<p><strong>PS：</strong></p>
+<p>也许在使用 <code>pip3</code> 过程会出现权限不够，但 <code>sudo</code> 加权又失败的现象，这时候需要打开 <code>sudo</code> 的配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo visudo</div></pre></td></tr></table></figure>
+<p>在 <code>Defaults    secure_path</code> 一栏加入 <code>pip3</code> 所在 <code>bin</code> 目录，比如改成：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/python3/bin</div></pre></td></tr></table></figure>
+<p>大功告成。</p>
+<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>老规矩，还是想进入到 <code>download</code> 目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/download/</div></pre></td></tr></table></figure>
+<p>下载官网最新的 <code>bin</code> 包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v9.3.0/node-v9.3.0-linux-x64.tar.xz</div></pre></td></tr></table></figure>
+<p>完成后，解压下好的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xz -d node-v9.3.0-linux-x64.tar.xz</div><div class="line">tar -xf node-v9.3.0-linux-x64.tar</div></pre></td></tr></table></figure>
+<p>因为下载的是 <code>bin</code> 宝，直接软链接即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ln -s /usr/download/node-v9.3.0-linux-x64/bin/node /usr/bin/node</div><div class="line">ln -s /usr/download/node-v9.3.0-linux-x64/bin/npm /usr/bin/npm</div></pre></td></tr></table></figure>
+<p>为了避免后续出现麻烦，可以安装几个依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y gcc gcc-c++ openssl-devel</div></pre></td></tr></table></figure>
+<p>加入到环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/usr/download/node-v9.3.0-linux-x64/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
+<p>判断安装是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure>
+<p>Node.js 安装完毕。</p>
 
       
     </div>
@@ -650,7 +716,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/" title="Linux服务器基础配置">http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/</a>
+    <a href="http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/" title="Linux服务器基础配置(New)">http://home.junyouxiaowu.top/2017/12/26/Linux基础配置/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -902,7 +968,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-简介"><span class="nav-number">1.</span> <span class="nav-text">Linux 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机软件安装并配置-CentOS"><span class="nav-number">2.</span> <span class="nav-text">虚拟机软件安装并配置 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS下载："><span class="nav-number">2.1.</span> <span class="nav-text">CentOS下载：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网络："><span class="nav-number">2.2.</span> <span class="nav-text">配置网络：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装网络工具包"><span class="nav-number">2.3.</span> <span class="nav-text">安装网络工具包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换默认源"><span class="nav-number">2.4.</span> <span class="nav-text">替换默认源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-oh-my-zsh"><span class="nav-number">3.</span> <span class="nav-text">使用 oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取配置-zsh"><span class="nav-number">3.1.</span> <span class="nav-text">获取配置 zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-oh-my-zsh"><span class="nav-number">3.2.</span> <span class="nav-text">获取 oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改主题"><span class="nav-number">3.3.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-配色"><span class="nav-number">3.4.</span> <span class="nav-text">vim 配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-利用-SSH-连接-CentOS"><span class="nav-number">4.</span> <span class="nav-text">Mac 利用 SSH 连接 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH工具"><span class="nav-number">4.1.</span> <span class="nav-text">SSH工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器安装-SSH-服务"><span class="nav-number">4.2.</span> <span class="nav-text">服务器安装 SSH 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装SSH服务"><span class="nav-number">4.3.</span> <span class="nav-text">本地安装SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ssh-copy-id-for-OSX-工具将公钥复制至-ssh-服务器"><span class="nav-number">4.4.</span> <span class="nav-text">使用 ssh-copy-id-for-OSX 工具将公钥复制至 ssh 服务器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-简介"><span class="nav-number">1.</span> <span class="nav-text">Linux 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机软件安装并配置-CentOS"><span class="nav-number">2.</span> <span class="nav-text">虚拟机软件安装并配置 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS下载："><span class="nav-number">2.1.</span> <span class="nav-text">CentOS下载：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网络："><span class="nav-number">2.2.</span> <span class="nav-text">配置网络：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装网络工具包"><span class="nav-number">2.3.</span> <span class="nav-text">安装网络工具包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换默认源"><span class="nav-number">2.4.</span> <span class="nav-text">替换默认源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-oh-my-zsh"><span class="nav-number">3.</span> <span class="nav-text">使用 oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取配置-zsh"><span class="nav-number">3.1.</span> <span class="nav-text">获取配置 zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-oh-my-zsh"><span class="nav-number">3.2.</span> <span class="nav-text">获取 oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改主题"><span class="nav-number">3.3.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-配色"><span class="nav-number">3.4.</span> <span class="nav-text">vim 配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-利用-SSH-连接-CentOS"><span class="nav-number">4.</span> <span class="nav-text">Mac 利用 SSH 连接 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH工具"><span class="nav-number">4.1.</span> <span class="nav-text">SSH工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器安装-SSH-服务"><span class="nav-number">4.2.</span> <span class="nav-text">服务器安装 SSH 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装SSH服务"><span class="nav-number">4.3.</span> <span class="nav-text">本地安装SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ssh-copy-id-for-OSX-工具将公钥复制至-ssh-服务器"><span class="nav-number">4.4.</span> <span class="nav-text">使用 ssh-copy-id-for-OSX 工具将公钥复制至 ssh 服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Python-3-6"><span class="nav-number">5.</span> <span class="nav-text">安装 Python 3.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Node-js"><span class="nav-number">6.</span> <span class="nav-text">安装 Node.js</span></a></li></ol></div>
             
 
           </div>
