@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E5%88%86%E5%8F%891.png">
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E5%88%86%E5%8F%892.png">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/d332c72agy1fpeq6uxb7yj20go0dwq3p.jpg">
-<meta property="og:updated_time" content="2018-03-16T11:12:12.193Z">
+<meta property="og:updated_time" content="2018-03-16T18:46:33.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="区块链入门简明教程（New）">
 <meta name="twitter:description" content="“人人都说，不说才怪。”">
@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,068
+                  5,094
                 </span>
               
 
@@ -451,7 +451,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  17
+                  18
                 </span>
               
             </div>
@@ -561,10 +561,10 @@
 <p>Nonce 其实是一个没有什么实际意义的很大的随机值。由于 Nonce 是哈希的一部分，Nonce 改变了，这个区块的哈希也会改变了。矿工的作用其实就是猜出 Nonce 的值，使得区块头的哈希可以小于目标值，从而能够写入区块链。Nonce 是非常难猜的，目前只能通过<strong>穷举法</strong>一个个试错。根据协议，Nonce 是一个32位的二进制值，即最大可以到 21.47 亿。第 100000 个区块的 Nonce 值是 <code>274148111</code>，可以理解成，矿工从0开始，一直计算了 2.74 亿次，才得到了一个有效的 Nonce 值，使得算出的哈希能够满足条件。</p>
 <p>运气好的话，也许一会就找到了 Nonce。运气不好的话，可能算完了 21.47 亿次，都没有发现 Nonce，即当前区块体不可能算出满足条件的哈希。这时，协议允许矿工改变区块体，开始新的计算。</p>
 <p>我们通过一个 Python 脚本来来模拟一下区块的哈希计算：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line"><span class="keyword">for</span> nonce <span class="keyword">in</span> range(<span class="number">4251</span>):</div><div class="line">    content = <span class="string">'Hello, world!'</span></div><div class="line">    hash = content + str(nonce)</div><div class="line">    print(hash, hashlib.sha256(hash.encode(<span class="string">'utf-8'</span>)).hexdigest())</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"></div><div class="line"><span class="keyword">for</span> nonce <span class="keyword">in</span> range(<span class="number">15961902</span>):</div><div class="line">    content = <span class="string">'Hello, world!'</span></div><div class="line">    hash = content + str(nonce)</div><div class="line">    print(hash, hashlib.sha256(hash.encode(<span class="string">'utf-8'</span>)).hexdigest())</div></pre></td></tr></table></figure>
 <p>输出结果为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Hello, world!<span class="number">0</span> <span class="number">1312</span>af178c253f84028d480a6adc1e25e81caa44c749ec81976192e2ec934c64</div><div class="line">Hello, world!<span class="number">1</span> e9afc424b79e4f6ab42d99c81156d3a17228d6e1eef4139be78e948a9332a7d8</div><div class="line">Hello, world!<span class="number">2</span> ae37343a357a8297591625e7134cbea22f5928be8ca2a32aa475cf05fd4266b7</div><div class="line">......</div><div class="line">Hello, world!<span class="number">4249</span> c004190b822f1669cac8dc37e761cb73652e7832fb814565702245cf26ebb9e6</div><div class="line">Hello, world!<span class="number">4250</span> <span class="number">0000</span>c3af42fc31103f1fdc0151fa747ff87349a4714df7cc52ea464e12dcd4e9</div></pre></td></tr></table></figure>
-<p>哈希值前面的0越多，代表这个哈希值也就越小，可以看到，经过4250次的运算后，才找到稍微小一点的哈希值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Hello, world!<span class="number">0</span> <span class="number">1312</span>af178c253f84028d480a6adc1e25e81caa44c749ec81976192e2ec934c64</div><div class="line">Hello, world!<span class="number">1</span> e9afc424b79e4f6ab42d99c81156d3a17228d6e1eef4139be78e948a9332a7d8</div><div class="line">Hello, world!<span class="number">2</span> ae37343a357a8297591625e7134cbea22f5928be8ca2a32aa475cf05fd4266b7</div><div class="line">......</div><div class="line">Hello, world!<span class="number">4249</span> c004190b822f1669cac8dc37e761cb73652e7832fb814565702245cf26ebb9e6</div><div class="line">Hello, world!<span class="number">4250</span> <span class="number">0000</span>c3af42fc31103f1fdc0151fa747ff87349a4714df7cc52ea464e12dcd4e9</div><div class="line">......</div><div class="line">Hello, world!<span class="number">15961901</span> <span class="number">00000061</span>eba1b9261c3d441584a892e9286b20d79b294fc6a450315f7773250d</div></pre></td></tr></table></figure>
+<p>哈希值前面的0越多，代表这个哈希值也就越小，可以看到，经过4250次的运算后，可以找到前面有4个0的哈希值，而进行15961901次运算后，才能找到前面有6个0的哈希值。</p>
 <h2 id="难度系数动态调节"><a href="#难度系数动态调节" class="headerlink" title="难度系数动态调节"></a>难度系数动态调节</h2><p>挖矿具有随机性，没法保证正好十分钟产出一个区块，有时一分钟就算出来了，有时几个小时可能也没结果。总体来看，随着硬件设备的提升，以及矿机的数量增长，计算速度一定会越来越快。</p>
 <p>为了将产出速率恒定在十分钟，中本聪还设计了难度系数的动态调节机制。他规定，难度系数每两周（2016个区块）调整一次。如果这两周里面，区块的平均生成速度是9分钟，就意味着比法定速度快了10%，因此接下来的难度系数就要调高10%；如果平均生成速度是11分钟，就意味着比法定速度慢了10%，因此接下来的难度系数就要调低10%。</p>
 <p>难度系数越调越高（目标值越来越小），也就导致了挖矿越来越难。</p>
@@ -799,7 +799,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -821,7 +821,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

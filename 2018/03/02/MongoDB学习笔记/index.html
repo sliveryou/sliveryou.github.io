@@ -101,14 +101,14 @@
 <meta name="description" content="“It’s mongo, not mango.”">
 <meta name="keywords" content="MongoDB,Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB学习笔记">
+<meta property="og:title" content="MongoDB学习笔记（New）">
 <meta property="og:url" content="http://home.junyouxiaowu.top/2018/03/02/MongoDB学习笔记/index.html">
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="“It’s mongo, not mango.”">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-03T15:24:25.372Z">
+<meta property="og:updated_time" content="2018-03-21T18:18:39.297Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB学习笔记">
+<meta name="twitter:title" content="MongoDB学习笔记（New）">
 <meta name="twitter:description" content="“It’s mongo, not mango.”">
 
 
@@ -145,7 +145,7 @@
 
 
 
-  <title>MongoDB学习笔记 | 青柚</title>
+  <title>MongoDB学习笔记（New） | 青柚</title>
   
 
 
@@ -351,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记（New）</h1>
         
 
         <div class="post-meta">
@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,480
+                  3,913
                 </span>
               
 
@@ -438,7 +438,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  18
+                  20
                 </span>
               
             </div>
@@ -578,6 +578,95 @@
 <li>连接 MongoDB</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mongo</span></div></pre></td></tr></table></figure>
+<h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><ul>
+<li>登录 admin</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> use admin</span></div><div class="line">switched to db admin</div></pre></td></tr></table></figure>
+<ul>
+<li>创建管理员账户</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.createUser(&#123; user: <span class="string">"root"</span>, <span class="built_in">pwd</span>: <span class="string">"xxxxxx"</span>, roles: [&#123; role: <span class="string">"userAdminAnyDatabase"</span>, db: <span class="string">"admin"</span> &#125;] &#125;)</span></div><div class="line">Successfully added user: &#123;</div><div class="line">    "user" : "root",</div><div class="line">    "roles" : [</div><div class="line">        &#123;</div><div class="line">            "role" : "userAdminAnyDatabase",</div><div class="line">            "db" : "admin"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>验证登录</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.auth(<span class="string">"root"</span>, <span class="string">"xxxxxx"</span>)</span></div><div class="line">1</div></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/etc</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> vim mongod.conf</span></div><div class="line">security:</div><div class="line">   authorization: enabled</div></pre></td></tr></table></figure>
+<ul>
+<li>启动带访问控制的 Mongodb</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> sudo mongod --auth --port 27017</span></div></pre></td></tr></table></figure>
+<ul>
+<li>登录管理员账户</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">use admin</div><div class="line"><span class="meta">&gt;</span><span class="bash"> db.auth(<span class="string">"root"</span>, <span class="string">"xxxxxx"</span>)</span></div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个数据库并添加所有者账户</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> use flask</span></div><div class="line">switched to db flask</div><div class="line"><span class="meta">&gt;</span><span class="bash"> db.createUser(&#123; user: <span class="string">"sliver"</span>, <span class="built_in">pwd</span>: <span class="string">"xxxxxx"</span>, roles: [&#123; role: <span class="string">"dbOwner"</span>, db: <span class="string">"flask"</span> &#125;] &#125;)</span></div><div class="line">Successfully added user: &#123;</div><div class="line">    "user" : "sliver",</div><div class="line">    "roles" : [</div><div class="line">        &#123;</div><div class="line">            "role" : "dbOwner",</div><div class="line">            "db" : "flask"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>添加具有读写权限的用户</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> use flask</span></div><div class="line">switched to db flask</div><div class="line"><span class="meta">&gt;</span><span class="bash"> db.createUser(&#123; user: <span class="string">"ariel"</span>, <span class="built_in">pwd</span>: <span class="string">"mm721027"</span>, roles: [&#123; role: <span class="string">"readWrite"</span>, db: <span class="string">"flask"</span> &#125;] &#125;)</span></div><div class="line">Successfully added user: &#123;</div><div class="line">    "user" : "ariel",</div><div class="line">    "roles" : [</div><div class="line">        &#123;</div><div class="line">            "role" : "readWrite",</div><div class="line">            "db" : "flask"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>登录所有者用户</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> db.auth(<span class="string">"sliveryou"</span>, <span class="string">"xxxxxx"</span>)</span></div><div class="line">1</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show tables</span></div><div class="line">users</div><div class="line">blog</div></pre></td></tr></table></figure>
+<ul>
+<li>权限字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">权限字符</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Read</td>
+<td style="text-align:center">允许用户读取指定数据库。</td>
+</tr>
+<tr>
+<td style="text-align:center">readWriter</td>
+<td style="text-align:center">允许用户读写指定数据库。</td>
+</tr>
+<tr>
+<td style="text-align:center">dbAdmin</td>
+<td style="text-align:center">允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问 system.profile。</td>
+</tr>
+<tr>
+<td style="text-align:center">userAdmin</td>
+<td style="text-align:center">允许用户向 system.users 集合写入，也可以在指定数据库里创建、删除和管理用户。</td>
+</tr>
+<tr>
+<td style="text-align:center">clusterAdmin</td>
+<td style="text-align:center">只在 admin 数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</td>
+</tr>
+<tr>
+<td style="text-align:center">readAnyDatabase</td>
+<td style="text-align:center">只在 admin 数据库中可用，赋予用户所有数据库的读权限。</td>
+</tr>
+<tr>
+<td style="text-align:center">readWriteAnyDatabase</td>
+<td style="text-align:center">只在 admin 数据库中可用，赋予用户所有数据库的读写权限。</td>
+</tr>
+<tr>
+<td style="text-align:center">userAdminAnyDatabase</td>
+<td style="text-align:center">只在 admin 数据库中可用，赋予用户所有数据库的 userAdmin 权限。</td>
+</tr>
+<tr>
+<td style="text-align:center">dbAdminAnyDatabase</td>
+<td style="text-align:center">只在 admin 数据库中可用，赋予用户所有数据库的 dbAdmin 权限。</td>
+</tr>
+<tr>
+<td style="text-align:center">root</td>
+<td style="text-align:center">只在 admin 数据库中可用。超级账号，超级权限。</td>
+</tr>
+</tbody>
+</table>
 <h4 id="创建和删除数据库"><a href="#创建和删除数据库" class="headerlink" title="创建和删除数据库"></a>创建和删除数据库</h4><ul>
 <li>创建数据库：use DATABASE_NAME</li>
 </ul>
@@ -866,7 +955,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://home.junyouxiaowu.top/2018/03/02/MongoDB学习笔记/" title="MongoDB学习笔记">http://home.junyouxiaowu.top/2018/03/02/MongoDB学习笔记/</a>
+    <a href="http://home.junyouxiaowu.top/2018/03/02/MongoDB学习笔记/" title="MongoDB学习笔记（New）">http://home.junyouxiaowu.top/2018/03/02/MongoDB学习笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -1020,7 +1109,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1042,7 +1131,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1118,7 +1207,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-MongoDB？"><span class="nav-number">1.</span> <span class="nav-text">什么是 MongoDB？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-基础概念"><span class="nav-number">2.</span> <span class="nav-text">MongoDB 基础概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-数据类型"><span class="nav-number">3.</span> <span class="nav-text">MongoDB 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关操作"><span class="nav-number">4.</span> <span class="nav-text">相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-MongoDB-服务"><span class="nav-number">4.1.</span> <span class="nav-text">启动 MongoDB 服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建和删除数据库"><span class="nav-number">4.2.</span> <span class="nav-text">创建和删除数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建集合并插入文档"><span class="nav-number">4.3.</span> <span class="nav-text">创建集合并插入文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文档"><span class="nav-number">4.4.</span> <span class="nav-text">删除文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新文档"><span class="nav-number">4.5.</span> <span class="nav-text">更新文档</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文档替换"><span class="nav-number">4.5.1.</span> <span class="nav-text">文档替换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-set-修改器增加键值"><span class="nav-number">4.5.2.</span> <span class="nav-text">使用 $set 修改器增加键值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-unset-修改器删除键值"><span class="nav-number">4.5.3.</span> <span class="nav-text">使用 $unset 修改器删除键值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-inc-修改器增加和减少数值"><span class="nav-number">4.5.4.</span> <span class="nav-text">使用 $inc 修改器增加和减少数值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-push-往数组添加单个元素"><span class="nav-number">4.5.5.</span> <span class="nav-text">使用 $push 往数组添加单个元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-push-和-each-往数组添加多个元素"><span class="nav-number">4.5.6.</span> <span class="nav-text">使用 $push 和 $each 往数组添加多个元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-addToSet-往数组添加不重复的元素"><span class="nav-number">4.5.7.</span> <span class="nav-text">使用 $addToSet 往数组添加不重复的元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-pull-删除数组内所有指定元素"><span class="nav-number">4.5.8.</span> <span class="nav-text">使用 $pull 删除数组内所有指定元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-pop-删除数组内指定位置的元素（1-代表最后一个元素，-1-代表前面第一个元素）"><span class="nav-number">4.5.9.</span> <span class="nav-text">使用 $pop 删除数组内指定位置的元素（1 代表最后一个元素，-1 代表前面第一个元素）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基于位置的数组修改器"><span class="nav-number">4.5.10.</span> <span class="nav-text">基于位置的数组修改器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#upsert-更新"><span class="nav-number">4.5.11.</span> <span class="nav-text">upsert 更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新多个文档"><span class="nav-number">4.5.12.</span> <span class="nav-text">更新多个文档</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找文档"><span class="nav-number">4.6.</span> <span class="nav-text">查找文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包含特定大小关系的查找"><span class="nav-number">4.7.</span> <span class="nav-text">包含特定大小关系的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#比较关系操作符"><span class="nav-number">4.7.1.</span> <span class="nav-text">比较关系操作符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找数组"><span class="nav-number">4.8.</span> <span class="nav-text">查找数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#游标"><span class="nav-number">4.9.</span> <span class="nav-text">游标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limit、skip-和-sort"><span class="nav-number">4.10.</span> <span class="nav-text">limit、skip 和 sort</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-MongoDB？"><span class="nav-number">1.</span> <span class="nav-text">什么是 MongoDB？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-基础概念"><span class="nav-number">2.</span> <span class="nav-text">MongoDB 基础概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-数据类型"><span class="nav-number">3.</span> <span class="nav-text">MongoDB 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关操作"><span class="nav-number">4.</span> <span class="nav-text">相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-MongoDB-服务"><span class="nav-number">4.1.</span> <span class="nav-text">启动 MongoDB 服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限管理"><span class="nav-number">4.2.</span> <span class="nav-text">权限管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建和删除数据库"><span class="nav-number">4.3.</span> <span class="nav-text">创建和删除数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建集合并插入文档"><span class="nav-number">4.4.</span> <span class="nav-text">创建集合并插入文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文档"><span class="nav-number">4.5.</span> <span class="nav-text">删除文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新文档"><span class="nav-number">4.6.</span> <span class="nav-text">更新文档</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文档替换"><span class="nav-number">4.6.1.</span> <span class="nav-text">文档替换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-set-修改器增加键值"><span class="nav-number">4.6.2.</span> <span class="nav-text">使用 $set 修改器增加键值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-unset-修改器删除键值"><span class="nav-number">4.6.3.</span> <span class="nav-text">使用 $unset 修改器删除键值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-inc-修改器增加和减少数值"><span class="nav-number">4.6.4.</span> <span class="nav-text">使用 $inc 修改器增加和减少数值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-push-往数组添加单个元素"><span class="nav-number">4.6.5.</span> <span class="nav-text">使用 $push 往数组添加单个元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-push-和-each-往数组添加多个元素"><span class="nav-number">4.6.6.</span> <span class="nav-text">使用 $push 和 $each 往数组添加多个元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-addToSet-往数组添加不重复的元素"><span class="nav-number">4.6.7.</span> <span class="nav-text">使用 $addToSet 往数组添加不重复的元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-pull-删除数组内所有指定元素"><span class="nav-number">4.6.8.</span> <span class="nav-text">使用 $pull 删除数组内所有指定元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-pop-删除数组内指定位置的元素（1-代表最后一个元素，-1-代表前面第一个元素）"><span class="nav-number">4.6.9.</span> <span class="nav-text">使用 $pop 删除数组内指定位置的元素（1 代表最后一个元素，-1 代表前面第一个元素）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基于位置的数组修改器"><span class="nav-number">4.6.10.</span> <span class="nav-text">基于位置的数组修改器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#upsert-更新"><span class="nav-number">4.6.11.</span> <span class="nav-text">upsert 更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新多个文档"><span class="nav-number">4.6.12.</span> <span class="nav-text">更新多个文档</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找文档"><span class="nav-number">4.7.</span> <span class="nav-text">查找文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包含特定大小关系的查找"><span class="nav-number">4.8.</span> <span class="nav-text">包含特定大小关系的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#比较关系操作符"><span class="nav-number">4.8.1.</span> <span class="nav-text">比较关系操作符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找数组"><span class="nav-number">4.9.</span> <span class="nav-text">查找数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#游标"><span class="nav-number">4.10.</span> <span class="nav-text">游标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limit、skip-和-sort"><span class="nav-number">4.11.</span> <span class="nav-text">limit、skip 和 sort</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
