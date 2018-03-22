@@ -101,7 +101,7 @@
 <meta name="description" content="“好好学习，天天向上，”">
 <meta name="keywords" content="Study,Notes,Network">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络学习笔记 One">
+<meta property="og:title" content="计算机网络学习笔记">
 <meta property="og:url" content="http://home.junyouxiaowu.top/2018/03/21/computer-networking-01/index.html">
 <meta property="og:site_name" content="青柚">
 <meta property="og:description" content="“好好学习，天天向上，”">
@@ -114,9 +114,12 @@
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote6.png">
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote7.png">
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote8.png">
-<meta property="og:updated_time" content="2018-03-21T18:36:41.023Z">
+<meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote9.jpg">
+<meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote10.jpg">
+<meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote11.png">
+<meta property="og:updated_time" content="2018-03-22T12:50:46.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机网络学习笔记 One">
+<meta name="twitter:title" content="计算机网络学习笔记">
 <meta name="twitter:description" content="“好好学习，天天向上，”">
 <meta name="twitter:image" content="http://myblog-1256123790.cossh.myqcloud.com/imgnote1.png">
 
@@ -154,7 +157,7 @@
 
 
 
-  <title>计算机网络学习笔记 One | 青柚</title>
+  <title>计算机网络学习笔记 | 青柚</title>
   
 
 
@@ -360,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算机网络学习笔记 One</h1>
+          <h1 class="post-title" itemprop="name headline">计算机网络学习笔记</h1>
         
 
         <div class="post-meta">
@@ -431,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,517
+                  6,344
                 </span>
               
 
@@ -447,7 +450,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  16
+                  22
                 </span>
               
             </div>
@@ -625,6 +628,52 @@
 </ul>
 <p><img src="http://myblog-1256123790.cossh.myqcloud.com/imgnote8.png" alt="note8"></p>
 <p>预留四条电路时，进行一次连接只能使用正常带宽的四分之一，这既是优点，也是弊端。</p>
+<h4 id="电路交换网络中的复用"><a href="#电路交换网络中的复用" class="headerlink" title="电路交换网络中的复用"></a>电路交换网络中的复用</h4><ul>
+<li>FDM</li>
+</ul>
+<p>频分复用（<code>FDM，Frequency Division Multiplexing</code>）就是将用于传输信道的总带宽划分成若干个子频带（或称子信道），每一个子信道传输一路信号。频分复用要求总频率宽度大于各个子信道频率之和，同时为了保证各子信道中所传输的信号互不干扰，应在各子信道之间设立隔离带，这样就保证了各路信号互不干扰（条件之一）。频分复用技术的特点是所有子信道传输的信号以并行的方式工作，每一路信号传输时可不考虑传输时延，因而频分复用技术取得了非常广泛的应用。频分复用技术除传统意义上的频分复用（FDM）外，还有一种是正交频分复用（OFDM）。</p>
+<ul>
+<li>TDM</li>
+</ul>
+<p>时分复用（<code>TDM，Time Division Multiplexing</code>）就是将提供给整个信道传输信息的时间划分成若干时间片（简称时隙），并将这些时隙分配给每一个信号源使用，每一路信号在自己的时隙内独占信道进行数据传输。时分复用技术的特点是时隙事先规划分配好且固定不变，所以有时也叫同步时分复用。其优点是时隙分配固定，便于调节控制，适于数字信息的传输；缺点是当某信号源没有数据传输时，它所对应的信道会出现空闲，而其他繁忙的信道无法占用这个空闲的信道，因此会降低线路的利用率。时分复用技术与频分复用技术一样，有着非常广泛的应用，电话就是其中最经典的例子，此外时分复用技术在广电也同样取得了广泛地应用，如 SDH，ATM，IP 和 HFC 网络中 CM 与 CMTS 的通信都是利用了时分复用的技术。</p>
+<blockquote>
+<p>对于 FDM，每条链路连续地得到部分带宽。对于 TDM，每条电路在短时间间隔（即时隙）中周期性的得到所有带宽。</p>
+</blockquote>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>分组交换的批评者经常争辩说，分组交换不适合实时服务（例如，电话和视频会议），因为它的端到端时延是可变的和不可预测的（主要是因为排队时延的变动和不可预测所致）。分组交换的支持者却争辩道：①它提供了比电路交换更好的带宽共享；②它比电路交换更简单，更有效，实现成本更低。概括而言，嫌餐馆预订麻烦的人宁可要分组交换而不愿意要电路交换。</p>
+<p>总而言之：</p>
+<ul>
+<li>电路交换不考虑需求，而预先分配了传输链路的使用，这使得已分配而并不需要的链路时间未被利用；分组交换按需分配链路使用。链路传输能力将在所有用户之间逐分组地被共享，这些用户有分组需要在链路上传输。</li>
+</ul>
+<h2 id="网络的网络"><a href="#网络的网络" class="headerlink" title="网络的网络"></a>网络的网络</h2><p>因特网是一个网络的网络，它是由数以亿计的用户构成的。而要想保证用户之间的连接，接入的 ISP 自身必须互联。今天的网络由十多个第一层 ISP 和数十万个较低层 ISP 组成。ISP 覆盖的区域有所不同，有些跨越多个大洲和大洋，有些限于很小的地理区域。较低层的 ISP 与较高层的 ISP 相连，较高层 ISP 彼此互联。用户和内容提供商是较低层 ISP 的客户，较低层 ISP 是较高层 ISP 的客户。近年来，主要的内容提供商也已经创建自己的网络，直接在可能的地方与较低层 ISP 互联。</p>
+<p><img src="http://myblog-1256123790.cossh.myqcloud.com/imgnote9.jpg" alt="note9"></p>
+<h2 id="分组交换网中的时延、丢包和吞吐量"><a href="#分组交换网中的时延、丢包和吞吐量" class="headerlink" title="分组交换网中的时延、丢包和吞吐量"></a>分组交换网中的时延、丢包和吞吐量</h2><h3 id="时延的类型"><a href="#时延的类型" class="headerlink" title="时延的类型"></a>时延的类型</h3><ul>
+<li>处理时延：检查分组首部和决定将该分组导向何处所需要的时间是处理时延的一部分。</li>
+<li>排队时延：在队列中，当分组在链路上等待传输时，它经受排队时延。</li>
+<li>传输时延：交换机仅当所有已经到达的分组被传输后，才能传输刚到达的分组。传输时延其实就是将所有分组的比特推（传输）向链路所需要的时间。</li>
+<li>传播时延：两台路由器之间的距离除以传播速率即为传播时延，而传播速率取决于该链路的物理媒体。</li>
+</ul>
+<blockquote>
+<p>一个类比可以阐明传输时延和传播时延的概念。考虑一条公路每100km有一个收费站，如图1-17所示。可认为收费站间的公路段是链路，收费站是路由器。假定汽车以100km/h的速度在该公路上行驶（即传播）（即当一辆汽车离开一个收费站时，它立即加速到100km/h并在收费站间维持该速度）。假定这时有10辆汽车的车队在行驶，并且这10辆汽车以固定的顺序互相跟随。可以认为每辆汽车是一个比特，该车队是一个分组。同时假定每个收费站以每辆车12s的速度服务（即传输）一辆汽车，由于时间是深夜，因此该车队是公路上唯一一批汽车。最后，假定无论该车队的第一辆汽车何时到达收费站，它在入口处等待，直到其他9辆汽车到达并整队依次前行。（因此，整个车队在它能够“转发”之前，必须存储在收费站。）收费站将整个车队推向公路所需要的时间是（10辆车）/（5辆车/min）=2min。该时间类比于一台路由器中的传输时延。因此，一辆汽车从一个收费站出口行驶到下一个收费站所需要的时间是100h/（100km/h）=1h。这个时间类比于传播时延。因此，从该车队存储在收费站前到该车队存储在下一个收费站前的时间是“传输时延”和“传播时间”总和，在本例中为62min。</p>
+</blockquote>
+<p><img src="http://myblog-1256123790.cossh.myqcloud.com/imgnote10.jpg" alt="note10"></p>
+<h3 id="流量强度和丢包"><a href="#流量强度和丢包" class="headerlink" title="流量强度和丢包"></a>流量强度和丢包</h3><ul>
+<li>流量强度（traffic intensity）：La/R</li>
+</ul>
+<ol>
+<li>La/R→0：几乎没有分组到达，并且到达间隔很大，平均排队时延接近于0。</li>
+<li>La/R→1：可能有很大的平均排队时延。</li>
+<li>La/R &gt; 1：比特到达队列的平均速率超过从该队列传输出去的速率，队列的增加趋于无界。</li>
+</ol>
+<ul>
+<li>丢包：到达分组发现满队列时将被丢弃。（丢失分组的数量随着流量强度的增加而增加）</li>
+</ul>
+<p><img src="http://myblog-1256123790.cossh.myqcloud.com/imgnote11.png" alt="note11"></p>
+<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><ul>
+<li>瞬时吞吐量：任何瞬间主机B接收来自主机A文件的速率。</li>
+<li>平均吞吐量：在一段时间内接收文件的平均速率。</li>
+<li>从服务器到客户的文件传输的吞吐量是 <code>min{R1，R2，…，RN}</code>，即沿着服务器和客户之间路径的瓶颈链路的速率。</li>
+<li>因特网中对吞吐量的限制因素通常是接入网。</li>
+</ul>
 <h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
       
     </div>
@@ -669,7 +718,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://home.junyouxiaowu.top/2018/03/21/computer-networking-01/" title="计算机网络学习笔记 One">http://home.junyouxiaowu.top/2018/03/21/computer-networking-01/</a>
+    <a href="http://home.junyouxiaowu.top/2018/03/21/computer-networking-01/" title="计算机网络学习笔记">http://home.junyouxiaowu.top/2018/03/21/computer-networking-01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -919,7 +968,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络和因特网描述"><span class="nav-number">1.</span> <span class="nav-text">计算机网络和因特网描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体组成描述"><span class="nav-number">2.</span> <span class="nav-text">具体组成描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#因特网"><span class="nav-number">2.1.</span> <span class="nav-text">因特网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端系统"><span class="nav-number">2.2.</span> <span class="nav-text">端系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换机"><span class="nav-number">2.3.</span> <span class="nav-text">分组交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因特网服务提供商"><span class="nav-number">2.4.</span> <span class="nav-text">因特网服务提供商</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议"><span class="nav-number">2.5.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IETF-和-RFC"><span class="nav-number">2.6.</span> <span class="nav-text">IETF 和 RFC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务描述"><span class="nav-number">3.</span> <span class="nav-text">服务描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序"><span class="nav-number">3.1.</span> <span class="nav-text">应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序编程接口"><span class="nav-number">3.2.</span> <span class="nav-text">应用程序编程接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是协议？"><span class="nav-number">4.</span> <span class="nav-text">什么是协议？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络边缘"><span class="nav-number">5.</span> <span class="nav-text">网络边缘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入网"><span class="nav-number">6.</span> <span class="nav-text">接入网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#家庭接入"><span class="nav-number">6.1.</span> <span class="nav-text">家庭接入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DSL"><span class="nav-number">6.1.1.</span> <span class="nav-text">DSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#电缆"><span class="nav-number">6.1.2.</span> <span class="nav-text">电缆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FTTH"><span class="nav-number">6.1.3.</span> <span class="nav-text">FTTH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拨号和卫星"><span class="nav-number">6.1.4.</span> <span class="nav-text">拨号和卫星</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#企业（和家庭）接入"><span class="nav-number">6.2.</span> <span class="nav-text">企业（和家庭）接入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广域无线网接入：3G-和-LTE"><span class="nav-number">6.3.</span> <span class="nav-text">广域无线网接入：3G 和 LTE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理媒体"><span class="nav-number">7.</span> <span class="nav-text">物理媒体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络核心"><span class="nav-number">8.</span> <span class="nav-text">网络核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换"><span class="nav-number">8.1.</span> <span class="nav-text">分组交换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储转发传输"><span class="nav-number">8.1.1.</span> <span class="nav-text">存储转发传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排队时延和分组丢失"><span class="nav-number">8.1.2.</span> <span class="nav-text">排队时延和分组丢失</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转发表和路由选择协议"><span class="nav-number">8.1.3.</span> <span class="nav-text">转发表和路由选择协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电路交换"><span class="nav-number">8.2.</span> <span class="nav-text">电路交换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">9.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络和因特网描述"><span class="nav-number">1.</span> <span class="nav-text">计算机网络和因特网描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体组成描述"><span class="nav-number">2.</span> <span class="nav-text">具体组成描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#因特网"><span class="nav-number">2.1.</span> <span class="nav-text">因特网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端系统"><span class="nav-number">2.2.</span> <span class="nav-text">端系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换机"><span class="nav-number">2.3.</span> <span class="nav-text">分组交换机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因特网服务提供商"><span class="nav-number">2.4.</span> <span class="nav-text">因特网服务提供商</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议"><span class="nav-number">2.5.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IETF-和-RFC"><span class="nav-number">2.6.</span> <span class="nav-text">IETF 和 RFC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务描述"><span class="nav-number">3.</span> <span class="nav-text">服务描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序"><span class="nav-number">3.1.</span> <span class="nav-text">应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序编程接口"><span class="nav-number">3.2.</span> <span class="nav-text">应用程序编程接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是协议？"><span class="nav-number">4.</span> <span class="nav-text">什么是协议？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络边缘"><span class="nav-number">5.</span> <span class="nav-text">网络边缘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入网"><span class="nav-number">6.</span> <span class="nav-text">接入网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#家庭接入"><span class="nav-number">6.1.</span> <span class="nav-text">家庭接入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DSL"><span class="nav-number">6.1.1.</span> <span class="nav-text">DSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#电缆"><span class="nav-number">6.1.2.</span> <span class="nav-text">电缆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FTTH"><span class="nav-number">6.1.3.</span> <span class="nav-text">FTTH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拨号和卫星"><span class="nav-number">6.1.4.</span> <span class="nav-text">拨号和卫星</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#企业（和家庭）接入"><span class="nav-number">6.2.</span> <span class="nav-text">企业（和家庭）接入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广域无线网接入：3G-和-LTE"><span class="nav-number">6.3.</span> <span class="nav-text">广域无线网接入：3G 和 LTE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理媒体"><span class="nav-number">7.</span> <span class="nav-text">物理媒体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络核心"><span class="nav-number">8.</span> <span class="nav-text">网络核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换"><span class="nav-number">8.1.</span> <span class="nav-text">分组交换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储转发传输"><span class="nav-number">8.1.1.</span> <span class="nav-text">存储转发传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排队时延和分组丢失"><span class="nav-number">8.1.2.</span> <span class="nav-text">排队时延和分组丢失</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转发表和路由选择协议"><span class="nav-number">8.1.3.</span> <span class="nav-text">转发表和路由选择协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电路交换"><span class="nav-number">8.2.</span> <span class="nav-text">电路交换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#电路交换网络中的复用"><span class="nav-number">8.2.1.</span> <span class="nav-text">电路交换网络中的复用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">8.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络的网络"><span class="nav-number">9.</span> <span class="nav-text">网络的网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组交换网中的时延、丢包和吞吐量"><span class="nav-number">10.</span> <span class="nav-text">分组交换网中的时延、丢包和吞吐量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时延的类型"><span class="nav-number">10.1.</span> <span class="nav-text">时延的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量强度和丢包"><span class="nav-number">10.2.</span> <span class="nav-text">流量强度和丢包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">10.3.</span> <span class="nav-text">吞吐量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">11.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
             
 
           </div>
