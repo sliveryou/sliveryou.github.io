@@ -107,7 +107,7 @@
 <meta property="og:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://myblog-1256123790.cossh.myqcloud.com/img%E9%93%BE%E6%8E%A5.png">
-<meta property="og:updated_time" content="2018-03-15T12:03:16.352Z">
+<meta property="og:updated_time" content="2018-04-22T10:34:08.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux服务器基础配置">
 <meta name="twitter:description" content="最近需要去配置服务器，所以可以先拿虚拟机练练手，并分享一下自己的配置过程。">
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,543
+                  3,994
                 </span>
               
 
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  15
+                  17
                 </span>
               
             </div>
@@ -657,7 +657,7 @@
 <p>在 <code>Defaults    secure_path</code> 一栏加入 <code>pip3</code> 所在 <code>bin</code> 目录，比如改成：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/python3/bin</div></pre></td></tr></table></figure>
 <p>大功告成。</p>
-<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>老规矩，还是想进入到 <code>download</code> 目录：</p>
+<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>老规矩，还是先进入到 <code>download</code> 目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/download/</div></pre></td></tr></table></figure>
 <p>下载官网最新的 <code>bin</code> 包：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v9.3.0/node-v9.3.0-linux-x64.tar.xz</div></pre></td></tr></table></figure>
@@ -672,6 +672,45 @@
 <p>判断安装是否成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure>
 <p>Node.js 安装完毕。</p>
+<h2 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h2><p>进入 /usr/local/src/ 目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/</div></pre></td></tr></table></figure>
+<p>下载最新的 repo 源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm</div></pre></td></tr></table></figure>
+<p>解包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh mysql57-community-release-el7-8.noarch.rpm</div></pre></td></tr></table></figure>
+<p>下载对应的服务程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install mysql-server</div></pre></td></tr></table></figure>
+<p>安装完成后启动 MySQL 服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service mysqld restart</div></pre></td></tr></table></figure>
+<p>查看在安装过程中随机生成的密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"password"</span> /var/<span class="built_in">log</span>/mysqld.log</div></pre></td></tr></table></figure>
+<p>通过查看到的随机密码登录 MySQL:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mysql -u root -p</div></pre></td></tr></table></figure>
+<p>重置密码（须包含数字、字母和符号）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter user <span class="string">'root'</span>@<span class="string">'localhost'</span> identified by <span class="string">'root!2018'</span>;</div></pre></td></tr></table></figure>
+<p>刷新权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flush privileges</div></pre></td></tr></table></figure>
+<p>查看数据库占用端口号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show global variables like <span class="string">'port'</span>;</div></pre></td></tr></table></figure>
+<p>修改端口号，先打开配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/my.cnf</div></pre></td></tr></table></figure>
+<p>添加 port 信息后，再重启 MySQL 即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">port=3309</div><div class="line">datadir=/var/lib/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line">user=mysql</div><div class="line"><span class="comment"># Disabling symbolic-links is recommended to prevent assorted security risks</span></div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line"><span class="built_in">log</span>-error=/var/<span class="built_in">log</span>/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div></pre></td></tr></table></figure>
+<h2 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h2><p>首先需要安装一些必备的依赖库，可能之前装过了，没有装过的话就无脑装一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">yum install gcc-c++  </div><div class="line">yum install pcre pcre-devel  </div><div class="line">yum install zlib zlib-devel  </div><div class="line">yum install openssl openssl--devel  </div><div class="line">```    </div><div class="line"></div><div class="line">装好后先进入 /usr/<span class="built_in">local</span> 目录：</div><div class="line"></div><div class="line">```Bash</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></div></pre></td></tr></table></figure>
+<p>从官网下载最新版的 Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://nginx.org/download/nginx-1.7.4.tar.gz</div></pre></td></tr></table></figure>
+<p>解压 Nginx 压缩包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf nginx-1.7.4.tar.gz</div></pre></td></tr></table></figure>
+<p>这时会产生一个 nginx-1.7.4 目录，进入即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span>  nginx-1.7.4</div></pre></td></tr></table></figure>
+<p>接下来安装，使用 –prefix 参数可以指定 Nginx 安装的目录，然后 make、make install 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 默认安装在/usr/local/nginx</span></div><div class="line"></div><div class="line">./configure   </div><div class="line">make  </div><div class="line">make install</div></pre></td></tr></table></figure>
+<p>如果没有报错，差不多就证明 Nginx 安装成功了，可以找找看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">whereis nginx</div></pre></td></tr></table></figure>
+<p>查看版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -V</div></pre></td></tr></table></figure>
+<p>相关应用可转到：<a href="https://segmentfault.com/a/1190000004294634" target="_blank" rel="external">CentOS 下用 Nginx 和 uwsgi 部署 flask 项目</a></p>
 
       
     </div>
@@ -972,7 +1011,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-简介"><span class="nav-number">1.</span> <span class="nav-text">Linux 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机软件安装并配置-CentOS"><span class="nav-number">2.</span> <span class="nav-text">虚拟机软件安装并配置 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS下载："><span class="nav-number">2.1.</span> <span class="nav-text">CentOS下载：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网络："><span class="nav-number">2.2.</span> <span class="nav-text">配置网络：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装网络工具包"><span class="nav-number">2.3.</span> <span class="nav-text">安装网络工具包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换默认源"><span class="nav-number">2.4.</span> <span class="nav-text">替换默认源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-oh-my-zsh"><span class="nav-number">3.</span> <span class="nav-text">使用 oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取配置-zsh"><span class="nav-number">3.1.</span> <span class="nav-text">获取配置 zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-oh-my-zsh"><span class="nav-number">3.2.</span> <span class="nav-text">获取 oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改主题"><span class="nav-number">3.3.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-配色"><span class="nav-number">3.4.</span> <span class="nav-text">vim 配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-利用-SSH-连接-CentOS"><span class="nav-number">4.</span> <span class="nav-text">Mac 利用 SSH 连接 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH工具"><span class="nav-number">4.1.</span> <span class="nav-text">SSH工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器安装-SSH-服务"><span class="nav-number">4.2.</span> <span class="nav-text">服务器安装 SSH 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装SSH服务"><span class="nav-number">4.3.</span> <span class="nav-text">本地安装SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ssh-copy-id-for-OSX-工具将公钥复制至-ssh-服务器"><span class="nav-number">4.4.</span> <span class="nav-text">使用 ssh-copy-id-for-OSX 工具将公钥复制至 ssh 服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Python-3-6"><span class="nav-number">5.</span> <span class="nav-text">安装 Python 3.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Node-js"><span class="nav-number">6.</span> <span class="nav-text">安装 Node.js</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-简介"><span class="nav-number">1.</span> <span class="nav-text">Linux 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机软件安装并配置-CentOS"><span class="nav-number">2.</span> <span class="nav-text">虚拟机软件安装并配置 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS下载："><span class="nav-number">2.1.</span> <span class="nav-text">CentOS下载：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网络："><span class="nav-number">2.2.</span> <span class="nav-text">配置网络：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装网络工具包"><span class="nav-number">2.3.</span> <span class="nav-text">安装网络工具包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换默认源"><span class="nav-number">2.4.</span> <span class="nav-text">替换默认源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-oh-my-zsh"><span class="nav-number">3.</span> <span class="nav-text">使用 oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取配置-zsh"><span class="nav-number">3.1.</span> <span class="nav-text">获取配置 zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-oh-my-zsh"><span class="nav-number">3.2.</span> <span class="nav-text">获取 oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改主题"><span class="nav-number">3.3.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-配色"><span class="nav-number">3.4.</span> <span class="nav-text">vim 配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-利用-SSH-连接-CentOS"><span class="nav-number">4.</span> <span class="nav-text">Mac 利用 SSH 连接 CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH工具"><span class="nav-number">4.1.</span> <span class="nav-text">SSH工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器安装-SSH-服务"><span class="nav-number">4.2.</span> <span class="nav-text">服务器安装 SSH 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装SSH服务"><span class="nav-number">4.3.</span> <span class="nav-text">本地安装SSH服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ssh-copy-id-for-OSX-工具将公钥复制至-ssh-服务器"><span class="nav-number">4.4.</span> <span class="nav-text">使用 ssh-copy-id-for-OSX 工具将公钥复制至 ssh 服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Python-3-6"><span class="nav-number">5.</span> <span class="nav-text">安装 Python 3.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Node-js"><span class="nav-number">6.</span> <span class="nav-text">安装 Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-MySQL"><span class="nav-number">7.</span> <span class="nav-text">安装 MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">8.</span> <span class="nav-text">安装 Nginx</span></a></li></ol></div>
             
 
           </div>
