@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/08/just-to-go/slice.png">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/08/just-to-go/extend1.jpg">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/08/just-to-go/extend2.jpg">
-<meta property="og:updated_time" content="2018-05-18T16:43:10.852Z">
+<meta property="og:updated_time" content="2018-05-19T04:24:44.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go详尽笔记">
 <meta name="twitter:description" content="“I just wanna go.”">
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  13,387
+                  13,510
                 </span>
               
 
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  66
+                  67
                 </span>
               
             </div>
@@ -1052,6 +1052,14 @@
 <li>调度器会在合适的点进行切换（如：I/O，channel，等待锁，runtime.Gosched()等）</li>
 </ul>
 <p><strong>channel</strong></p>
+<ul>
+<li>channel 是 goroutine 沟通的桥梁，大都是阻塞同步的</li>
+<li>通过 make 创建，close 关闭</li>
+<li>channel 是引用类型</li>
+<li>可以使用 for range 来迭代不断操作 channel</li>
+<li>可以设置单向或双向通道</li>
+<li>可以设置缓存大小，在未被填满前不会发生阻塞</li>
+</ul>
 <p>简单使用 channel：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"time"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	chaner()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">worker</span><span class="params">(c <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">for</span> &#123;</div><div class="line">		n := &lt;-c</div><div class="line">		fmt.Println(n)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">chaner</span><span class="params">()</span></span> &#123;</div><div class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</div><div class="line">	<span class="keyword">go</span> worker(c)</div><div class="line"></div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		c &lt;- i</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	time.Sleep(time.Millisecond)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>输出结果为：</p>
@@ -1077,6 +1085,12 @@
 <p>输出结果为：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Worker <span class="number">0</span> received a</div><div class="line">Worker <span class="number">0</span> received A</div><div class="line">Worker <span class="number">8</span> received i</div><div class="line">Worker <span class="number">9</span> received j</div><div class="line">Worker <span class="number">2</span> received c</div><div class="line">Worker <span class="number">1</span> received b</div><div class="line">Worker <span class="number">7</span> received h</div><div class="line">Worker <span class="number">3</span> received d</div><div class="line">Worker <span class="number">3</span> received D</div><div class="line">Worker <span class="number">2</span> received C</div><div class="line">Worker <span class="number">5</span> received f</div><div class="line">Worker <span class="number">1</span> received B</div><div class="line">Worker <span class="number">4</span> received e</div><div class="line">Worker <span class="number">6</span> received g</div><div class="line">Worker <span class="number">6</span> received G</div><div class="line">Worker <span class="number">4</span> received E</div><div class="line">Worker <span class="number">5</span> received F</div><div class="line">Worker <span class="number">9</span> received J</div><div class="line">Worker <span class="number">7</span> received H</div><div class="line">Worker <span class="number">8</span> received I</div></pre></td></tr></table></figure>
 <p><strong>select</strong></p>
+<ul>
+<li>可处理一个或多个 channel 的发送与接收</li>
+<li>同时有多个可用的 channel 时按随机顺序处理</li>
+<li>可用空的 select 来阻塞 main 函数</li>
+<li>可设置超时</li>
+</ul>
 <p>使用 select 非阻塞式获取数据：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math/rand"</span></div><div class="line">	<span class="string">"time"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">generator</span><span class="params">()</span> <span class="title">chan</span> <span class="title">int</span></span> &#123;</div><div class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</div><div class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">		i := <span class="number">0</span></div><div class="line">		<span class="keyword">for</span> &#123;</div><div class="line">			time.Sleep(time.Duration(rand.Intn(<span class="number">1000</span>)) * time.Millisecond)</div><div class="line">			out &lt;- i</div><div class="line">			i++</div><div class="line">		&#125;</div><div class="line">	&#125;()</div><div class="line">	<span class="keyword">return</span> out</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> c1, c2, c3 = generator(), generator(), generator()</div><div class="line">	<span class="comment">// 非阻塞式获取</span></div><div class="line">	<span class="keyword">for</span> &#123;</div><div class="line">		<span class="keyword">select</span> &#123;</div><div class="line">		<span class="keyword">case</span> n := &lt;-c1:</div><div class="line">			fmt.Println(<span class="string">"Received form c1:"</span>, n)</div><div class="line">		<span class="keyword">case</span> n := &lt;-c2:</div><div class="line">			fmt.Println(<span class="string">"Received form c2:"</span>, n)</div><div class="line">		<span class="keyword">case</span> n := &lt;-c3:</div><div class="line">			fmt.Println(<span class="string">"Received form c3:"</span>, n)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>输出结果为：</p>
