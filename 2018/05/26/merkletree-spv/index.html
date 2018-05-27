@@ -107,7 +107,7 @@
 <meta property="og:description" content="“Merkle Tree，一棵神奇的树🌲。”">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/hash.png">
-<meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/hash.png">
+<meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/hashlist.png">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/merkletree.png">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/createtree.png">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/searchtree1.png">
@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/blockchain.png">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/merkle_block.jpeg">
 <meta property="og:image" content="http://home.junyouxiaowu.top/2018/05/26/merkletree-spv/blockchain.png">
-<meta property="og:updated_time" content="2018-05-27T04:22:08.224Z">
+<meta property="og:updated_time" content="2018-05-27T04:38:27.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Merkle 树和 SPV 简单支付验证">
 <meta name="twitter:description" content="“Merkle Tree，一棵神奇的树🌲。”">
@@ -477,7 +477,7 @@
 <p>如果从一个稳定的服务器进行下载，采用单一 Hash 是可取的。但如果数据源不稳定，一旦数据损坏，就需要重新下载，这种下载的效率是很低的。</p>
 <h3 id="Hash-List"><a href="#Hash-List" class="headerlink" title="Hash List"></a>Hash List</h3><p>在点对点网络中作数据传输的时候，会同时从多个机器上下载数据，而且很多机器可以认为是不稳定或者不可信的。为了校验数据的完整性，更好的办法是把大的文件分割成小的数据块（例如，把分割成2K为单位的数据块）。这样的好处是，如果小块数据在传输过程中损坏了，那么只要重新下载这一快数据就行了，不用重新下载整个文件。</p>
 <p>怎么确定小的数据块没有损坏哪？只需要为每个数据块做 Hash。BT 下载的时候，在下载到真正数据之前，我们会先下载一个 Hash 列表。那么问题又来了，怎么确定这个 Hash 列表本身是正确的哪？答案是把每个小块数据的 Hash 值拼到一起，然后对这个长字符串在作一次 Hash 运算，这样就得到 Hash 列表的根 Hash（Top Hash or Root Hash）。下载数据的时候，首先从可信的数据源得到正确的根 Hash，就可以用它来校验 Hash 列表了，然后通过校验后的 Hash 列表可以用来校验数据块。</p>
-<p><img src="/2018/05/26/merkletree-spv/hash.png" alt="Hash-List"></p>
+<p><img src="/2018/05/26/merkletree-spv/hashlist.png" alt="Hash-List"></p>
 <h3 id="Merkle-Tree"><a href="#Merkle-Tree" class="headerlink" title="Merkle Tree"></a>Merkle Tree</h3><p>Merkle Tree，通常也被称作 Hash Tree，顾名思义，它就是存储 Hash 值的一棵树。Merkle Tree 的叶子是数据块（例如，文件或者文件的集合）的 hash 值。非叶节点是其对应子节点串联字符串的 hash 值。</p>
 <p><img src="/2018/05/26/merkletree-spv/merkletree.png" alt="Merkle-Tree"></p>
 <p>Merkle Tree 可以看做 Hash List 的泛化（Hash List 也可以看作一种特殊的 Merkle Tree，即树高为2的多叉 Merkle Tree）。</p>
