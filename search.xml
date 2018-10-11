@@ -195,8 +195,8 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>MongoDB</tag>
         <tag>Notes</tag>
+        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -219,8 +219,8 @@
         <category>魔改</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Markdown</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -612,9 +612,9 @@
         <category>教程</category>
       </categories>
       <tags>
+        <tag>Tips</tag>
         <tag>Hexo</tag>
         <tag>GitHub</tag>
-        <tag>Tips</tag>
         <tag>Mac</tag>
       </tags>
   </entry>
@@ -650,8 +650,8 @@
         <category>命令</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Tips</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>

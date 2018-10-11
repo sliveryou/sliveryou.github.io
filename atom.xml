@@ -424,9 +424,9 @@
       <category term="笔记" scheme="http://home.junyouxiaowu.top/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="MongoDB" scheme="http://home.junyouxiaowu.top/tags/MongoDB/"/>
-    
       <category term="Notes" scheme="http://home.junyouxiaowu.top/tags/Notes/"/>
+    
+      <category term="MongoDB" scheme="http://home.junyouxiaowu.top/tags/MongoDB/"/>
     
   </entry>
   
@@ -473,9 +473,9 @@
       <category term="魔改" scheme="http://home.junyouxiaowu.top/categories/%E9%AD%94%E6%94%B9/"/>
     
     
-      <category term="Hexo" scheme="http://home.junyouxiaowu.top/tags/Hexo/"/>
-    
       <category term="Markdown" scheme="http://home.junyouxiaowu.top/tags/Markdown/"/>
+    
+      <category term="Hexo" scheme="http://home.junyouxiaowu.top/tags/Hexo/"/>
     
   </entry>
   
