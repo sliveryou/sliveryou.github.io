@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://home.junyouxiaowu.top/"/>
-  <updated>2018-08-02T09:58:39.659Z</updated>
+  <updated>2019-03-19T15:47:13.346Z</updated>
   <id>http://home.junyouxiaowu.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git常用命令</title>
+    <link href="http://home.junyouxiaowu.top/2019/03/19/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://home.junyouxiaowu.top/2019/03/19/Git常用命令/</id>
+    <published>2019-03-19T14:32:27.000Z</published>
+    <updated>2019-03-19T15:47:13.346Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>“Git 是一个很强大的分布式版本管理工具。”</p></blockquote><a id="more"></a><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/2019/03/19/Git常用命令/工作流程.png" alt="Git工作流程"></p><p>几个名词翻译：</p><ul><li>Workspace：工作区</li><li>Index / Stage：暂存区</li><li>Repository：仓库区（或本地仓库）</li><li>Remote：远程仓库</li></ul><h2 id="新建代码库"><a href="#新建代码库" class="headerlink" title="新建代码库"></a>新建代码库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 对当前目录进行版本控制初始化</span></div><div class="line">$ git init</div><div class="line"></div><div class="line"><span class="comment"># 将 URL 地址对应的远程版本库完全克隆到本地目录下</span></div><div class="line">$ git <span class="built_in">clone</span> git://github.com/someone/project.git</div><div class="line"></div><div class="line"><span class="comment"># 将 URL 地址对应的远程仓库作为本地仓库的远程仓库</span></div><div class="line">$ git remote add origin git://github.com/someone/project.git</div></pre></td></tr></table></figure><h2 id="增加删除文件"><a href="#增加删除文件" class="headerlink" title="增加删除文件"></a>增加删除文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加指定文件到暂存区</span></div><div class="line">$ git add file1 file2 ...</div><div class="line"></div><div class="line"><span class="comment"># 添加指定目录（包括子目录）到暂存区</span></div><div class="line">$ git add dir</div><div class="line"></div><div class="line"><span class="comment"># 添加当前目录下所有文件至暂存区</span></div><div class="line">$ git add .</div><div class="line"></div><div class="line"><span class="comment"># 删除工作区文件，并且将这次删除放入暂存区</span></div><div class="line">$ git rm file1 file2 ...</div><div class="line"></div><div class="line"><span class="comment"># 改名文件，并且将这次改名放入暂存区</span></div><div class="line">$ git mv file-original file-renamed</div></pre></td></tr></table></figure><h2 id="提交代码"><a href="#提交代码" class="headerlink" title="提交代码"></a>提交代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 提交暂存区到仓库区</span></div><div class="line">$ git commit -m message</div><div class="line"> </div><div class="line"><span class="comment"># 提交暂存区的指定文件到仓库区</span></div><div class="line">$ git commit file1 file2 ... -m message</div></pre></td></tr></table></figure><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 列出所有本地分支</span></div><div class="line">$ git branch</div><div class="line"> </div><div class="line"><span class="comment"># 列出所有远程分支</span></div><div class="line">$ git branch -r</div><div class="line"> </div><div class="line"><span class="comment"># 列出所有本地分支和远程分支</span></div><div class="line">$ git branch -a</div><div class="line"> </div><div class="line"><span class="comment"># 新建一个分支，但依然停留在当前分支</span></div><div class="line">$ git branch new-branch</div><div class="line"> </div><div class="line"><span class="comment"># 新建一个分支，并切换到该分支</span></div><div class="line">$ git checkout -b new-branch</div><div class="line"> </div><div class="line"><span class="comment"># 新建一个分支，指向指定 commit</span></div><div class="line">$ git branch new-branch commit</div><div class="line"> </div><div class="line"><span class="comment"># 切换到指定分支，并更新工作区</span></div><div class="line">$ git checkout branch-name</div><div class="line"> </div><div class="line"><span class="comment"># 切换到上一个分支</span></div><div class="line">$ git checkout -</div><div class="line"> </div><div class="line"><span class="comment"># 合并指定分支到当前分支</span></div><div class="line">$ git merge branch-name</div><div class="line"> </div><div class="line"><span class="comment"># 删除分支</span></div><div class="line">$ git branch -d branch-name</div><div class="line"> </div><div class="line"><span class="comment"># 删除远程分支</span></div><div class="line">$ git push origin --delete branch-name</div></pre></td></tr></table></figure><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 列出所有 tag</span></div><div class="line">$ git tag</div><div class="line"> </div><div class="line"><span class="comment"># 新建一个 tag 在当前 commit</span></div><div class="line">$ git tag new-tag</div><div class="line"> </div><div class="line"><span class="comment"># 新建一个 tag 在指定 commit</span></div><div class="line">$ git tag new-tag commit</div><div class="line"> </div><div class="line"><span class="comment"># 删除本地 tag</span></div><div class="line">$ git tag -d tag-name</div><div class="line"> </div><div class="line"><span class="comment"># 删除远程 tag</span></div><div class="line">$ git push origin :refs/tags/tag-name</div><div class="line"> </div><div class="line"><span class="comment"># 查看 tag 信息</span></div><div class="line">$ git show tag</div><div class="line"> </div><div class="line"><span class="comment"># 提交指定 tag</span></div><div class="line">$ git push remote tag</div><div class="line"> </div><div class="line"><span class="comment"># 提交所有 tag</span></div><div class="line">$ git push remote --tags</div><div class="line"> </div><div class="line"><span class="comment"># 新建一个分支，指向某个 tag</span></div><div class="line">$ git checkout -b branch tag</div></pre></td></tr></table></figure><h2 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 显示有变更的文件</span></div><div class="line">$ git status</div><div class="line"> </div><div class="line"><span class="comment"># 显示当前分支的版本历史</span></div><div class="line">$ git <span class="built_in">log</span></div><div class="line"></div><div class="line"><span class="comment"># 显示暂存区和工作区的差异</span></div><div class="line">$ git diff</div><div class="line"> </div><div class="line"><span class="comment"># 显示暂存区和上一个 commit 的差异</span></div><div class="line">$ git diff --cached [file]</div><div class="line"> </div><div class="line"><span class="comment"># 显示工作区与当前分支最新 commit 之间的差异</span></div><div class="line">$ git diff HEAD</div><div class="line"></div><div class="line"><span class="comment"># 显示某次提交的元数据和内容变化</span></div><div class="line">$ git show commit</div><div class="line"></div><div class="line"><span class="comment"># 显示当前分支的最近几次提交</span></div><div class="line">$ git reflog</div></pre></td></tr></table></figure><h2 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下载远程仓库的所有变动</span></div><div class="line">$ git fetch remote-name</div><div class="line"> </div><div class="line"><span class="comment"># 显示所有远程仓库</span></div><div class="line">$ git remote -v</div><div class="line"> </div><div class="line"><span class="comment"># 显示某个远程仓库的信息</span></div><div class="line">$ git remote show remote-name</div><div class="line"> </div><div class="line"><span class="comment"># 增加一个新的远程仓库，并命名</span></div><div class="line">$ git remote add remote-name url</div><div class="line"></div><div class="line"><span class="comment"># 删除指定远程仓库</span></div><div class="line">git remote rm remote-name</div><div class="line"> </div><div class="line"><span class="comment"># 取回远程仓库的变化，并与本地分支合并</span></div><div class="line">$ git pull remote-name branch</div><div class="line"></div><div class="line"><span class="comment"># 取回远程仓库的变换，并与远程仓库强制合并</span></div><div class="line">$ git pull --rebase remote-name branch</div><div class="line"></div><div class="line"><span class="comment"># 上传本地指定分支到远程仓库</span></div><div class="line">$ git push remote-name branch</div><div class="line"></div><div class="line"><span class="comment"># 加了 -u 参数后，以后即可直接用 git push 代替 git push origin master</span></div><div class="line">$ git push -u origin master </div><div class="line"> </div><div class="line"><span class="comment"># 强行推送当前分支到远程仓库，即使有冲突</span></div><div class="line">$ git push remote-name --force</div><div class="line"> </div><div class="line"><span class="comment"># 推送所有分支到远程仓库</span></div><div class="line">$ git push remote-name --all</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;“Git 是一个很强大的分布式版本管理工具。”&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="http://home.junyouxiaowu.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Tips" scheme="http://home.junyouxiaowu.top/tags/Tips/"/>
+    
+  </entry>
   
   <entry>
     <title>Java详尽笔记</title>
@@ -87,9 +110,9 @@
     
       <category term="Python" scheme="http://home.junyouxiaowu.top/tags/Python/"/>
     
-      <category term="Go" scheme="http://home.junyouxiaowu.top/tags/Go/"/>
-    
       <category term="BlockChain" scheme="http://home.junyouxiaowu.top/tags/BlockChain/"/>
+    
+      <category term="Go" scheme="http://home.junyouxiaowu.top/tags/Go/"/>
     
   </entry>
   
@@ -424,9 +447,9 @@
       <category term="笔记" scheme="http://home.junyouxiaowu.top/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="Notes" scheme="http://home.junyouxiaowu.top/tags/Notes/"/>
-    
       <category term="MongoDB" scheme="http://home.junyouxiaowu.top/tags/MongoDB/"/>
+    
+      <category term="Notes" scheme="http://home.junyouxiaowu.top/tags/Notes/"/>
     
   </entry>
   
@@ -473,9 +496,9 @@
       <category term="魔改" scheme="http://home.junyouxiaowu.top/categories/%E9%AD%94%E6%94%B9/"/>
     
     
-      <category term="Markdown" scheme="http://home.junyouxiaowu.top/tags/Markdown/"/>
-    
       <category term="Hexo" scheme="http://home.junyouxiaowu.top/tags/Hexo/"/>
+    
+      <category term="Markdown" scheme="http://home.junyouxiaowu.top/tags/Markdown/"/>
     
   </entry>
   
@@ -500,31 +523,6 @@
       <category term="Python" scheme="http://home.junyouxiaowu.top/tags/Python/"/>
     
       <category term="Tips" scheme="http://home.junyouxiaowu.top/tags/Tips/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Battle Ship</title>
-    <link href="http://home.junyouxiaowu.top/2018/02/25/BattleShip/"/>
-    <id>http://home.junyouxiaowu.top/2018/02/25/BattleShip/</id>
-    <published>2018-02-25T09:49:27.000Z</published>
-    <updated>2018-02-28T08:14:25.449Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>少年，你，想不想成为一个 Captain 呢？</p></blockquote><a id="more"></a><p>标题误导向 hhh。  </p><p>前段时间学习了 <code>JavaScript</code> 这门语言，相比于 <code>Python</code>，它也是有很多优点的。结合之前看的 <code>Head First HTML &amp; CSS</code> 这本书，我写了一个普通的小游戏，仅为娱乐。</p><p><strong>游戏规则：</strong></p><p>有一个 <code>7 * 7</code> 的航海区域，敌方有三艘潜艇潜伏其中，每艘潜艇占据三格长度，它可能是竖着潜伏，也有可能是横着潜伏。我方有很多炮弹鱼雷，但希望在尽量少的发射次数下，击沉敌方三艘潜艇。</p><p><strong>击沉条件：</strong> </p><p>因为潜艇占据三格长度，所以需要将炮弹击打在潜艇的三个部位才能将其击沉，重复击打是无效的。</p><p><strong>温馨提醒：</strong></p><ul><li>请多多注意左上角的提示。</li><li>游戏有彩蛋，懂前端的一定能到找到。</li></ul><p>⚡️<a href="/assets/BattleShip/battleship.html">Battle Start</a>⚡️</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;少年，你，想不想成为一个 Captain 呢？&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="娱乐" scheme="http://home.junyouxiaowu.top/categories/%E5%A8%B1%E4%B9%90/"/>
-    
-    
-      <category term="Game" scheme="http://home.junyouxiaowu.top/tags/Game/"/>
-    
-      <category term="JavaScript" scheme="http://home.junyouxiaowu.top/tags/JavaScript/"/>
     
   </entry>
   
