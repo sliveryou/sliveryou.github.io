@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Notes,Cookie," />
+  <meta name="keywords" content="Notes," />
 
 
 
@@ -98,18 +98,21 @@
 
 
 
-<meta name="description" content="Cookie 是什么？好吃么？">
-<meta name="keywords" content="Notes,Cookie">
+<meta name="description" content="“学海无涯苦做舟。”">
+<meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Delicious Cookie">
-<meta property="og:url" content="http://home.junyouxiaowu.top/2017/12/29/好吃的Cookies/index.html">
+<meta property="og:title" content="Java编程思想学习笔记（更新ing）">
+<meta property="og:url" content="http://home.junyouxiaowu.top/2019/03/22/Thinking in Java学习笔记/index.html">
 <meta property="og:site_name" content="青柚">
-<meta property="og:description" content="Cookie 是什么？好吃么？">
+<meta property="og:description" content="“学海无涯苦做舟。”">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-28T03:25:01.755Z">
+<meta property="og:image" content="http://home.junyouxiaowu.top/2019/03/22/Thinking%20in%20Java学习笔记/基本类型.png">
+<meta property="og:image" content="http://home.junyouxiaowu.top/2019/03/22/Thinking%20in%20Java学习笔记/默认值.png">
+<meta property="og:updated_time" content="2019-03-23T04:22:58.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Delicious Cookie">
-<meta name="twitter:description" content="Cookie 是什么？好吃么？">
+<meta name="twitter:title" content="Java编程思想学习笔记（更新ing）">
+<meta name="twitter:description" content="“学海无涯苦做舟。”">
+<meta name="twitter:image" content="http://home.junyouxiaowu.top/2019/03/22/Thinking%20in%20Java学习笔记/基本类型.png">
 
 
 
@@ -139,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://home.junyouxiaowu.top/2017/12/29/好吃的Cookies/"/>
+  <link rel="canonical" href="http://home.junyouxiaowu.top/2019/03/22/Thinking in Java学习笔记/"/>
 
 
 
 
 
-  <title>Delicious Cookie | 青柚</title>
+  <title>Java编程思想学习笔记（更新ing） | 青柚</title>
   
 
 
@@ -334,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://home.junyouxiaowu.top/2017/12/29/好吃的Cookies/">
+    <link itemprop="mainEntityOfPage" href="http://home.junyouxiaowu.top/2019/03/22/Thinking in Java学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sliver">
@@ -351,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Delicious Cookie</h1>
+          <h1 class="post-title" itemprop="name headline">Java编程思想学习笔记（更新ing）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T22:04:37+08:00">
-                2017-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T10:42:27+08:00">
+                2019-03-22
               </time>
             
 
@@ -422,7 +425,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,541
+                  2,983
                 </span>
               
 
@@ -438,7 +441,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  12
                 </span>
               
             </div>
@@ -459,44 +462,123 @@
       
 
       
-        <blockquote class="blockquote-center"><p>Cookie 是什么？好吃么？</p>
+        <blockquote class="blockquote-center"><p>“学海无涯苦做舟。”</p>
 </blockquote>
 <a id="more"></a>
-<blockquote>
-<p>一个 Cookie 就是存储在用户主机浏览器中的一小段文本文件。<br>Cookie 是纯文本形式，它们不包含任何可执行代码。<br>一个 Web 页面或服务器告知浏览器来将这些信息存储并且基于一系列规则在之后的每个请求中都将该信息返回至服务器。Web 服务器之后可以利用这些信息来标识用户。</p>
-</blockquote>
-<h3 id="上面是科普，这里随便说说。"><a href="#上面是科普，这里随便说说。" class="headerlink" title="上面是科普，这里随便说说。"></a>上面是科普，这里随便说说。</h3><p>其实要说 Cookie ，就要说它所立足的 HTTP 协议。<br>HTTP 是无状态协议，它不对之前发生过的请求和响应的状态进行管理。也就是说，无法根据之前的状态进行本次的请求处理。<br>那么就会发生这种情况：</p>
-<blockquote>
-<p>假设要求登录认证的 Web 页面本身无法进行状态的管理（不记录已登录的状态），那么每次跳转新页面就要再次登录，或者要在每次请求报文中附加参数来管理登录状态。</p>
-</blockquote>
-<h3 id="是不是很麻烦？"><a href="#是不是很麻烦？" class="headerlink" title="是不是很麻烦？"></a>是不是很麻烦？</h3><p>不过不可否认，无状态协议当然也有它的优点。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。</p>
-<p>所以，为了保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了 Cookie 技术。Cookie 技术通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。</p>
-<p>Cookie 会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。</p>
-<p>服务器端发现客户端发送过来的 Cookie 后，会去检查究竟是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
-<p>概括下来，其实就是服务器为了辨别每个用户，就给客户端们颁发一个通行证，一人一个，无论谁访问都必须携带自己的通行证。这样服务器就能从通行证上确认客户身份了，这也就是 Cookie 的工作原理。</p>
-<h3 id="为什么突然说-Cookie-呢？"><a href="#为什么突然说-Cookie-呢？" class="headerlink" title="为什么突然说 Cookie 呢？"></a>为什么突然说 Cookie 呢？</h3><p>因为之前爬教务系统，都是使用 requests 的 session 一口气保持会话的，很少去管 Cookie 的事，分模块和函数式编程的时候，才发现会话的中断和接下来请求的失败…<br>所以特地补全一下知识漏洞吧 hhh。</p>
-<h3 id="什么是-CookieJar？"><a href="#什么是-CookieJar？" class="headerlink" title="什么是 CookieJar？"></a>什么是 CookieJar？</h3><p>首先，查看 <a href="http://www.python-requests.org/en/latest/api/#api-cookies" target="_blank" rel="external">requests 的官方文档</a>：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class requests.cookies.RequestsCookieJar(policy=None)[<span class="keyword">source</span>]</div><div class="line"></div><div class="line">Compatibility class; is a cookielib.CookieJar, but exposes a dict interface.</div><div class="line"></div><div class="line">This <span class="keyword">is</span> the CookieJar we create by default <span class="keyword">for</span> requests <span class="built_in">and</span> sessions that don<span class="string">'t specify one, since some clients may expect response.cookies and session.cookies to support dict operations.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">Requests does not use the dict interface internally; it'</span>s just <span class="keyword">for</span> compatibility with external client code. All requests code should work out of the box with externally provided instances of CookieJar, <span class="keyword">e</span>.g. LWPCookieJar <span class="built_in">and</span> FileCookieJar.</div><div class="line"></div><div class="line">Unlike <span class="keyword">a</span> regular CookieJar, this class <span class="keyword">is</span> pickleable.</div></pre></td></tr></table></figure>
-<p>差不多知道了 cookies 对象是 CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar等。<br>各个 CookieJar 的关系是：<br><code>CookieJar —-派生—-&gt;FileCookieJar —-派生—–&gt;MozillaCookieJar 和 LWPCookieJar</code></p>
-<p>再查看 <a href="https://docs.python.org/3/library/http.cookiejar.html#filecookiejar-subclasses-and-co-operation-with-web-browsers" target="_blank" rel="external">http.cookiejar — Cookie handling for HTTP clients</a> 中 MozillaCookieJar 和 LWPCookieJar 的官方介绍：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">The following CookieJar subclasses are provided <span class="keyword">for</span> reading <span class="built_in">and</span> writing.</div><div class="line"></div><div class="line">class http.cookiejar.MozillaCookieJar(filename, delayload=None, policy=None)</div><div class="line"></div><div class="line">    A FileCookieJar that can load from <span class="built_in">and</span> save cookies <span class="keyword">to</span> disk in the Mozilla cookies.txt <span class="keyword">file</span> format (which <span class="keyword">is</span> also used by the Lynx <span class="built_in">and</span> Netscape browsers).</div><div class="line"></div><div class="line">    Note This loses information about RFC <span class="number">2965</span> cookies, <span class="built_in">and</span> also about newer <span class="built_in">or</span> non-standard cookie-attributes such <span class="keyword">as</span> port.</div><div class="line"></div><div class="line">    Warning Back <span class="keyword">up</span> your cookies before saving <span class="keyword">if</span> you have cookies whose loss / corruption would <span class="keyword">be</span> inconvenient (there are some subtleties which may lead <span class="keyword">to</span> slight <span class="keyword">changes</span> in the <span class="keyword">file</span> over <span class="keyword">a</span> load / save <span class="built_in">round</span>-trip).</div><div class="line">    </div><div class="line">    Also note that cookies saved <span class="keyword">while</span> Mozilla <span class="keyword">is</span> running will <span class="built_in">get</span> clobbered by Mozilla.</div><div class="line"></div><div class="line">class http.cookiejar.LWPCookieJar(filename, delayload=None, policy=None)</div><div class="line"></div><div class="line">    A FileCookieJar that can load from <span class="built_in">and</span> save cookies <span class="keyword">to</span> disk in format compatible with the libwww-<span class="keyword">perl</span> library’s Set-Cookie3 <span class="keyword">file</span> format. This <span class="keyword">is</span> convenient <span class="keyword">if</span> you want <span class="keyword">to</span> store cookies in <span class="keyword">a</span> human-readable <span class="keyword">file</span>.</div></pre></td></tr></table></figure>
-<p>可见，MozillaCookieJar 和 LWPCookieJar 可对文件进行 Cookie 的存取改动。</p>
-<h3 id="动手试试存取-Cookie"><a href="#动手试试存取-Cookie" class="headerlink" title="动手试试存取 Cookie"></a>动手试试存取 Cookie</h3><p>可以开始练练手了，先利用 LWPCookieJar 对象实现存取 Cookie 到文件的功能：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests, sys</div><div class="line"><span class="keyword">from</span> http.cookiejar <span class="keyword">import</span> LWPCookieJar <span class="keyword">as</span> Cookie</div><div class="line"><span class="keyword">from</span> requests.exceptions <span class="keyword">import</span> RequestException</div><div class="line"></div><div class="line">headers = &#123;</div><div class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">s = requests.Session()</div><div class="line"><span class="comment"># 声明一个 LWPCookieJar 对象</span></div><div class="line">s.cookies = Cookie()</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    html = s.get(<span class="string">"http://cas.hdu.edu.cn/cas/login"</span>,headers=headers,timeout=<span class="number">5</span>)</div><div class="line"><span class="keyword">except</span> RequestException:</div><div class="line">    print(<span class="string">"请求超时！请检查网络后再次尝试！"</span>)</div><div class="line">    sys.exit(<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># 将获取到的 Cookie 存入文件中</span></div><div class="line">s.cookies.save(<span class="string">'cookies.txt'</span>,ignore_discard=<span class="keyword">True</span>,ignore_expires=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-<p>save 方法中的两个参数的官方解释是：</p>
-<blockquote>
-<p>gnore_discard: save even cookies set to be discarded.   </p>
-<p>ignore_expires: save even cookies that have expiredThe file is overwritten if it already exists</p>
-</blockquote>
-<p>显然 ignore_discard 的意思是即使 Cookie 将会被丢弃也要将它保存下来，ignore_expires 的意思是如果在该文件中 Cookie 已经存在，则覆盖原文件写入，在这里，如果两个全部设置为True，运行之后，Cookie 将会被保存到 cookies.txt 文件中。</p>
-<p>成功后我们可以找到新建立的 cookies.txt 文件，打开可看到获取的 Cookie：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#LWP-Cookies-<span class="number">2.0</span></div><div class="line">Set-Cookie3: key_dcp_cas="vK8zhGgBzT8S1QHcgnypKRpRxTny1B1LM20Cmcn8SfMtw2ch2QxG!-1218671341"; path="/"; domain="cas.hdu.edu.cn"; path_spec; discard; HttpOnly=None; version=0</div><div class="line">Set-Cookie3: route=c4983b7b52b1d14e475c56063c71cbb3; path="/"; domain="cas.hdu.edu.cn"; path_spec; discard; version=0</div></pre></td></tr></table></figure>
-<h3 id="从文件读取-Cookie"><a href="#从文件读取-Cookie" class="headerlink" title="从文件读取 Cookie"></a>从文件读取 Cookie</h3><p>现在可以试试从文件读取 Cookie 了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> http.cookiejar <span class="keyword">import</span> LWPCookieJar <span class="keyword">as</span> Cookie</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_cookies</span><span class="params">()</span>:</span></div><div class="line">    s = requests.session()</div><div class="line">    s.cookies = Cookie()</div><div class="line">    <span class="comment"># 从文件读取 Cookie			</span></div><div class="line">    s.cookies.load(<span class="string">'cookies.txt'</span>,ignore_discard=<span class="keyword">True</span>,ignore_expires=<span class="keyword">True</span>)</div><div class="line">    <span class="keyword">return</span> s</div><div class="line"></div><div class="line">s = load_cookies()</div><div class="line"><span class="comment"># 直接打印 Cookie</span></div><div class="line">print(s.cookies)</div><div class="line">dict = requests.utils.dict_from_cookiejar(s.cookies)</div><div class="line"><span class="comment"># 打印字典形式的 Cookie</span></div><div class="line">print(dict)</div></pre></td></tr></table></figure>
-<p>返回结果如下：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;LWPCookieJar[&lt;Cookie key_dcp_cas=vK8zhGgBzT8S1QHcgnypKRpRxTny1B1LM20Cmcn8SfMtw2ch2QxG!-<span class="number">1218671341</span> <span class="keyword">for</span> cas.hdu.edu.<span class="keyword">cn</span>/&gt;, &lt;Cookie route=c4983b7b52b1d14e475c56063c71cbb3 <span class="keyword">for</span> cas.hdu.edu.<span class="keyword">cn</span>/&gt;]&gt;</div><div class="line"></div><div class="line">&#123;<span class="string">'key_dcp_cas'</span>: <span class="string">'vK8zhGgBzT8S1QHcgnypKRpRxTny1B1LM20Cmcn8SfMtw2ch2QxG!-1218671341'</span>, <span class="string">'route'</span>: <span class="string">'c4983b7b52b1d14e475c56063c71cbb3'</span>&#125;</div></pre></td></tr></table></figure>
-<p>之后只要 Cookie 还在生存期内，就可以进教务网站利用Cookie 爬成绩、爬课表等，还是挺不错的。</p>
-<p>Cookie 就讲这么多吧，以后用到更高级的方法再补充。</p>
+<h1 id="第二章-一切都是对象"><a href="#第二章-一切都是对象" class="headerlink" title="第二章 一切都是对象"></a>第二章 一切都是对象</h1><h2 id="2-1-用引用操作对象"><a href="#2-1-用引用操作对象" class="headerlink" title="2.1 用引用操作对象"></a>2.1 用引用操作对象</h2><p>在 Java 中，一切都被视为对象。</p>
+<p>尽管一切都看作对象，但是操纵对象的是它的一个引用（refrence）。</p>
+<p>可以把对象想象成电视机，引用想象成遥控器，使用者可以通过遥控器控制电视。遥控器（引用）可以独立于电视机（对象）存在，比如创建一个 String 引用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s;</div></pre></td></tr></table></figure>
+<p>此时只是创建了引用，s 实际上还没有和任何事物关联。可以采取一种比较安全的做法即创建引用时便初始化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = <span class="string">"asdf"</span>;</div></pre></td></tr></table></figure>
+<h2 id="2-2-创建对象"><a href="#2-2-创建对象" class="headerlink" title="2.2 创建对象"></a>2.2 创建对象</h2><p>一旦创建了一个引用，就希望能和一个新的对象关联。使用操作符 new 来实现，意思是“给我一个新对象”。使用之前的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String s = <span class="keyword">new</span> String(<span class="string">"asdf"</span>);</div></pre></td></tr></table></figure>
+<p>它不仅表示“给我一个新字符串”，还通过提供一个初始字符串，给出了怎样产生这个 String 的信息。</p>
+<h3 id="2-2-1-存储位置"><a href="#2-2-1-存储位置" class="headerlink" title="2.2.1 存储位置"></a>2.2.1 存储位置</h3><ol>
+<li>寄存器：这是最快的存储区，它位于处理器内部，数量有限，根据需求进行分配。</li>
+<li>堆栈：位于通用 RAM 中，通过堆栈指针操作。对于堆栈中的数据，Java 需要知道确切的生命周期。对象引用存储在堆栈中。</li>
+<li>堆：也位于通用 RAM 中，用于存放所有 Java 对象。Java 不需要知道数据在堆里存活多久，因此分配存储比较灵活。</li>
+<li>常量存储：常量值直接存放在程序代码内部。</li>
+<li>非 RAM 存储：数据不受程序控制，比如流对象（转化成字节流被发送）和持久化对象（在磁盘中）。</li>
+</ol>
+<h3 id="2-2-2-特例：基本类型"><a href="#2-2-2-特例：基本类型" class="headerlink" title="2.2.2 特例：基本类型"></a>2.2.2 特例：基本类型</h3><p>程序中常用的类型，被定义为“基本”类型。它们不用 new 来创建，而是创建一个不是引用的“自动”变量。这个变量直接存储“值”，存储于堆栈中，因而更加高效。</p>
+<p><img src="/2019/03/22/Thinking in Java学习笔记/基本类型.png" alt="基本类型"></p>
+<p>所有数值类型都有正负号，没有无符号的数值类型。<br>基本类型具有包装器类，可以用它创建非基本对象表示对应的基本类型。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> c = <span class="string">'x'</span>;</div><div class="line">Character ch = <span class="keyword">new</span> Character(c);</div></pre></td></tr></table></figure>
+<p>也可以这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Character ch = <span class="keyword">new</span> Character(<span class="string">'x'</span>);</div></pre></td></tr></table></figure>
+<p><strong>高精度数字</strong>是 Java 用于高精度计算的类，需要以方法调用方式取代运算符方式来实现运算，以速度来换取精度：</p>
+<ul>
+<li>BigInteger：支持任意精度的整数</li>
+<li>BigDecimal：支持任意精度的定点数</li>
+</ul>
+<h3 id="2-2-3-Java-中的数组"><a href="#2-2-3-Java-中的数组" class="headerlink" title="2.2.3 Java 中的数组"></a>2.2.3 Java 中的数组</h3><p>在 C、C++ 中使用数组是十分危险的，因为 C、C++ 中的数组就是内存块。Jav a确保数组会被初始化，并且提供越界检查。</p>
+<p>当创建一个数组对象时，实际上创建了一个引用数组，并且每个引用会自动初始化为一个特定值 null。试图使用一个还是 null 的引用，会在运行时报错。<br>还可以创建基本数据类型的数组，同样编译器也能确保初始化，将数组所占内存全部置零。</p>
+<h2 id="2-3-永远不需要销毁对象"><a href="#2-3-永远不需要销毁对象" class="headerlink" title="2.3 永远不需要销毁对象"></a>2.3 永远不需要销毁对象</h2><h3 id="2-3-1-作用域"><a href="#2-3-1-作用域" class="headerlink" title="2.3.1 作用域"></a>2.3.1 作用域</h3><p>作用域（scope）决定了在它内部定义的变量名的可见性和生命周期。和 C、C++ 一样，Java 中的作用域由花括号的位置决定。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> x = <span class="number">12</span>;</div><div class="line">    <span class="comment">// only x available</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> q = <span class="number">96</span>;</div><div class="line">        <span class="comment">// Both x and q available</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// only x available</span></div><div class="line">    <span class="comment">// q is out of scope         </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>与 C、C++ 不同，Java 不允许把较大作用域的变量“隐藏”，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">　　<span class="keyword">int</span> x = <span class="number">12</span>;</div><div class="line">　　&#123;</div><div class="line">　　　　<span class="keyword">int</span> x = <span class="number">96</span>; <span class="comment">// 非法</span></div><div class="line">　　&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-3-2-对象的作用域"><a href="#2-3-2-对象的作用域" class="headerlink" title="2.3.2 对象的作用域"></a>2.3.2 对象的作用域</h3><p>Java 对象不具备和基本类型一样的生命周期，它可以存活于作用域之外。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">　　String s = <span class="keyword">new</span> String(<span class="string">"a string"</span>);  </div><div class="line">&#125; <span class="comment">// 作用域结束</span></div></pre></td></tr></table></figure>
+<p>引用 s 在作用域结束就消失了，但是 s 指向的 String 对象却仍然在内存中。在这段代码中，不能在作用域之后访问该对象，因为它的唯一引用 s 超出其作用域范围。</p>
+<p>C++ 中需要手动销毁对象，而 Java 不需要，Java 有一个垃圾回收器，用来监视用 new 创建的所有对象，找出不会再用的对象来销毁释放内存。在 Java 中，只管创建对象就行了，不需要考虑内存泄漏的问题。</p>
+<h2 id="2-4-创建新的数据类型：类"><a href="#2-4-创建新的数据类型：类" class="headerlink" title="2.4 创建新的数据类型：类"></a>2.4 创建新的数据类型：类</h2><p>使用关键字 class 来表示“我准备告诉你一种新类型的对象是什么样的”，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ATypeName</span> </span>&#123; <span class="comment">/* class body goes here */</span> &#125;</div></pre></td></tr></table></figure>
+<p>此时类主体只有一句注释，但已经可以用new来创建这种类型的对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ATypeName a = <span class="keyword">new</span> ATypeName();</div></pre></td></tr></table></figure>
+<h3 id="2-4-1-字段和方法"><a href="#2-4-1-字段和方法" class="headerlink" title="2.4.1 字段和方法"></a>2.4.1 字段和方法</h3><p>一旦定义了一个类，就可以在类中设置两种类型的元素：字段（也叫数据成员）和方法（也叫成员函数）。</p>
+<p>字段可以是任何类型的对象，也可以是基本类型中的一种。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataOnly</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">double</span> d;</div><div class="line">    <span class="keyword">boolean</span> b;</div><div class="line">&#125;</div><div class="line"></div><div class="line">DataOnly data = <span class="keyword">new</span> DataOnly(); <span class="comment">// 创建一个对象 data</span></div></pre></td></tr></table></figure>
+<p>通过英文句点来引用对象的成员：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// objectReference.member</span></div><div class="line"><span class="comment">// 例如：</span></div><div class="line">data.i = <span class="number">47</span>;</div><div class="line">data.d = <span class="number">1.1</span>;</div><div class="line">data.b = <span class="keyword">false</span>;</div></pre></td></tr></table></figure>
+<p>基本成员的默认值：若类的某个成员是基本数据类型，即使没有初始化，Java 也会确保它有一个默认值：</p>
+<p><img src="/2019/03/22/Thinking in Java学习笔记/默认值.png" alt="基本类型"></p>
+<p><strong>注意：</strong>如果变量不是类的字段，而是“局部”变量，那么 Java 不会对其默认初始化。</p>
+<h2 id="2-5-方法、参数和返回值"><a href="#2-5-方法、参数和返回值" class="headerlink" title="2.5 方法、参数和返回值"></a>2.5 方法、参数和返回值</h2><p>Java 的方法决定了一个对象能够接收什么样的消息。方法由名称、参数、返回值和方法体组成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">ReturnType <span class="title">methodName</span><span class="params">( <span class="comment">/* Argument list */</span> )</span> </span>&#123;</div><div class="line">    <span class="comment">/* Method body */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Java 中的方法只能作为类的一部分来创建。通过对象调用方法时，用英文句点连接对象名和方法名以及参数列表，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">objectName.methodName(arg1, arg2, arg3);</div></pre></td></tr></table></figure>
+<p>看下面这个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> x = a.f();</div></pre></td></tr></table></figure>
+<p>通过对象 a 调用方法 f()，称为发送消息给对象，其中对象是 a，消息是 f()，因此面向对象的程序设计可以简单概括为“向对象发送消息”。</p>
+<h3 id="2-5-1-参数列表"><a href="#2-5-1-参数列表" class="headerlink" title="2.5.1 参数列表"></a>2.5.1 参数列表</h3><p>方法的参数列表指定要传递给方法什么信息，这些信息采用的是对象形式，因此在参数列表中必须指定每个所传递对象的类型及名字。像 Java 中任何对象传递的场合一样，这里传递的的实际上也是引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">storage</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> s.length * <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过上面的例子，可以知道 return 关键字的用法：1.代表做完，离开此方法；2.如果此方法返回值，return 可返回值。所以，若方法返回类型是 void，return 关键字的作用只是用来退出方法。</p>
+<h2 id="2-6-构建一个-Java-程序"><a href="#2-6-构建一个-Java-程序" class="headerlink" title="2.6 构建一个 Java 程序"></a>2.6 构建一个 Java 程序</h2><h3 id="2-6-1-名字可见性"><a href="#2-6-1-名字可见性" class="headerlink" title="2.6.1 名字可见性"></a>2.6.1 名字可见性</h3><p>为了解决命名冲突，C++ 中引入了命名空间的概念，Java 采用全新的方法来避免。Java 希望程序员反过来使用自己的 Inetnet 域名，因为这样可以保证它们肯定是独一无二的。例如域名 MindView.net，那么各种类库就被命名为 net.mindview.utility.foibles。域名反转后，句点就表示目录划分。</p>
+<h3 id="2-6-2-使用其他构件"><a href="#2-6-2-使用其他构件" class="headerlink" title="2.6.2 使用其他构件"></a>2.6.2 使用其他构件</h3><p>使用关键字 import 来准确告诉编译器你想要的类是什么。import 指示编译器导入一个包，也就是一个类库。</p>
+<p>使用 Java 标准类库里的构件，就不用写一长串的反转域名了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Arraylist;</div></pre></td></tr></table></figure>
+<p>也可已使用通配符 * 一次导入一群类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div></pre></td></tr></table></figure>
+<h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><p>通常来说，只有执行 new 创建对象，数据存储空间才会被分配。但是有如下困难：</p>
+<ol>
+<li>只想为摸个特定域分配单一存储空间，而不考虑是否要创建对象；</li>
+<li>希望即使没有创建对象也能调用方法。</li>
+</ol>
+<p>使用 static 关键字，意味着这个域或方法和类的任何一个对象无关。所以即使没有创建对象也可以调用 static 域或 static 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">47</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 创建两个 StaticTest 对象，st1.i 和 st2.i 指向同一存储空间，共享一个 i</span></div><div class="line">StaticTest st1 = <span class="keyword">new</span> StaticTest();</div><div class="line">StaticTest st2 = <span class="keyword">new</span> StaticTest();</div><div class="line"></div><div class="line"><span class="comment">// 可通过类名直接引用 static 变量</span></div><div class="line">StaticTest.i++;</div><div class="line"></div><div class="line"><span class="comment">// 此时 st1.i 和 st2.i 都将为 48</span></div></pre></td></tr></table></figure>
+<p>引用 static 变量的两种方法：1.通过对象名引用；2.通过类名引用（首选）。<br>static 方法也类似。</p>
+<h2 id="2-7-第一个Java程序"><a href="#2-7-第一个Java程序" class="headerlink" title="2.7 第一个Java程序"></a>2.7 第一个Java程序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HelloDate.java</span></div><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloDate</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello, it's: "</span>);</div><div class="line">        System.out.println(<span class="keyword">new</span> Date());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <a href="https://docs.oracle.com/javase/10/docs/api/overview-summary.html" target="_blank" rel="external">JDK 文档</a> 查看 Java 配套的各种类库。由于 java.lang 是默认导入到每一个 Java 文件中的，所以它的所有类都可以被直接使用。</p>
+<p>看上面的程序，Date 类并不包含于 java.lang 中，而是在另外一个类库 java.util 中，使用 import 导入。在文档中查看 java.lang 中的 System 类，可以看到它的域中有三个字段 err、in、out，都是静态对象。程序中使用的 out 类型是 PrintStream，out 能做什么就由它决定。查看 PrintStream 的方法，程序中用到了 println()，它的实际作用是将数据打印到控制台并换行。</p>
+<p><strong>类名必须和文件名相同：</strong>如果创建一个可以独立运行的程序，文件中必须有一个类的名字和文件名一样。<br><strong>每个文件最多只有一个 public 类：</strong>若有，则该类名必须同文件名；若无，此类可以跟文件名不同。</p>
+<h2 id="2-8-注释和嵌入式文档"><a href="#2-8-注释和嵌入式文档" class="headerlink" title="2.8 注释和嵌入式文档"></a>2.8 注释和嵌入式文档</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* This is a comment</span></div><div class="line"><span class="comment"> * that continues</span></div><div class="line"><span class="comment"> * across lines</span></div><div class="line"><span class="comment"> */</span></div><div class="line"></div><div class="line"><span class="comment">/* This is a comment that</span></div><div class="line"><span class="comment"> continues across lines */</span></div><div class="line"></div><div class="line"><span class="comment">// This is a one-line comment</span></div></pre></td></tr></table></figure>
+<h3 id="2-8-1-注释文档"><a href="#2-8-1-注释文档" class="headerlink" title="2.8.1 注释文档"></a>2.8.1 注释文档</h3><p>将代码和文档“链接”起来，会使文档维护变得简单。用特殊的注释语法来标记文档，然后使用某种工具提取出来。<br>javadoc 就是提取注释的工具，它不仅查找并解析特殊注释标签，也将毗邻的类名或方法名抽出来，以 HTML 文件输出。</p>
+<h3 id="2-8-2-语法"><a href="#2-8-2-语法" class="headerlink" title="2.8.2 语法"></a>2.8.2 语法</h3><p>使用 javadoc 的方式有两种：1.嵌入HTML；2.使用“文档标签”。</p>
+<p>文档标签有：</p>
+<ol>
+<li>独立文档标签：以“@”开头，在注释行最前面；</li>
+<li>行内文档标签：同样以“@”开头，可以在注释中任意位置，但要包在花括号内。</li>
+</ol>
+<p>注释文档共有三种：</p>
+<ol>
+<li>类注释；</li>
+<li>域注释；</li>
+<li>方法注释</li>
+</ol>
+<p>它们都位于对应元素之前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: object/Documentation1.java</span></div><div class="line"><span class="comment">/** A class comment */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ducumentation1</span> </span>&#123;</div><div class="line">     <span class="comment">/** A field comment */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> i;</div><div class="line">    <span class="comment">/** A method commend */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>javadoc 只能为 public 和 protected 成员进行文档注释。</p>
+<h3 id="2-8-4-标签示例"><a href="#2-8-4-标签示例" class="headerlink" title="2.8.4 标签示例"></a>2.8.4 标签示例</h3><ol>
+<li>@see　：引用其他类，生成“See Also”（参见）超链接</li>
+<li>{@link package.class#member label} ：同@see，行内，超链接为“label”</li>
+<li>{@docRoot} ：文档根目录相对路径</li>
+<li>{@inheritDoc} ：直接基类继承文档</li>
+<li>@version ：版本说明信息</li>
+<li>@author ：姓名</li>
+<li>@since ：程序最早使用版本</li>
+<li>@param ：参数</li>
+<li>@return ：返回值含义</li>
+<li>@throws ：异常说明</li>
+<li>@deprecated ：旧特性警告</li>
+</ol>
+<p>使用示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: object/HelloDate.java</span></div><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="comment">/** The first Thinking in Java example program.</span></div><div class="line"><span class="comment"> * Displays a string and today's date.</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Bruce Eckel</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> www.MindView.net</span></div><div class="line"><span class="comment"> * <span class="doctag">@version</span> 4.0</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloDate</span> </span>&#123;</div><div class="line">  <span class="comment">/** Entry point to class &amp; application.</span></div><div class="line"><span class="comment">   * <span class="doctag">@param</span> args array of string arguments</span></div><div class="line"><span class="comment">   * <span class="doctag">@throws</span> exceptions No exceptions thrown</span></div><div class="line"><span class="comment">  */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"Hello, it's: "</span>);</div><div class="line">    System.out.println(<span class="keyword">new</span> Date());</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output: (55% match)</span></div><div class="line"><span class="comment">Hello, it's:</span></div><div class="line"><span class="comment">Wed Oct 05 14:39:36 MDT 2005</span></div><div class="line"><span class="comment">*/</span><span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<h2 id="2-9-编码风格"><a href="#2-9-编码风格" class="headerlink" title="2.9 编码风格"></a>2.9 编码风格</h2><ul>
+<li>类名：首字母大写，每个单词的首字母也大写，不要用下划线；</li>
+<li>其他：首字母小写，其他和类名一样，例如：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllTheColorsOfTheRainbow</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> anIntegerRepresentingColors;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">changeTheHueOfTheColor</span><span class="params">(<span class="keyword">int</span> newHue)</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -541,7 +623,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://home.junyouxiaowu.top/2017/12/29/好吃的Cookies/" title="Delicious Cookie">http://home.junyouxiaowu.top/2017/12/29/好吃的Cookies/</a>
+    <a href="http://home.junyouxiaowu.top/2019/03/22/Thinking in Java学习笔记/" title="Java编程思想学习笔记（更新ing）">http://home.junyouxiaowu.top/2019/03/22/Thinking in Java学习笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -558,8 +640,6 @@
           
             <a href="/tags/Notes/" rel="tag"><i class="fa fa-envira" aria-hidden="true"></i> Notes</a>
           
-            <a href="/tags/Cookie/" rel="tag"><i class="fa fa-envira" aria-hidden="true"></i> Cookie</a>
-          
         </div>
       
 
@@ -571,8 +651,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/26/Linux基础配置/" rel="next" title="Linux服务器基础配置">
-                <i class="fa fa-chevron-left"></i> Linux服务器基础配置
+              <a href="/2019/03/19/Git常用命令/" rel="next" title="Git常用命令">
+                <i class="fa fa-chevron-left"></i> Git常用命令
               </a>
             
           </div>
@@ -580,10 +660,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/01/多SSH-Key解决方法/" rel="prev" title="多SSH Key解决方法">
-                多SSH Key解决方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -794,7 +870,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#上面是科普，这里随便说说。"><span class="nav-number">1.</span> <span class="nav-text">上面是科普，这里随便说说。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是不是很麻烦？"><span class="nav-number">2.</span> <span class="nav-text">是不是很麻烦？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么突然说-Cookie-呢？"><span class="nav-number">3.</span> <span class="nav-text">为什么突然说 Cookie 呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-CookieJar？"><span class="nav-number">4.</span> <span class="nav-text">什么是 CookieJar？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动手试试存取-Cookie"><span class="nav-number">5.</span> <span class="nav-text">动手试试存取 Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从文件读取-Cookie"><span class="nav-number">6.</span> <span class="nav-text">从文件读取 Cookie</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-一切都是对象"><span class="nav-number">1.</span> <span class="nav-text">第二章 一切都是对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-用引用操作对象"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 用引用操作对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-创建对象"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-存储位置"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1 存储位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-特例：基本类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.2 特例：基本类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-Java-中的数组"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.2.3 Java 中的数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-永远不需要销毁对象"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 永远不需要销毁对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-作用域"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.3.1 作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-对象的作用域"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.3.2 对象的作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-创建新的数据类型：类"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 创建新的数据类型：类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-字段和方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.4.1 字段和方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-方法、参数和返回值"><span class="nav-number">1.5.</span> <span class="nav-text">2.5 方法、参数和返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-参数列表"><span class="nav-number">1.5.1.</span> <span class="nav-text">2.5.1 参数列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-构建一个-Java-程序"><span class="nav-number">1.6.</span> <span class="nav-text">2.6 构建一个 Java 程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-1-名字可见性"><span class="nav-number">1.6.1.</span> <span class="nav-text">2.6.1 名字可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-2-使用其他构件"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.6.2 使用其他构件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-3-static-关键字"><span class="nav-number">1.6.3.</span> <span class="nav-text">2.6.3 static 关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-第一个Java程序"><span class="nav-number">1.7.</span> <span class="nav-text">2.7 第一个Java程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-注释和嵌入式文档"><span class="nav-number">1.8.</span> <span class="nav-text">2.8 注释和嵌入式文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-1-注释文档"><span class="nav-number">1.8.1.</span> <span class="nav-text">2.8.1 注释文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-2-语法"><span class="nav-number">1.8.2.</span> <span class="nav-text">2.8.2 语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-4-标签示例"><span class="nav-number">1.8.3.</span> <span class="nav-text">2.8.4 标签示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-编码风格"><span class="nav-number">1.9.</span> <span class="nav-text">2.9 编码风格</span></a></li></ol></li></ol></div>
             
 
           </div>
